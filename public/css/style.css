@@ -1,0 +1,105 @@
+body{
+ background-color: black;
+}
+.img-zoom {
+    transition: 0.3s;
+}
+  
+.img-zoom:hover{
+    transform: scale(1.02);
+}
+
+.input-small {
+    max-width: 260px;
+}
+
+/* home */
+#carouselFilms {
+    max-width: 700px;
+}
+
+/* profile page */
+.profile {
+    width: 70%;
+    margin-top: 100px;
+}
+
+.profile .right-info {
+    width: 100%;
+}
+
+.profile .right-info .rent-history {
+    min-height: 400px;
+    max-height: 400px;
+}
+
+.profile .right-info .rent-history .rents .rent p:nth-child(4) {
+    background-color: var(--green);
+    color: var(--skin);
+}
+
+.profile .profileImg-navBar ul,
+.profile .right-info .about ul,
+.profile .right-info .rent-history ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.profile .profileImg-navBar ul {
+    margin-top: 80%;
+}
+
+.profile .profileImg-navBar ul li {
+    margin: 12px;
+}
+
+.profile .profileImg-navBar ul li a {
+    position: relative;
+    text-decoration-color: var(--white-white);
+}
+
+.profile .profileImg-navBar img {
+    width: 240px;
+}
+
+.profile .right-info .about ul li,
+.profile .right-info .rent-history ul li {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+/* Films list */
+.box {
+    width: 90%;
+}
+
+.box .left .filter .filter-box .one-line label:hover {
+    text-decoration: underline;
+}
+
+.box .right {
+    flex-grow: 1;
+}
+
+.box .right .authors img {
+    width: 120px;
+}
+
+/* Film show */
+.main-container {
+    width: 90%;
+}
+
+#desc {
+    max-width: 280px;
+}
+
+#totalPrice {
+    max-width: 260px;
+}
+
+.active-item {
+    height: 480px;
+}
