@@ -81,7 +81,7 @@
                                         <Link v-if="!$page.props.auth" :href="route('login')">
                                         <button class="btn btn-light border-none px-2 py-2 btn-48">
                                             <div class="d-flex align-items-center m-0">
-                                                {{ film.likesCount }}
+                                                {{ film.raiting }}
                                                 <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
                                             </div>
                                         </button>

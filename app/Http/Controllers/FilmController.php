@@ -34,7 +34,8 @@ class FilmController extends Controller
                 'price_per_subscribtion' => $film->price_per_subscribtion,
                 'price_per_watch' => $film->price_per_watch,
                 'filmImageURL' => $film->getFirstImageURL(),
-                'likesCount' => $raiting,
+                'rating' => $raiting,
+                'likesCount' => $like_count,
                 'isLikedByUser' => $isLikedByUser ?? false,
             ];
         });
@@ -51,7 +52,7 @@ class FilmController extends Controller
 
         $filmImages = $film->getImageURLs();
 
-        $film->likesCount = $film->likes->count();
+        $film->likesCount = $film->likes()->where('value', '1')->count();
 
         if (auth()->user()) {
             $authUser = auth()->user()->id;

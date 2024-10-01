@@ -24,7 +24,7 @@ class AdminController extends Controller
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments, 'money' => $money]
+                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments]
             );
         }
 

@@ -68,10 +68,7 @@ export default {
             type: Number,
             required: true,
         },
-        money: {
-            type: Number,
-            required: true,
-        },
+      
     },
 };
 

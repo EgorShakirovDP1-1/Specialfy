@@ -55,7 +55,7 @@
                                                 class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
                                                 @click="toggleLike(film.id)">
                                                 <div class="d-flex align-items-center m-0">
-                                                    {{ film.likesCount }}
+                                                    {{ film.rating }}
                                                     <i class="bi h4 text-danger ms-1 mt-2"
                                                         :class="{ 'bi-heart-fill': film.isLikedByUser, 'bi-heart': !film.isLikedByUser }"
                                                         aria-label="Like"></i>
@@ -65,7 +65,7 @@
                                             <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
                                                 aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
-                                                    {{ film.likesCount }}
+                                                    {{ film.rating }}
                                                     <i class="bi bi-heart h4 text-danger ms-1 mt-2"
                                                         aria-hidden="true"></i>
                                                 </div>
