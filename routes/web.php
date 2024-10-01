@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ReservationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ Route::prefix('films')->group(function () {
     Route::post('/create', [FilmController::class, 'store'])->middleware(['auth', 'admin'])->name('films.store');
 
     Route::get('/{film}', [FilmController::class, 'show'])->name('film.show');
-    Route::post('/{film}', [ReservationController::class, 'store'])->name('reservation');
+   
 
     Route::delete('/{film}/destroy', [FilmController::class, 'destroy'])->middleware(['auth', 'admin'])->name('film.destroy');
 });
