@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Reservation;
+
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -48,10 +48,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function reservations() {
-        return $this->hasMany(Reservation::class);
-    }
-
+ 
     public function likes() {
         return $this->hasMany(Like::class);
     }

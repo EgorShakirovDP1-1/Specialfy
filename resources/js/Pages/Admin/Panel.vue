@@ -16,7 +16,7 @@
                     </div>
                     <div class="row my-3">
                         <CommentsCount :comments="comments" aria-label="comments count" />
-                        <ReservationsCount :money="money" aria-label="reservations count" />
+                       
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ import FilmsCount from "./Partials/FilmsCount.vue";
 import AdminsCount from './Partials/AdminsCount.vue';
 import TermsCount from './Partials/TermsCount.vue';
 import CommentsCount from './Partials/CommentsCount.vue'
-import ReservationsCount from './Partials/ReservationsCount.vue';
+
 
 export default {
     components: {
@@ -45,7 +45,7 @@ export default {
         AdminsCount,
         TermsCount,
         CommentsCount,
-        ReservationsCount,
+        
     },
     props: {
         users: {
@@ -68,10 +68,7 @@ export default {
             type: Number,
             required: true,
         },
-        money: {
-            type: Number,
-            required: true,
-        },
+      
     },
 };
 

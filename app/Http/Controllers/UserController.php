@@ -15,14 +15,7 @@ class UserController extends Controller
     public function profile($id) {
         $user = User::find($id);
 
-        $reservations = $user->reservations()->orderBy('created_at', 'asc')->get();
-
-        if ($reservations->count() > 0) {
-            foreach ($reservations as $reservation) {
-                $reservation->author = $reservation->film->author;
-                $reservation->model = $reservation->film->model;
-            }
-        }
+    
 
         $likedFilmIds = Like::where('user_id', $user->id)
                    ->pluck('film_id')
@@ -47,7 +40,7 @@ class UserController extends Controller
 
         return Inertia::render("User/Profile", [
             'user' => $user,
-            'reservations' => $reservations,
+           
             'likedFilms' => $likedFilms ?? null,
         ]);
     }

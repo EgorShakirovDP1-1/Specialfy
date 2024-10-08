@@ -26,6 +26,7 @@ class LikesTableSeeder extends Seeder
                     Like::insert([
                         'user_id' => $userId,
                         'film_id' => $filmId,
+                        'value' => random_int(min: 0, max: 1), 
                     ]);
                 }
             }

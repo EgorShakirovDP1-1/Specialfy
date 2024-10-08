@@ -7,7 +7,7 @@ use App\Models\Term;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Comment;
-use App\Models\Reservation;
+
 
 class AdminController extends Controller
 {
@@ -18,18 +18,13 @@ class AdminController extends Controller
         $films = Film::all()->count();
         $terms = Term::all()->count();
         $comments = Comment::all()->count();
-        $reservations = Reservation::all()->pluck('end_price');
 
-        $money = 0;
-        foreach ($reservations as $reservation) {
-            $money += $reservation;
-        }
-        $money = round($money);
+      
 
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments, 'money' => $money]
+                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments]
             );
         }
 

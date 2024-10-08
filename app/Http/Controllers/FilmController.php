@@ -19,6 +19,10 @@ class FilmController extends Controller
                 $isLikedByUser = $film->likes()->where('user_id', auth()->id())->exists();
             }
 
+        $like_count = $film->likes()->where('value', '1')->count();
+        $dislike_count = $film->likes()->where('value', '0')->count();
+        $raiting = ($like_count - $dislike_count);
+
             return [
                 'id' => $film->id,
                 'author' => $film->author,
@@ -30,7 +34,8 @@ class FilmController extends Controller
                 'price_per_subscribtion' => $film->price_per_subscribtion,
                 'price_per_watch' => $film->price_per_watch,
                 'filmImageURL' => $film->getFirstImageURL(),
-                'likesCount' => $film->likes->count(),
+                'rating' => $raiting,
+                'likesCount' => $like_count,
                 'isLikedByUser' => $isLikedByUser ?? false,
             ];
         });
@@ -47,7 +52,7 @@ class FilmController extends Controller
 
         $filmImages = $film->getImageURLs();
 
-        $film->likesCount = $film->likes->count();
+        $film->likesCount = $film->likes()->where('value', '1')->count();
 
         if (auth()->user()) {
             $authUser = auth()->user()->id;

@@ -20,7 +20,7 @@ class MainSeeder extends Seeder
             FilmsSeeder::class,
             LikesTableSeeder::class,
             CommentsSeeder::class,
-            ReservationsSeeder::class,
+            
         ]);
     }
 }

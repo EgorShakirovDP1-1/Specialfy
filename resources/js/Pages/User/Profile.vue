@@ -57,61 +57,8 @@
                 </div>
                 <div class="rent-history rounded bg-black mt-2 p-3 overflow-auto">
                     <h3 class="text-center">Rents</h3>
-                    <table v-if="reservations" class="table table-sm table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Film</th>
-                                <th scope="col">Start Date</th>
-                                <th scope="col">End Date</th>
-                                <th scope="col">
-                                    <div class="text-center">
-                                        Watch price (€)
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="text-center">
-                                        Total price (€)
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="reservation in reservations">
-                                <td class="p-0">
-                                    <div :class="{
-                                        'bg-light': isCurrentReservation(reservation.start_date, reservation.end_date),
-                                        'bg-warning': isPastReservation(reservation.end_date),
-                                        'bg-info': isFutureReservation(reservation.start_date)
-                                    }" class="text-center p-2 my-1">
-                                        {{ reservation.author }} {{ reservation.model }}
-                                    </div>
-                                </td>
-                                <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
-                                <td>{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</td>
-                                <td>
-                                    <div class="text-center">
-                                        {{ reservation.watch }} watch
-                                    </div>
-                                </td>
-                                <td class="text-end bg-light text-warning">
-                                    <div class="text-center">
-                                        {{ reservation.end_price }}€
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div v-if="!reservations" class="">
-                        <div class="text-center mt-2 h5">
-                            <h5>
-                                No reservations were made
-                            </h5>
-                            <Link :href="route('films')" class="btn btn-info .text-black p-2 rounded"
-                                aria-label="Check Available Films Button">
-                            Check out our available films list!
-                            </Link>
-                        </div>
-                    </div>
+                    
+                  
                 </div>
             </div>
         </div>
@@ -136,36 +83,15 @@ export default {
             type: Object,
             required: true,
         },
-        reservations: {
-            type: Array,
-            required: true,
-        },
+ 
         likedFilms: {
             type: Array,
             required: false,
         },
     },
-    methods: {
-        isCurrentReservation(start_date, end_date) {
-            const now = moment();
-            const start = moment(start_date);
-            const end = moment(end_date);
-            const isCurrent = start.isSameOrBefore(now) && end.isSameOrAfter(now);
-            return isCurrent;
-        },
-
-        isPastReservation(end_date) {
-            const now = moment();
-            const end = moment(end_date);
-            return end.isBefore(now);
-        },
-
-        isFutureReservation(start_date) {
-            const now = moment();
-            const start = moment(start_date);
-            return start.isAfter(now);
-        }
-    },
+   
+       
+    
     data() {
         return {
             moment: moment,
