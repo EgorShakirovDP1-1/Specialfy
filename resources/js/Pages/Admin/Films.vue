@@ -75,7 +75,7 @@ export default {
     },
     props: {
         films: {
-            type: Array,
+            type: Object, //Array
             required: true,
         },
     },

@@ -20,8 +20,8 @@ class AuthController extends Controller
 
         User::create([
             'name' => $request->name,
-            'phone_number' => $request->phone_number,
-            'email' => $request->email,
+            'phone_number' => ($request->phone_number),
+            'email' => ($request->email),
             'password' => bcrypt($request->password),]);
 
         // Mail::to($user->email)

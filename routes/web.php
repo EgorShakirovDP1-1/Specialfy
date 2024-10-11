@@ -44,6 +44,11 @@ Route::middleware('auth')->prefix('profile/{user}')->group(function () {
     Route::get('/edit', [UserController::class, 'edit'])->name('edit');
     Route::put('/edit', [UserController::class, 'update'])->name('update');
     Route::delete('/', [UserController::class, 'destroy'])->name('delete');
+ 
+
+Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
+    ->name('users.make-admin');
+
 });
 
 //terms
@@ -62,11 +67,12 @@ Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 Route::prefix('films')->group(function () {
     Route::get('/', [FilmController::class, 'index'])->name('films');
 
-    Route::get('/create', [FilmController::class, 'create'])->middleware(['auth', 'admin'])->name('films.create');
-    Route::post('/create', [FilmController::class, 'store'])->middleware(['auth', 'admin'])->name('films.store');
+    Route::get('/create', [FilmController::class, 'create'])->middleware(['auth'])->name('films.create');
+    Route::post('/create', [FilmController::class, 'store'])->name('films.create');
+
 
     Route::get('/{film}', [FilmController::class, 'show'])->name('film.show');
-   
+ 
 
     Route::delete('/{film}/destroy', [FilmController::class, 'destroy'])->middleware(['auth', 'admin'])->name('film.destroy');
 });
@@ -87,6 +93,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('/films/table', [AdminController::class, 'filmsTable'])->name('admin.films');
     Route::get('/films/charts', [AdminController::class, 'filmsCharts'])->name('admin.films.charts');
+    Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
+    
 });
 
 

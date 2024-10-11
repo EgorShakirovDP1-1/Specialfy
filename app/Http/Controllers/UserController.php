@@ -9,13 +9,17 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
-
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
+
+
+
+
     public function profile($id) {
         $user = User::find($id);
 
-    
+
 
         $likedFilmIds = Like::where('user_id', $user->id)
                    ->pluck('film_id')
@@ -77,7 +81,14 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('message', 'Profile updated successfully!');
     }
+    public function makeAdmin(User $user)
+    {
+        // Update the user's role to 'admin'
+        $user->is_admin = '1';
+        $user->save();
 
+        return back()->with('success', 'User has been given admin rights.');
+    }
     public function destroy($id) {
         $user = User::find($id);
 
