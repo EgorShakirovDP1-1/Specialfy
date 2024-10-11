@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <div v-if="$page.props.isAdmin" id="create" class="text-center mb-0" role="region" aria-label="Admin Actions">
+        <div id="create" class="text-center mb-0" role="region" aria-label="">
             <a :href="route('films.create')" class="btn btn-info text-primary pb-2 align-items-center">
                 <div class="d-flex">
                     <i class="bi bi-camera-reels-fill h4 me-1"></i>
@@ -41,10 +41,10 @@
                                             {{ film.filmname }} 
                                         </h3>
                                         <p class="text-white mb-0">
-                                            Price Per Subscribtion: {{ film.price_per_subscribtion }}€
+                                            Price Per hiring: {{ film.price_per_subscribtion }}€
                                         </p>
                                         <p class="text-white">
-                                            Price Per Watch: {{ film.price_per_watch }}€
+                                            Price Per hour: {{ film.price_per_watch }}€
                                         </p>
                                         <div class="d-flex justify-content-center">
                                             <Link :href="route('film.show', film.id)"
@@ -55,7 +55,7 @@
                                                 class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
                                                 @click="toggleLike(film.id)">
                                                 <div class="d-flex align-items-center m-0">
-                                                    {{ film.rating }}
+                                                    {{ film.likesCount }}
                                                     <i class="bi h4 text-danger ms-1 mt-2"
                                                         :class="{ 'bi-heart-fill': film.isLikedByUser, 'bi-heart': !film.isLikedByUser }"
                                                         aria-label="Like"></i>
@@ -65,7 +65,7 @@
                                             <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
                                                 aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
-                                                    {{ film.rating }}
+                                                    {{ film.likesCount }}
                                                     <i class="bi bi-heart h4 text-danger ms-1 mt-2"
                                                         aria-hidden="true"></i>
                                                 </div>

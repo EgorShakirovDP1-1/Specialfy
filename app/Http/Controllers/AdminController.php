@@ -18,13 +18,10 @@ class AdminController extends Controller
         $films = Film::all()->count();
         $terms = Term::all()->count();
         $comments = Comment::all()->count();
-
-      
-
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments]
+                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
             );
         }
 
@@ -38,6 +35,13 @@ class AdminController extends Controller
         return Inertia::render('Admin/Films', ['films' => $films]);
     }
 
+    public function usersTable()
+    {
+        $users = User::paginate(10);
+
+        return Inertia::render('Admin/Users', ['users' => $users]);
+    }
+    
     public function FilmsCharts()
     {
         $films = Film::all();

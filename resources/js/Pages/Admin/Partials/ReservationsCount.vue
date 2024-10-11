@@ -3,6 +3,7 @@
         <div class="p-5 shadow rounded-3 text-center">
             <i class="bi bi-bank text-success me-1 icon"></i>
 
+           
         </div>
     </div>
 </template>

@@ -19,6 +19,9 @@ export default {
 </script>
 
 <style>
+body {
+background-color: azure;
+}
 body::-webkit-scrollbar {
     display: none;
 }
@@ -30,4 +33,5 @@ body::-webkit-scrollbar {
 .img-zoom:hover {
     transform: scale(1.03);
 }
+
 </style>
