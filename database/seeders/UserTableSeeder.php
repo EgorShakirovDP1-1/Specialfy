@@ -15,11 +15,11 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'Sergey Tykvov',
             'is_admin' => 1,
-            'phone_number' => bcrypt('12345678'),
-            'email' => bcrypt('egorsha2005@gmail.com'),
+            'phone_number' => ('12345678'),
+            'email' => ('egorsha2005@gmail.com'),
             'avatar' => null,
             'password' => bcrypt('12345678'),
-            'user_type' => 1,
+            'user_type' => true,
             'last_login' => Date("Y-m-d")
         ]);
 
