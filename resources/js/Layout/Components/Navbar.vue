@@ -1,7 +1,7 @@
 <template>
-    <section class="bg-black sticky-top">
+    <section class="bg-danger sticky-top">
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-black">
+            <nav class="navbar navbar-expand-lg navbar-light bg-danger">
                 <div class="container-fluid px-0">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -27,6 +27,7 @@
                                     'text-white': $page.url.includes('/terms'),
                                 }" aria-label="rental terms page">Terms</Link>
                             </li>
+                            приваси полиси сюда
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
                                 <i class="bi bi-list text-white" aria-label="our film list icon"></i>
                                 <Link :href="route('films')" class="nav-link p-1" :class="{

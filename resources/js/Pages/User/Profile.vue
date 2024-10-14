@@ -57,11 +57,11 @@
                 </div>
                 <div class="rent-history rounded bg-black mt-2 p-3 overflow-auto">
                     <h3 class="text-center">Rents</h3>
-                    
-                  
+                   
+                    </div>
                 </div>
             </div>
-        </div>
+     
     </Layout>
 </template>
 
@@ -83,15 +83,15 @@ export default {
             type: Object,
             required: true,
         },
- 
+     
         likedFilms: {
             type: Array,
             required: false,
         },
     },
-   
-       
-    
+    methods: {
+      
+    },
     data() {
         return {
             moment: moment,

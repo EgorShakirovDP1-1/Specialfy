@@ -46,6 +46,7 @@ export default {
         TermsCount,
         CommentsCount,
         
+       
     },
     props: {
         users: {
@@ -68,7 +69,7 @@ export default {
             type: Number,
             required: true,
         },
-      
+       
     },
 };
 

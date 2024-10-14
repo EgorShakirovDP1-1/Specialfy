@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FilmStoreRequest;
 use Illuminate\Support\Facades\Storage;
 
+
 class FilmController extends Controller
 {
     public function index()

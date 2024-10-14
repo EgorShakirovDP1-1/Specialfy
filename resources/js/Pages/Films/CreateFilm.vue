@@ -107,7 +107,7 @@
                     <div id="photoInputsContainer" aria-labelledby="filmImageLabel">
                         <div class="form-group mt-3">
                             <label for="filmImage1" class="text-dark" id="filmImageLabel">Add 1. film image</label><br>
-                            <input @input="form.filmImage1 = $event.target.files[0]" type="file" name="filmImage1"
+                            <input @change="handleFileChange($event, 'filmImage1')" type="file" name="filmImage1"
                                 class="filmImage form-control border-primary" aria-describedby="filmImageError">
                             <div v-if="errors.filmImage1" class="d-block mt-2" id="filmImageError" role="alert">
                                 <span class="fs-5 text-danger">
@@ -132,7 +132,7 @@
 
 <script setup>
 import Layout from "../../Layout/App.vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     errors: Object,
@@ -149,67 +149,67 @@ const form = useForm({
     description: "",
     price_per_subscribtion: null,
     price_per_watch: null,
-    filmImage1: null,
-    filmImage2: null,
-    filmImage3: null,
-    filmImage4: null,
-    filmImage5: null,
-    filmImage6: null,
-    filmImage7: null,
-    filmImage8: null,
+    filmImages: {}
 });
 
 const addFileInput = () => {
-    // amounth of images
     const filmImageCount = document.querySelectorAll('.filmImage').length;
 
-    // if there are already 8 images, don't add another one
     if (filmImageCount >= 8) {
         alert('You can only add up to 8 images.');
         return;
     }
 
-    // get the next image number
     let nextImageNumber = filmImageCount + 1;
-
-    // Create input element
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.name = `filmImage${nextImageNumber}`;
     fileInput.className = 'filmImage form-control border-primary';
-    fileInput.addEventListener('input', (event) => {
-        // Update the corresponding form variable with the selected file
-        form[`filmImage${nextImageNumber}`] = event.target.files[0];
+    fileInput.addEventListener('change', (event) => {
+        handleFileChange(event, `filmImage${nextImageNumber}`);
     });
 
-    // Create label element
     const label = document.createElement('label');
     label.textContent = `Add ${nextImageNumber}. film image`;
 
-    // Create div element and append label and input
     const div = document.createElement('div');
     div.className = 'form-group mt-3';
     div.appendChild(label);
     div.appendChild(fileInput);
 
-    // Append the new input element to the photoInputsContainer
-    const photoInputsContainer = document.getElementById('photoInputsContainer');
-    photoInputsContainer.appendChild(div);
-}
+    document.getElementById('photoInputsContainer').appendChild(div);
+};
+
+const handleFileChange = (event, key) => {
+    form.filmImages[key] = event.target.files[0];
+};
 
 const handleSubmit = () => {
-    form.post(route('films.create'), {
-        filmImage1: form.filmImage1,
-        filmImage2: form.filmImage2,
-        filmImage3: form.filmImage3,
-        filmImage4: form.filmImage4,
-        filmImage5: form.filmImage5,
-        filmImage6: form.filmImage6,
-        filmImage7: form.filmImage7,
-        filmImage8: form.filmImage8,
-    });
-}
-</script>
+    const formData = new FormData();
 
+    // Append form fields
+    Object.keys(form).forEach((key) => {
+        if (key !== 'filmImages') {
+            formData.append(key, form[key]);
+        }
+    });
+
+    // Append file inputs
+    Object.keys(form.filmImages).forEach((key) => {
+        formData.append(key, form.filmImages[key]);
+    });
+
+    // Submit using Inertia's `post` method with FormData
+    form.post(route('films.create'), {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        data: formData,
+        onSuccess: () => {
+            alert("Film uploaded successfully!");
+        }
+    });
+};
+</script>
 
 <style scoped></style>
