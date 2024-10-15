@@ -27,13 +27,13 @@
                         <button class="btn dropdown-toggle px-3" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <i class="bi bi-camera-reels-fill text-white me-1"></i>
-                            Films
+                            Posts
                         </button>
                         <ul class="dropdown-menu bg-light">
-                            <Link :href="route('admin.films')" class="nav-link text-black">
+                            <Link :href="route('admin.posts')" class="nav-link text-black">
                             <span>Table</span>
                             </Link>
-                            <Link :href="route('admin.films.charts')" class="nav-link text-white">
+                            <Link :href="route('admin.posts.charts')" class="nav-link text-white">
                             <span>Statistics</span>
                             </Link>
                         </ul>

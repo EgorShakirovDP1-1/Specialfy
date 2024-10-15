@@ -4,7 +4,7 @@
         <Mobility :unknownImage="unknownImage" />
         <Advantages />
         <NewApproach :twentycentuaryfoxImage="twentycentuaryfoxImage" />
-        <Latest :films="films" />
+        <Latest :posts="posts" />
         <GetStarted :getStartedURLs="getStartedURLs" />
         <FreeWatch :watchImage="watchImage" />
         <FAQ />
@@ -46,7 +46,7 @@ export default {
             type: String,
             required: true,
         },
-        films: {
+        posts: {
             type: Array,
             required: true,
         },

@@ -11,9 +11,9 @@ use App\Http\Requests\UserAuthenticateRequest;
 class AuthController extends Controller
 {
     public function register() {
-        $film = asset(Storage::url('filmImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
+        $post = asset(Storage::url('postImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
 
-        return Inertia::render('Auth/Register', ['film' => $film]);
+        return Inertia::render('Auth/Register', ['post' => $post]);
     }
 
     public function store(UserCreateRequest $request) {
@@ -31,9 +31,9 @@ class AuthController extends Controller
     }
 
     public function login() {
-        $film = asset(Storage::url('filmImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
+        $post = asset(Storage::url('postImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
 
-        return Inertia::render('Auth/Login', ['film' => $film]);
+        return Inertia::render('Auth/Login', ['post' => $post]);
     }
 
     public function authenticate(UserAuthenticateRequest $request){

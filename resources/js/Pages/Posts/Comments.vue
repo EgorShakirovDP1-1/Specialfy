@@ -48,7 +48,7 @@
                                             <i class="bi bi-pencil-square h5 ms-1" aria-hidden="true"></i>
                                         </button>
                                         <button v-if="$page.props.auth.id === comment.user_id"
-                                            @click="destroy(comment.id, comment.film_id)" type="submit"
+                                            @click="destroy(comment.id, comment.post_id)" type="submit"
                                             class="btn btn-danger text-primary px-2 py-1" aria-label="Delete Comment">
                                             <i class="bi bi-trash h5 ms-1" aria-hidden="true"></i>
                                         </button>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div v-if="comment.editing" class="">
                                     <form
-                                        @submit.prevent="handleEditSubmit(comment.comment, comment.film_id, comment.id)">
+                                        @submit.prevent="handleEditSubmit(comment.comment, comment.post_id, comment.id)">
                                         <div class="form-group d-flex mt-1">
                                             <input class="w-100" type="text" v-model="comment.comment">
                                             <button type="submit" :disabled="form.processing"
@@ -90,7 +90,7 @@ export default {
             type: Image,
             required: true,
         },
-        filmId: {
+        postId: {
             type: Number,
             required: true,
         },
@@ -101,13 +101,13 @@ export default {
     setup(props) {
         const form = useForm({
             comment: "",
-            film_id: props.filmId,
+            post_id: props.postId,
         });
 
         const formEdit = useForm({
             comment: "",
             comment_id: "",
-            film_id: props.filmId,
+            post_id: props.postId,
         });
 
         let bsModal = null;
@@ -117,14 +117,14 @@ export default {
         });
 
         const handleSubmit = () => {
-            form.submit("post", route("comment", { film: props.filmId }))
+            form.submit("post", route("comment", { post: props.postId }))
             form.comment = "";
         };
 
-        const handleEditSubmit = (comment_text, film_id, comment_id) => {
+        const handleEditSubmit = (comment_text, post_id, comment_id) => {
             formEdit.comment = comment_text;
             formEdit.comment_id = comment_id;
-            router.put(route("comment.update", { film: film_id, comment: comment_id }), formEdit, {
+            router.put(route("comment.update", { post: post_id, comment: comment_id }), formEdit, {
                 onSuccess: () => {
                     comment.editing = false;
                 }
@@ -135,9 +135,9 @@ export default {
             comment.editing = !comment.editing;
         };
 
-        const destroy = (comment_id, film_id) => {
+        const destroy = (comment_id, post_id) => {
             if (confirm("Are you sure?")) {
-                router.delete(route("comment.delete", { film: film_id, comment: comment_id, film_id, comment_id }));
+                router.delete(route("comment.delete", { post: post_id, comment: comment_id, post_id, comment_id }));
             }
         };
 

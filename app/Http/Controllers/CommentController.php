@@ -13,11 +13,11 @@ class CommentController extends Controller
 
         Comment::create([
             'user_id' => $user_id,
-            'film_id' => $request['film_id'],
+            'post_id' => $request['post_id'],
             'comment' => $request['comment'],
         ]);
 
-        return redirect()->route('film.show', $request['film_id']);
+        return redirect()->route('post.show', $request['post_id']);
     }
 
     public function update(CommentUpdateRequest $request) {
@@ -27,12 +27,12 @@ class CommentController extends Controller
             'comment' => $request['comment'],
         ]);
 
-        return redirect()->route('film.show', $request['film_id']);
+        return redirect()->route('post.show', $request['post_id']);
     }
 
-    public function destroy($film_id, $comment_id) {
+    public function destroy($post_id, $comment_id) {
         Comment::find($comment_id)->delete();
 
-        return redirect()->route('film.show', $film_id);
+        return redirect()->route('post.show', $post_id);
     }
 }

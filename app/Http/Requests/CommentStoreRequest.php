@@ -23,7 +23,7 @@ class CommentStoreRequest extends FormRequest
     {
         return [
             'comment' => 'required|min:2|max:255',
-            'film_id' => 'required',
+            'post_id' => 'required',
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
+use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
 use Inertia\Inertia;
@@ -21,21 +21,21 @@ class UserController extends Controller
 
 
 
-        $likedFilmIds = Like::where('user_id', $user->id)
-                   ->pluck('film_id')
+        $likedPostIds = Like::where('user_id', $user->id)
+                   ->pluck('post_id')
                    ->toArray();
 
-        if(!empty($likedFilmIds)){
-            foreach ($likedFilmIds as $filmId) {
-                $likedFilms[] = Film::find($filmId);
+        if(!empty($likedPostIds)){
+            foreach ($likedPostIds as $postId) {
+                $likedPosts[] = Post::find($postId);
             }
     
-            foreach ($likedFilms as $likedFilm) {
-                $likedFilm->filmImage1 = asset($likedFilm->filmImage1);
-                $likedFilm->likesCount = $likedFilm->likes->count();
+            foreach ($likedPosts as $likedPost) {
+                $likedPost->postImage1 = asset($likedPost->postImage1);
+                $likedPost->likesCount = $likedPost->likes->count();
             
                 if(auth()->user()){
-                    $likedFilm->isLikedByUser = $likedFilm->likes()->where('user_id', auth()->id())->exists();
+                    $likedPost->isLikedByUser = $likedPost->likes()->where('user_id', auth()->id())->exists();
                 }
             }
         }
@@ -45,7 +45,7 @@ class UserController extends Controller
         return Inertia::render("User/Profile", [
             'user' => $user,
            
-            'likedFilms' => $likedFilms ?? null,
+            'likedPosts' => $likedPosts ?? null,
         ]);
     }
 

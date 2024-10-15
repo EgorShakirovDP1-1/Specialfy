@@ -15,7 +15,7 @@
                         </Link>
                     </li>
                     <li class="mb-1 mt-0">
-                        <likedFilms :likedFilms="likedFilms" />
+                        <likedPosts :likedPosts="likedPosts" />
                     </li>
                     <li class="mb-1 mt-0">
                         <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216"
@@ -70,13 +70,13 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import { router } from "@inertiajs/vue3";
-import likedFilms from "./Profile/likedFilms.vue";
+import likedPosts from "./Profile/likedPosts.vue";
 
 export default {
     components: {
         Layout,
         Link,
-        likedFilms,
+        likedPosts,
     },
     props: {
         user: {
@@ -84,7 +84,7 @@ export default {
             required: true,
         },
      
-        likedFilms: {
+        likedPosts: {
             type: Array,
             required: false,
         },

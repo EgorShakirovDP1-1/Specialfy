@@ -26,11 +26,11 @@
                             </li>sticky-top
                             приваси полиси сюда
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
-                                <i class="bi bi-list text-white" aria-label="our film list icon"></i>
-                                <Link :href="route('films')" class="nav-link p-1" :class="{
-                                    'text-secondary': $page.url !== '/films',
-                                    'text-white': $page.url === '/films',
-                                }" aria-label="our film list page">Posts</Link>
+                                <i class="bi bi-list text-white" aria-label="our post list icon"></i>
+                                <Link :href="route('posts')" class="nav-link p-1" :class="{
+                                    'text-secondary': $page.url !== '/posts',
+                                    'text-white': $page.url === '/posts',
+                                }" aria-label="our post list page">Posts</Link>
                             </li>
 
                             <li v-if="$page.props.auth"

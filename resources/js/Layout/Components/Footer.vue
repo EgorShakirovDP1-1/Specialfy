@@ -14,7 +14,7 @@
                         aria-label="terms and conditions page">Terms</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('films')" class="nav-link px-2 text-black" aria-label="films page">films</Link>
+                    <Link :href="route('posts')" class="nav-link px-2 text-black" aria-label="posts page">posts</Link>
                 </li>
                 <li v-if="$page.props.auth" class="nav-item">
                     <Link :href="route('profile', { user: $page.props.auth })" class="nav-link px-2 text-black"
@@ -26,7 +26,7 @@
             </ul>
             <p class="lead .text-warning">
                 
-                <span class="text-warning">Copyright © 2024 Film Hunter</span>
+                <span class="text-warning">Copyright © 2024 Post Hunter</span>
             </p>
         </div>
     </footer>
