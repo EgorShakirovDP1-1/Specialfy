@@ -24,7 +24,7 @@ class CommentUpdateRequest extends FormRequest
         return [
             'comment' => 'required|min:2|max:255',
             'comment_id'=> 'required',
-            'film_id' => 'required',
+            'post_id' => 'required',
         ];
     }
 }

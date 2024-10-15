@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
+use App\Models\Post;
 
 class LikeController extends Controller
 {
-    public function toggle(Film $film)
+    public function toggle(Post $post)
     {
-        $film->likes()->toggle(auth()->id());
+        $post->likes()->toggle(auth()->id());
 
         return redirect()->back();
     }

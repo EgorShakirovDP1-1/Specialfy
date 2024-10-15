@@ -11,7 +11,7 @@
                         <AdminsCount :admins="admins" aria-label="admins count" />
                     </div>
                     <div class="row">
-                        <FilmsCount :films="films" aria-label="films count" />
+                        <PostsCount :posts="posts" aria-label="posts count" />
                         <TermsCount :terms="terms" aria-label="terms count" />
                     </div>
                     <div class="row my-3">
@@ -29,7 +29,7 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import SideBar from "./Partials/SideBar.vue";
 import UsersCount from "./Partials/UsersCount.vue";
-import FilmsCount from "./Partials/FilmsCount.vue";
+import PostsCount from "./Partials/PostsCount.vue";
 import AdminsCount from './Partials/AdminsCount.vue';
 import TermsCount from './Partials/TermsCount.vue';
 import CommentsCount from './Partials/CommentsCount.vue'
@@ -41,7 +41,7 @@ export default {
         Link,
         SideBar,
         UsersCount,
-        FilmsCount,
+        PostsCount,
         AdminsCount,
         TermsCount,
         CommentsCount,
@@ -53,7 +53,7 @@ export default {
             type: Number,
             required: true,
         },
-        films: {
+        posts: {
             type: Number,
             required: true,
         },

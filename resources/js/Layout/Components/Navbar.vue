@@ -11,7 +11,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-center m-0">
-                                <i class="bi bi-arrow-through-heart-fill text-warning h2 my-0 me-1" aria-label="film icon"></i>
+                                <i class="bi bi-arrow-through-heart-fill text-warning h2 my-0 me-1" aria-label="post icon"></i>
                                 
                                 <Link :href="route('home')" class="navbar-author text-warning me-0"
                                     aria-label="home page">
@@ -29,11 +29,11 @@
                             </li>
                             приваси полиси сюда
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
-                                <i class="bi bi-list text-white" aria-label="our film list icon"></i>
-                                <Link :href="route('films')" class="nav-link p-1" :class="{
-                                    'text-secondary': $page.url !== '/films',
-                                    'text-white': $page.url === '/films',
-                                }" aria-label="our film list page">Posts</Link>
+                                <i class="bi bi-list text-white" aria-label="our post list icon"></i>
+                                <Link :href="route('posts')" class="nav-link p-1" :class="{
+                                    'text-secondary': $page.url !== '/posts',
+                                    'text-white': $page.url === '/posts',
+                                }" aria-label="our post list page">Posts</Link>
                             </li>
 
                             <li v-if="$page.props.auth"

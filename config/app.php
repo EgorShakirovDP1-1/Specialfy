@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Film Hunter'),
+    'name' => env('APP_NAME', 'Post Hunter'),
 
     /*
     |--------------------------------------------------------------------------

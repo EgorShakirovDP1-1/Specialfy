@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
+use App\Models\Post;
 use App\Models\Term;
 use App\Models\User;
 use Inertia\Inertia;
@@ -15,24 +15,24 @@ class AdminController extends Controller
     {
         $users = User::all()->count();
         $admins = User::where('is_admin', true)->count();
-        $films = Film::all()->count();
+        $posts = Post::all()->count();
         $terms = Term::all()->count();
         $comments = Comment::all()->count();
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'films' => $films, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
+                ['users' => $users, 'posts' => $posts, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
             );
         }
 
         return redirect()->route('home')->with('message', 'You are not an admin!');
     }
 
-    public function filmsTable()
+    public function postsTable()
     {
-        $films = Film::paginate(10);
+        $posts = Post::paginate(10);
 
-        return Inertia::render('Admin/Films', ['films' => $films]);
+        return Inertia::render('Admin/Posts', ['posts' => $posts]);
     }
 
     public function usersTable()
@@ -42,16 +42,16 @@ class AdminController extends Controller
         return Inertia::render('Admin/Users', ['users' => $users]);
     }
     
-    public function FilmsCharts()
+    public function PostsCharts()
     {
-        $films = Film::all();
+        $posts = Post::all();
 
-        $filmsGroupedByYear = $films->groupBy('year');
+        $postsGroupedByYear = $posts->groupBy('year');
 
-        $filmsCountByYear = $filmsGroupedByYear->map(function ($filmsInYear) {
-            return $filmsInYear->count();
+        $postsCountByYear = $postsGroupedByYear->map(function ($postsInYear) {
+            return $postsInYear->count();
         });
 
-        return Inertia::render('Admin/FilmsCharts', ['filmsCountByYear' => $filmsCountByYear]);
+        return Inertia::render('Admin/PostsCharts', ['postsCountByYear' => $postsCountByYear]);
     }
 }

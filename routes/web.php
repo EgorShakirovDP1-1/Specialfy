@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FilmController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
@@ -63,22 +63,22 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
 //learn
 Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 
-//films
-Route::prefix('films')->group(function () {
-    Route::get('/', [FilmController::class, 'index'])->name('films');
+//posts
+Route::prefix('posts')->group(function () {
+    Route::get('/', [PostController::class, 'index'])->name('posts');
 
-    Route::get('/create', [FilmController::class, 'create'])->middleware(['auth'])->name('films.create');
-    Route::post('/create', [FilmController::class, 'store'])->name('films.create');
+    Route::get('/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
+    Route::post('/create', [PostController::class, 'store'])->name('posts.create');
 
 
-    Route::get('/{film}', [FilmController::class, 'show'])->name('film.show');
+    Route::get('/{post}', [PostController::class, 'show'])->name('post.show');
  
 
-    Route::delete('/{film}/destroy', [FilmController::class, 'destroy'])->middleware(['auth', 'admin'])->name('film.destroy');
+    Route::delete('/{post}/destroy', [PostController::class, 'destroy'])->middleware(['auth', 'admin'])->name('post.destroy');
 });
 
 // Likes
-Route::middleware('auth')->prefix('films/{film}')->group(function () {
+Route::middleware('auth')->prefix('posts/{post}')->group(function () {
     Route::post('/like', [LikeController::class, 'toggle'])->name('like');
     Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
 
@@ -91,8 +91,8 @@ Route::middleware('auth')->prefix('films/{film}')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
 
-    Route::get('/films/table', [AdminController::class, 'filmsTable'])->name('admin.films');
-    Route::get('/films/charts', [AdminController::class, 'filmsCharts'])->name('admin.films.charts');
+    Route::get('/posts/table', [AdminController::class, 'postsTable'])->name('admin.posts');
+    Route::get('/posts/charts', [AdminController::class, 'postsCharts'])->name('admin.posts.charts');
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
     
 });

@@ -1,5 +1,5 @@
-# Film Hunter (Beta)
-Film Hunter is a new experience in online film watching industry. With that being said, Film Hunter offers you a large catalogue of movies, as much as you have ever wished.
+# Post Hunter (Beta)
+Post Hunter is a new experience in online post watching industry. With that being said, Post Hunter offers you a large catalogue of movies, as much as you have ever wished.
 
   
 

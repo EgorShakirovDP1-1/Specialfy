@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Film;
+use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,16 +16,16 @@ class LikesTableSeeder extends Seeder
     public function run(): void
     {
         $userIds = User::all()->pluck('id');
-        $filmIds = Film::all()->pluck('id');
+        $postIds = Post::all()->pluck('id');
 
         foreach ($userIds as $userId) {
-            foreach ($filmIds as $filmId) {
+            foreach ($postIds as $postId) {
                 $randInt = random_int(0, 2);
 
                 if ($randInt === 1) {
                     Like::insert([
                         'user_id' => $userId,
-                        'film_id' => $filmId,
+                        'post_id' => $postId,
                         'value' => random_int(min: 0, max: 1), 
                     ]);
                 }

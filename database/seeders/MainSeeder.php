@@ -17,7 +17,7 @@ class MainSeeder extends Seeder
         $this->call([
             TermsSeeder::class,
             UserTableSeeder::class,
-            FilmsSeeder::class,
+            PostsSeeder::class,
             LikesTableSeeder::class,
             CommentsSeeder::class,
             

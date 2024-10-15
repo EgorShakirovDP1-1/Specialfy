@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row d-flex justify-content-center align-items-center h-md-75 h-100">
                 <div class="col-md-8 col-lg-1 col-xl-5">
-                    <img :src="film" class="img-fluid rounded" alt="Sample image of a film">
+                    <img :src="post" class="img-fluid rounded" alt="Sample image of a post">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form @submit.prevent="form.post('register')" aria-label="registration form">
@@ -96,7 +96,7 @@ export default {
     },
     props: {
         errors: Object,
-        film: {
+        post: {
             type: Image,
             required: true,
         }

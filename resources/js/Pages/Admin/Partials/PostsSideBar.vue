@@ -23,13 +23,13 @@
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('admin.films')" class="nav-link" :class="{
+                    <Link :href="route('admin.posts')" class="nav-link" :class="{
                         'text-secondary':
-                            !$page.url.includes('/admin/films'),
-                        'text-white': $page.url.includes('/admin/films'),
+                            !$page.url.includes('/admin/posts'),
+                        'text-white': $page.url.includes('/admin/posts'),
                     }">
                     <i class="bi bi-camera-reels-fill text-white me-1"></i>
-                    <span>Films</span>
+                    <span>Posts</span>
                     </Link>
                 </li>
                 <li>

@@ -3,7 +3,7 @@
         <div id="main-container" class="row justify-content-center text-start mx-auto my-4">
             <div class="col-12 col-sm-8 col-md-6">
                 <form enctype="multipart/form-data" @submit.prevent="handleSubmit">
-                    <h1 class="text-center">Add New Film</h1>
+                    <h1 class="text-center">Add New Post</h1>
                     <div class="form-group mt-3" aria-labelledby="authorLabel">
                         <label for="author" class="text-dark" id="authorLabel">Author</label><br>
                         <input v-model="form.author" type="text" name="author" id="author"
@@ -45,12 +45,12 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="genreTypeLabel">
-                        <label for="filmname" class="text-dark" id="genreTypeLabel">Genre</label><br>
-                        <input v-model="form.filmname" type="text" name="filmname" id="filmname"
+                        <label for="postname" class="text-dark" id="genreTypeLabel">Genre</label><br>
+                        <input v-model="form.postname" type="text" name="postname" id="postname"
                             class="form-control border-primary" placeholder="Enter name">
-                        <div v-if="errors.filmname" class="d-block mt-2" role="alert">
+                        <div v-if="errors.postname" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
-                                {{ errors.filmname }}
+                                {{ errors.postname }}
                             </span>
                         </div>
                     </div>
@@ -104,14 +104,14 @@
                             </span>
                         </div>
                     </div>
-                    <div id="photoInputsContainer" aria-labelledby="filmImageLabel">
+                    <div id="photoInputsContainer" aria-labelledby="postImageLabel">
                         <div class="form-group mt-3">
-                            <label for="filmImage1" class="text-dark" id="filmImageLabel">Add 1. film image</label><br>
-                            <input @change="handleFileChange($event, 'filmImage1')" type="file" name="filmImage1"
-                                class="filmImage form-control border-primary" aria-describedby="filmImageError">
-                            <div v-if="errors.filmImage1" class="d-block mt-2" id="filmImageError" role="alert">
+                            <label for="postImage1" class="text-dark" id="postImageLabel">Add 1. post image</label><br>
+                            <input @change="handleFileChange($event, 'postImage1')" type="file" name="postImage1"
+                                class="postImage form-control border-primary" aria-describedby="postImageError">
+                            <div v-if="errors.postImage1" class="d-block mt-2" id="postImageError" role="alert">
                                 <span class="fs-5 text-danger">
-                                    {{ errors.filmImage1 }}
+                                    {{ errors.postImage1 }}
                                 </span>
                             </div>
                         </div>
@@ -143,34 +143,34 @@ const form = useForm({
     model: "",
     year: null,
     duration: null,
-    filmname: "",
+    postname: "",
     genre: "",
     volume: null,
     description: "",
     price_per_subscribtion: null,
     price_per_watch: null,
-    filmImages: {}
+    postImages: {}
 });
 
 const addFileInput = () => {
-    const filmImageCount = document.querySelectorAll('.filmImage').length;
+    const postImageCount = document.querySelectorAll('.postImage').length;
 
-    if (filmImageCount >= 8) {
+    if (postImageCount >= 8) {
         alert('You can only add up to 8 images.');
         return;
     }
 
-    let nextImageNumber = filmImageCount + 1;
+    let nextImageNumber = postImageCount + 1;
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
-    fileInput.name = `filmImage${nextImageNumber}`;
-    fileInput.className = 'filmImage form-control border-primary';
+    fileInput.name = `postImage${nextImageNumber}`;
+    fileInput.className = 'postImage form-control border-primary';
     fileInput.addEventListener('change', (event) => {
-        handleFileChange(event, `filmImage${nextImageNumber}`);
+        handleFileChange(event, `postImage${nextImageNumber}`);
     });
 
     const label = document.createElement('label');
-    label.textContent = `Add ${nextImageNumber}. film image`;
+    label.textContent = `Add ${nextImageNumber}. post image`;
 
     const div = document.createElement('div');
     div.className = 'form-group mt-3';
@@ -181,7 +181,7 @@ const addFileInput = () => {
 };
 
 const handleFileChange = (event, key) => {
-    form.filmImages[key] = event.target.files[0];
+    form.postImages[key] = event.target.files[0];
 };
 
 const handleSubmit = () => {
@@ -189,24 +189,24 @@ const handleSubmit = () => {
 
     // Append form fields
     Object.keys(form).forEach((key) => {
-        if (key !== 'filmImages') {
+        if (key !== 'postImages') {
             formData.append(key, form[key]);
         }
     });
 
     // Append file inputs
-    Object.keys(form.filmImages).forEach((key) => {
-        formData.append(key, form.filmImages[key]);
+    Object.keys(form.postImages).forEach((key) => {
+        formData.append(key, form.postImages[key]);
     });
 
     // Submit using Inertia's `post` method with FormData
-    form.post(route('films.create'), {
+    form.post(route('posts.create'), {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
         data: formData,
         onSuccess: () => {
-            alert("Film uploaded successfully!");
+            alert("Post uploaded successfully!");
         }
     });
 };

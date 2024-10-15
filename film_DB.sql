@@ -15,28 +15,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Дамп структуры базы данных filmhunter
-CREATE DATABASE IF NOT EXISTS `filmhunter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `filmhunter`;
+-- Дамп структуры базы данных posthunter
+CREATE DATABASE IF NOT EXISTS `posthunter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `posthunter`;
 
--- Дамп структуры для таблица filmhunter.comments
+-- Дамп структуры для таблица posthunter.comments
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `film_id` bigint unsigned NOT NULL,
+  `post_id` bigint unsigned NOT NULL,
   `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `comments_user_id_foreign` (`user_id`),
-  KEY `comments_film_id_foreign` (`film_id`),
-  CONSTRAINT `comments_film_id_foreign` FOREIGN KEY (`film_id`) REFERENCES `films` (`id`) ON DELETE CASCADE,
+  KEY `comments_post_id_foreign` (`post_id`),
+  CONSTRAINT `comments_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.comments: ~150 rows (приблизительно)
-INSERT INTO `comments` (`id`, `user_id`, `film_id`, `comment`, `created_at`, `updated_at`, `deleted_at`) VALUES
+-- Дамп данных таблицы posthunter.comments: ~150 rows (приблизительно)
+INSERT INTO `comments` (`id`, `user_id`, `post_id`, `comment`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 95, 6, 'Et rem ea rerum consequatur sed hic id iure.', '2024-10-01 07:16:56', '2024-10-01 07:16:56', NULL),
 	(2, 124, 9, 'Est porro earum labore qui molestiae tenetur fugit quod.', '2024-10-01 07:16:56', '2024-10-01 07:16:56', NULL),
 	(3, 65, 3, 'Quisquam nemo impedit eos aliquid.', '2024-10-01 07:16:56', '2024-10-01 07:16:56', NULL),
@@ -188,7 +188,7 @@ INSERT INTO `comments` (`id`, `user_id`, `film_id`, `comment`, `created_at`, `up
 	(149, 17, 13, 'Fugiat quidem amet ducimus aut cumque facilis ea.', '2024-10-01 07:16:56', '2024-10-01 07:16:56', NULL),
 	(150, 71, 7, 'Iure nisi est aut et.', '2024-10-01 07:16:56', '2024-10-01 07:16:56', NULL);
 
--- Дамп структуры для таблица filmhunter.failed_jobs
+-- Дамп структуры для таблица posthunter.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -201,69 +201,69 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.failed_jobs: ~0 rows (приблизительно)
+-- Дамп данных таблицы posthunter.failed_jobs: ~0 rows (приблизительно)
 
--- Дамп структуры для таблица filmhunter.films
-CREATE TABLE IF NOT EXISTS `films` (
+-- Дамп структуры для таблица posthunter.posts
+CREATE TABLE IF NOT EXISTS `posts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` int NOT NULL,
   `duration` int NOT NULL,
-  `filmname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `volume` int NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price_per_subscribtion` int NOT NULL,
   `price_per_watch` double(8,2) NOT NULL,
-  `filmImage1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `filmImage2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage5` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage6` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage7` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `filmImage8` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postImage2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage5` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage6` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage7` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postImage8` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.films: ~15 rows (приблизительно)
-INSERT INTO `films` (`id`, `author`, `model`, `year`, `duration`, `filmname`, `genre`, `volume`, `description`, `price_per_subscribtion`, `price_per_watch`, `filmImage1`, `filmImage2`, `filmImage3`, `filmImage4`, `filmImage5`, `filmImage6`, `filmImage7`, `filmImage8`, `created_at`, `updated_at`) VALUES
-	(1, 'LatvijasKino', 'Blockbuster', 2015, 131, 'Catch her in rye', 'Horror', 50, 'None', 6, 2.50, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(2, 'LatvijasKino', 'Budget', 2018, 165, 'Rotten boobs in Cassiopia', 'Horror', 39, 'None', 6, 4.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(3, 'LatvijasKino', 'Budget', 2018, 120, 'Epic Crossover', 'Comedy', 136, 'None', 6, 1.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(4, 'BEBRAPRODUCTION', 'Blockbuster', 2018, 150, 'Smell', 'Thriller', 134, 'None', 24, 7.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(5, 'BEBRAPRODUCTION', 'Blockbuster', 2020, 150, 'Nigga in paris', 'Thriller', 91, 'None', 24, 5.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(6, 'BEBRAPRODUCTION', 'Budget', 2021, 100, 'Estate', 'Comedy', 156, 'None', 24, 10.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(7, 'Bangbros', 'Budget', 2018, 275, 'Base', 'ActionMovie', 110, 'None', 24, 11.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(8, 'Bangbros', 'Budget', 2020, 13, 'Short reminder that smoking is cool', 'ActionMovie', 0, 'None', 24, 4.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(9, 'WarnerBrazzers', 'Blockbustrer', 2020, 150, 'Meme Lord', 'Horror', 151, 'None', 23, 5.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(10, 'Unknown', 'Blockbuster', 2022, 136, 'Slickback', 'Horror', 113, 'None', 23, 5.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(11, 'BEBRAPRODUCTION', 'Blockbuster', 2005, 100, 'Giga nigga', 'Horror', 175, 'None', 24, 0.22, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(12, 'CRAP', 'Budget', 2020, 179, 'Slow Murder', 'Horror', 86, 'None', 2, 1.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(13, 'JackiechanFilms', 'Blockbuster', 2021, 99, 'Jackie Chan 18', 'Action', 101, 'None', 25, 9.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(14, 'Twentycentuaryfox', 'Blockbuster', 2021, 286, 'Drive 2', 'Thriller', 181, 'None', 89, 23.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
-	(15, 'RealityKings', 'Budget', 2022, 131, 'Dum Dum', 'Horror', 143, 'None', 17, 9.00, 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', 'filmImages/images.jpeg', NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55');
+-- Дамп данных таблицы posthunter.posts: ~15 rows (приблизительно)
+INSERT INTO `posts` (`id`, `author`, `model`, `year`, `duration`, `postname`, `genre`, `volume`, `description`, `price_per_subscribtion`, `price_per_watch`, `postImage1`, `postImage2`, `postImage3`, `postImage4`, `postImage5`, `postImage6`, `postImage7`, `postImage8`, `created_at`, `updated_at`) VALUES
+	(1, 'LatvijasKino', 'Blockbuster', 2015, 131, 'Catch her in rye', 'Horror', 50, 'None', 6, 2.50, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(2, 'LatvijasKino', 'Budget', 2018, 165, 'Rotten boobs in Cassiopia', 'Horror', 39, 'None', 6, 4.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(3, 'LatvijasKino', 'Budget', 2018, 120, 'Epic Crossover', 'Comedy', 136, 'None', 6, 1.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(4, 'BEBRAPRODUCTION', 'Blockbuster', 2018, 150, 'Smell', 'Thriller', 134, 'None', 24, 7.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(5, 'BEBRAPRODUCTION', 'Blockbuster', 2020, 150, 'Nigga in paris', 'Thriller', 91, 'None', 24, 5.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(6, 'BEBRAPRODUCTION', 'Budget', 2021, 100, 'Estate', 'Comedy', 156, 'None', 24, 10.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(7, 'Bangbros', 'Budget', 2018, 275, 'Base', 'ActionMovie', 110, 'None', 24, 11.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(8, 'Bangbros', 'Budget', 2020, 13, 'Short reminder that smoking is cool', 'ActionMovie', 0, 'None', 24, 4.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(9, 'WarnerBrazzers', 'Blockbustrer', 2020, 150, 'Meme Lord', 'Horror', 151, 'None', 23, 5.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(10, 'Unknown', 'Blockbuster', 2022, 136, 'Slickback', 'Horror', 113, 'None', 23, 5.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(11, 'BEBRAPRODUCTION', 'Blockbuster', 2005, 100, 'Giga nigga', 'Horror', 175, 'None', 24, 0.22, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(12, 'CRAP', 'Budget', 2020, 179, 'Slow Murder', 'Horror', 86, 'None', 2, 1.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(13, 'JackiechanPosts', 'Blockbuster', 2021, 99, 'Jackie Chan 18', 'Action', 101, 'None', 25, 9.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(14, 'Twentycentuaryfox', 'Blockbuster', 2021, 286, 'Drive 2', 'Thriller', 181, 'None', 89, 23.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55'),
+	(15, 'RealityKings', 'Budget', 2022, 131, 'Dum Dum', 'Horror', 143, 'None', 17, 9.00, 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', 'postImages/images.jpeg', NULL, NULL, NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55');
 
--- Дамп структуры для таблица filmhunter.likes
+-- Дамп структуры для таблица posthunter.likes
 CREATE TABLE IF NOT EXISTS `likes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `film_id` bigint unsigned NOT NULL,
+  `post_id` bigint unsigned NOT NULL,
   `value` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `likes_user_id_film_id_unique` (`user_id`,`film_id`),
-  KEY `likes_film_id_foreign` (`film_id`),
-  CONSTRAINT `likes_film_id_foreign` FOREIGN KEY (`film_id`) REFERENCES `films` (`id`) ON DELETE CASCADE,
+  UNIQUE KEY `likes_user_id_post_id_unique` (`user_id`,`post_id`),
+  KEY `likes_post_id_foreign` (`post_id`),
+  CONSTRAINT `likes_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=785 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.likes: ~784 rows (приблизительно)
-INSERT INTO `likes` (`id`, `user_id`, `film_id`, `value`, `created_at`, `updated_at`) VALUES
+-- Дамп данных таблицы posthunter.likes: ~784 rows (приблизительно)
+INSERT INTO `likes` (`id`, `user_id`, `post_id`, `value`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 1, NULL, NULL),
 	(2, 1, 2, 0, NULL, NULL),
 	(3, 1, 3, 0, NULL, NULL),
@@ -1049,7 +1049,7 @@ INSERT INTO `likes` (`id`, `user_id`, `film_id`, `value`, `created_at`, `updated
 	(783, 156, 5, 0, NULL, NULL),
 	(784, 156, 14, 0, NULL, NULL);
 
--- Дамп структуры для таблица filmhunter.migrations
+-- Дамп структуры для таблица posthunter.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1057,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.migrations: ~0 rows (приблизительно)
+-- Дамп данных таблицы posthunter.migrations: ~0 rows (приблизительно)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '1024_06_07_154742_create_users_table', 1),
 	(2, '2019_12_14_000001_create_personal_access_tokens_table', 1),
@@ -1066,11 +1066,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(5, '2024_01_08_140445_add_avatar_to_users', 1),
 	(6, '2024_01_10_103748_create_terms_table', 1),
 	(7, '2024_01_10_114353_add_title_to_terms', 1),
-	(8, '2024_01_18_073210_create_films_table', 1),
-	(9, '2024_01_19_182644_add_volume_to_films', 1),
-	(10, '2024_01_19_223103_change_genre_type_column_in_films_table', 1),
-	(11, '2024_01_19_223416_change_author_and_price_columns_in_films_table', 1),
-	(12, '2024_01_20_080838_add_duration_to_films_table', 1),
+	(8, '2024_01_18_073210_create_posts_table', 1),
+	(9, '2024_01_19_182644_add_volume_to_posts', 1),
+	(10, '2024_01_19_223103_change_genre_type_column_in_posts_table', 1),
+	(11, '2024_01_19_223416_change_author_and_price_columns_in_posts_table', 1),
+	(12, '2024_01_20_080838_add_duration_to_posts_table', 1),
 	(13, '2024_02_21_120612_create_likes_table', 1),
 	(14, '2024_03_03_163217_create_comments_table', 1),
 	(15, '2024_03_07_084014_delete_title_from_comments_table', 1),
@@ -1078,7 +1078,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(17, '2024_06_07_155029_create_password_reset_tokens_table', 1),
 	(18, '2024_06_07_155143_create_failed_jobs_table', 1);
 
--- Дамп структуры для таблица filmhunter.password_reset_tokens
+-- Дамп структуры для таблица posthunter.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1086,9 +1086,9 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.password_reset_tokens: ~0 rows (приблизительно)
+-- Дамп данных таблицы posthunter.password_reset_tokens: ~0 rows (приблизительно)
 
--- Дамп структуры для таблица filmhunter.personal_access_tokens
+-- Дамп структуры для таблица posthunter.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1105,9 +1105,9 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.personal_access_tokens: ~0 rows (приблизительно)
+-- Дамп данных таблицы posthunter.personal_access_tokens: ~0 rows (приблизительно)
 
--- Дамп структуры для таблица filmhunter.terms
+-- Дамп структуры для таблица posthunter.terms
 CREATE TABLE IF NOT EXISTS `terms` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1117,7 +1117,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.terms: ~5 rows (приблизительно)
+-- Дамп данных таблицы posthunter.terms: ~5 rows (приблизительно)
 INSERT INTO `terms` (`id`, `title`, `content`, `created_at`, `updated_at`) VALUES
 	(1, 'sunt autem ut', 'Rem itaque nemo velit ipsam exercitationem. Eos vitae facere quasi. Dolores aspernatur ullam enim autem ipsum placeat. Et id omnis hic ut. Est labore optio asperiores corrupti. Quo unde aut mollitia tempore. Totam optio omnis eos dolores. Officia temporibus eaque aut. Aut culpa omnis sit non et doloremque commodi. Sint et natus aut suscipit iste ullam.', NULL, NULL),
 	(2, 'et voluptas quisquam', 'Alias accusamus facilis voluptate et architecto. In non aut perspiciatis esse aliquam. Aperiam ea molestiae esse dolore. Quae officia possimus quae accusantium est vero aut. Beatae in ut consequuntur. Eaque deleniti magnam incidunt et dolor suscipit blanditiis officiis. Mollitia delectus sint ut et expedita iure. Fugiat quo eius repellendus optio aut iusto voluptates. Nisi enim aliquam temporibus recusandae aliquam. Qui beatae ut vel tempora ab et modi laudantium.', NULL, NULL),
@@ -1125,7 +1125,7 @@ INSERT INTO `terms` (`id`, `title`, `content`, `created_at`, `updated_at`) VALUE
 	(4, 'sunt laudantium autem', 'Commodi laboriosam beatae voluptates. Optio illo quia minima id in temporibus. Vitae similique ut dignissimos vel a quia. Ea omnis ut consequatur sint sed sunt nesciunt. Est cum sed quam velit laudantium. Inventore corporis sunt ut nostrum. Ut modi tempore quo non. Reprehenderit sapiente odio architecto illum facilis animi. Et modi harum distinctio impedit atque est ut autem. Eos sed rerum blanditiis ut autem. Impedit ipsa est omnis iusto eveniet iure. Enim ut voluptatum explicabo enim mollitia architecto nobis deleniti.', NULL, NULL),
 	(5, 'voluptatem dolor distinctio', 'Debitis incidunt nam et qui suscipit. Omnis iste laboriosam consequatur. Eveniet mollitia eaque voluptatem officia. Mollitia sapiente quia sint iusto ducimus. Voluptates pariatur consequatur consequuntur in ducimus ab. Dolorem qui inventore consequatur dolores architecto ipsa. Consequatur iusto quod itaque distinctio nam. Excepturi quae dolorem sint dicta nihil maxime voluptatum. Ut et et non ipsum. Nulla rerum et quos eos quis quae.', NULL, NULL);
 
--- Дамп структуры для таблица filmhunter.users
+-- Дамп структуры для таблица posthunter.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1143,7 +1143,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Дамп данных таблицы filmhunter.users: ~156 rows (приблизительно)
+-- Дамп данных таблицы posthunter.users: ~156 rows (приблизительно)
 INSERT INTO `users` (`id`, `name`, `is_admin`, `phone_number`, `email`, `avatar`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Sergey Tykvov', 1, '12345678', 'egorsha2005@gmail.com', NULL, '$2y$12$H.pEYjlgoB3L1eTqmNP92esKunM/6q9WrXffonamdLjlcEc.4SHny', NULL, '2024-10-01 07:16:18', '2024-10-01 07:16:18', NULL),
 	(2, 'Theresia McClure II', 0, '+1.817.791.1378', 'kimberly60@example.net', NULL, '$2y$12$NmKcREyY/lDGpsOprmCoXOL1gROShLz6f2k/kOstuBimP2lbu8xFC', NULL, '2024-10-01 07:16:55', '2024-10-01 07:16:55', NULL),
