@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
 
 class MainSeeder extends Seeder
@@ -15,12 +14,12 @@ class MainSeeder extends Seeder
         // php artisan migrate:fresh && php artisan db:seed --class=MainSeeder
 
         $this->call([
+            CategorySeeder::class,
             TermsSeeder::class,
             UserTableSeeder::class,
             PostsSeeder::class,
             LikesTableSeeder::class,
             CommentsSeeder::class,
-            
         ]);
     }
 }
