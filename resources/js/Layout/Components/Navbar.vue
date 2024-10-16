@@ -18,13 +18,27 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-center me-5 my-3 my-lg-0">
-                                <i class="bi bi-file-earmark-ruled text-white" aria-label="rental terms icon"></i>
                                 <Link :href="route('terms')" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/terms'),
                                     'text-white': $page.url.includes('/terms'),
-                                }" aria-label="rental terms page">Terms</Link>
-                            </li>sticky-top
-                            приваси полиси сюда
+                                }" aria-label="rental terms page">
+                                <i class="bi bi-file-earmark-ruled" :class="{
+                                    'text-secondary': !$page.url.includes('/terms'),
+                                    'text-white': $page.url.includes('/terms'),
+                                }" aria-label="rental terms icon"></i>Terms
+                                </Link>
+                            </li>
+                            <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
+                                
+                                <i class="bi bi-list text-white" aria-label="our post list icon"></i>
+                                <Link :href="route('posts')" class="nav-link p-1" :class="{
+                                    'text-secondary': $page.url !== '/posts',
+                                    'text-white': $page.url === '/posts',
+                                }"
+                                aria-label="our post list page">приваси полиси сюда
+                                </Link>
+                            </li>
+                            
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
                                 <i class="bi bi-list text-white" aria-label="our post list icon"></i>
                                 <Link :href="route('posts')" class="nav-link p-1" :class="{
@@ -96,5 +110,9 @@ export default {
 .logo{
     height: 70px;
     width: auto;
+}
+.nav-item{
+    font-size: 17px;
+
 }
 </style>

@@ -12,6 +12,8 @@ use App\Http\Requests\PostStoreRequest;
 use Illuminate\Support\Facades\Storage;
 
 
+
+
 class PostController extends Controller
 {
     public function index()
@@ -55,11 +57,13 @@ class PostController extends Controller
     public function show($post_id)
     {
         $post = Post::find($post_id);
-        /*$post['postImage1'] = $post->getFirstImageURL();*/
+        $post['postImage1'] = $post->getFirstImageURL();
 
-        /*$postImages = $post->getImageURLs();*/
+        $postImages = $post->getImageURLs();
 
         $post->likesCount = $post->likes()->where('value', '1')->count();
+        $post->dislikesCount = $post->likes()->where('value', '0')->count();
+
 
         if (auth()->user()) {
             $authUser = auth()->user()->id;
@@ -87,11 +91,12 @@ class PostController extends Controller
 
         if (auth()->user()) {
             $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
+            $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
         }
 
         return Inertia::render('Posts/Post', [
             'post' => $post,
-           /* 'postImages' => $postImages, */
+            'postImages' => $postImages,
             'profilePhoto' => $profilePhoto,
             'comments' => $comments
         ]);
