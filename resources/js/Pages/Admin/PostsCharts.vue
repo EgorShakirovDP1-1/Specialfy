@@ -27,7 +27,7 @@ export default {
         SideBar,
     },
     props: {
-        filmsCountByYear: {
+        postsCountByYear: {
             type: Array,
             required: true,
         },
@@ -37,9 +37,9 @@ export default {
 
         onMounted(() => {
             const chart = echarts.init(chartRef.value);
-            let title = "Films production by year";
+            let title = "Posts production by year";
 
-            let seriesData = Object.entries(props.filmsCountByYear).map(([year, count]) => {
+            let seriesData = Object.entries(props.postsCountByYear).map(([year, count]) => {
                 return { value: count, name: year };
             });
 

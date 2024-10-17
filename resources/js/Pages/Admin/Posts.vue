@@ -6,19 +6,19 @@
                     <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="overflow-auto col-md-9 mt-3">
-                    <div class="d-flex justify-content-between" aria-label="films list header">
-                        <h3>Films list</h3>
-                        <Link :href="route('films.create')" class="btn btn-info text-primary pb-2 rounded"
-                            aria-label="add new film">
+                    <div class="d-flex justify-content-between" aria-label="posts list header">
+                        <h3>Posts list</h3>
+                        <Link :href="route('posts.create')" class="btn btn-info text-primary pb-2 rounded"
+                            aria-label="add new post">
                         <div class="d-flex align-items-center justify-content-center">
                             <i class="bi bi-camera2 h4 me-1"></i>
                             <p class="mb-1">
-                                Add New Film
+                                Add New Post
                             </p>
                         </div>
                         </Link>
                     </div>
-                    <table class="table" aria-label="films list table">
+                    <table class="table" aria-label="posts list table">
                         <thead>
                             <tr>
                                 <th aria-label="number column">No.</th>
@@ -32,27 +32,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-if="films.data.length === 0">
-                                <td colspan="8" aria-label="no films found">No films found.</td>
+                            <tr v-if="posts.data.length === 0">
+                                <td colspan="8" aria-label="no posts found">No posts found.</td>
                             </tr>
-                            <tr v-for="(film, index) in films.data" :key="film.id">
-                                <td aria-label="film number">{{ index + 1 }}.</td>
-                                <td aria-label="film author">{{ film.author }}</td>
-                                <td aria-label="film model">{{ film.model }}</td>
-                                <td aria-label="film year">{{ film.year }}</td>
-                                <td aria-label="film duration">{{ film.duration }}</td>
-                                <td aria-label="film name">{{ film.filmname }}</td>
-                                <td aria-label="film name">{{ film.genre }}</td>
-                                <td class="text-end" aria-label="film actions">
-                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit film">Edit</button>
-                                    <Button @click="destroy(film.id)" class="btn btn-sm btn-danger"
-                                        aria-label="delete film">Delete</Button>
+                            <tr v-for="(post, index) in posts.data" :key="post.id">
+                                <td aria-label="post number">{{ index + 1 }}.</td>
+                                <td aria-label="post author">{{ post.author }}</td>
+                                <td aria-label="post model">{{ post.model }}</td>
+                                <td aria-label="post year">{{ post.year }}</td>
+                                <td aria-label="post duration">{{ post.duration }}</td>
+                                <td aria-label="post name">{{ post.postname }}</td>
+                                <td aria-label="post name">{{ post.genre }}</td>
+                                <td class="text-end" aria-label="post actions">
+                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit post">Edit</button>
+                                    <Button @click="destroy(post.id)" class="btn btn-sm btn-danger"
+                                        aria-label="delete post">Delete</Button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <Pagination :links="films.links" class="d-flex justify-content-end"
-                        aria-label="pagination for films list" />
+                    <Pagination :links="posts.links" class="d-flex justify-content-end"
+                        aria-label="pagination for posts list" />
                 </div>
             </div>
         </div>
@@ -74,15 +74,15 @@ export default {
         Pagination,
     },
     props: {
-        films: {
-            type: Array,
+        posts: {
+            type: Object, //Array
             required: true,
         },
     },
     setup() {
         const destroy = (id) => {
             if (confirm("Are you sure?")) {
-                router.delete(route("film.destroy", { film: id }));
+                router.delete(route("post.destroy", { post: id }));
             }
         };
 

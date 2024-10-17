@@ -1,8 +1,8 @@
 <template>
     <div class="search-container">
-        <input type="text" class="form-control" @input="search" placeholder="Search for film" aria-label="Search for film"
+        <input type="text" class="form-control" @input="search" placeholder="Search for post" aria-label="Search for post"
             aria-describedby="search-description">
-        <span id="search-description" hidden>Type to search for films</span>
+        <span id="search-description" hidden>Type to search for posts</span>
     </div>
 </template>
 

@@ -40,9 +40,9 @@
                 </label>
             </div>
             <div class="one-line">
-                <label for="jackiechanfilmsCheckbox">
-                    <input type="checkbox" id="jackiechanfilmsCheckbox" name="authors[]" value="JackiechanFilms"
-                        @change="updateAuthorFilter('JackiechanFilms')" aria-label="Filter by JackiechanFilms">
+                <label for="jackiechanpostsCheckbox">
+                    <input type="checkbox" id="jackiechanpostsCheckbox" name="authors[]" value="JackiechanPosts"
+                        @change="updateAuthorFilter('JackiechanPosts')" aria-label="Filter by JackiechanPosts">
                     Adventure
                 </label>
             </div>
@@ -78,19 +78,19 @@
         </div>
 
         <div class="filter-box">
-            <h4>Film Type</h4>
+            <h4>Post Type</h4>
             <div class="one-line">
                 <label for="ZaglushkaNePridumalCheckbox">
-                    <input type="checkbox" id="ZaglushkaNePridumalCheckbox" name="filmnames[]" value="ZaglushkaNePridumal"
+                    <input type="checkbox" id="ZaglushkaNePridumalCheckbox" name="postnames[]" value="ZaglushkaNePridumal"
                         @change="updateBodyTypeFilter('ZaglushkaNePridumal')" aria-label="Filter by ZaglushkaNePridumal body type">
-                    Users films
+                    Users posts
                 </label>
             </div>
             <div class="one-line">
                 <label for="ZaglushkaNePridumal2Checkbox">
-                    <input type="checkbox" id="ZaglushkaNePridumal2Checkbox" name="filmnames[]" value="ZaglushkaNePridumal2"
+                    <input type="checkbox" id="ZaglushkaNePridumal2Checkbox" name="postnames[]" value="ZaglushkaNePridumal2"
                         @change="updateBodyTypeFilter('ZaglushkaNePridumal2')" aria-label="Filter by ZaglushkaNePridumal2 body type">
-                    Comercial films
+                    Comercial posts
                 </label>
             </div>
             

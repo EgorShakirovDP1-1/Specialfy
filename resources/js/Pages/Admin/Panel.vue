@@ -11,12 +11,12 @@
                         <AdminsCount :admins="admins" aria-label="admins count" />
                     </div>
                     <div class="row">
-                        <FilmsCount :films="films" aria-label="films count" />
+                        <PostsCount :posts="posts" aria-label="posts count" />
                         <TermsCount :terms="terms" aria-label="terms count" />
                     </div>
                     <div class="row my-3">
                         <CommentsCount :comments="comments" aria-label="comments count" />
-                        <ReservationsCount :money="money" aria-label="reservations count" />
+                       
                     </div>
                 </div>
             </div>
@@ -29,11 +29,11 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import SideBar from "./Partials/SideBar.vue";
 import UsersCount from "./Partials/UsersCount.vue";
-import FilmsCount from "./Partials/FilmsCount.vue";
+import PostsCount from "./Partials/PostsCount.vue";
 import AdminsCount from './Partials/AdminsCount.vue';
 import TermsCount from './Partials/TermsCount.vue';
 import CommentsCount from './Partials/CommentsCount.vue'
-import ReservationsCount from './Partials/ReservationsCount.vue';
+
 
 export default {
     components: {
@@ -41,18 +41,19 @@ export default {
         Link,
         SideBar,
         UsersCount,
-        FilmsCount,
+        PostsCount,
         AdminsCount,
         TermsCount,
         CommentsCount,
-        ReservationsCount,
+        
+       
     },
     props: {
         users: {
             type: Number,
             required: true,
         },
-        films: {
+        posts: {
             type: Number,
             required: true,
         },
@@ -68,10 +69,7 @@ export default {
             type: Number,
             required: true,
         },
-        money: {
-            type: Number,
-            required: true,
-        },
+       
     },
 };
 
