@@ -15,27 +15,37 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index()
-    {
-        $posts = Post::orderBy('created_at', 'ASC')->get()->map(function ($post) {
-            if (auth()->user()) {
-                $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
-            }
+{
+    // Eager-load the user relationship to include user data with posts
+    $posts = Post::with('user')->orderBy('created_at', 'ASC')->get()->map(function ($post) {
+        
+        // Check if the post is liked by the authenticated user
+        if (auth()->user()) {
+            $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
+        }
 
+        // Calculate the like and dislike count and the rating
         $like_count = $post->likes()->where('value', '1')->count();
         $dislike_count = $post->likes()->where('value', '0')->count();
         $raiting = ($like_count - $dislike_count);
 
-            return [
-                'id' => $post->id,
-                'author' => $post->author,
-                'category' => $post->category,
-                'Title' => $post->Title,
-                'text' => $post->description,
-                'rating' => $raiting,
-                'likesCount' => $like_count,
-                'isLikedByUser' => $isLikedByUser ?? false,
-            ];
-        });
+        // Access the author's name using the eager-loaded relationship
+        $authorname = $post->user->name ?? 'Unknown'; // Fallback if user is null
+
+        // Return the formatted post data
+        return [
+            'id' => $post->id,
+            'user_id' => $post->user_id,
+            'category' => $post->category,
+            'Title' => $post->Title,
+            'text' => $post->description,
+            'rating' => $raiting,
+            'author' => $post->name,
+            'likesCount' => $like_count,
+            'isLikedByUser' => $isLikedByUser ?? false,
+        ];
+    });
+
 
         return Inertia::render('Posts/Posts', [
             'posts' => $posts,
