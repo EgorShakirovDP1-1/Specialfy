@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Picture;
 use Inertia\Inertia;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -96,18 +97,22 @@ class PostController extends Controller
 
         $validated = $request->validated();
 
-        /* $PostImages = [];
-        for ($i = 1; $i <= 8; $i++) {
-            $imageKey = 'postImage' . $i;
+        //  $PostImages = [];
+        // for ($i = 1; $i <= 8; $i++) {
+        //     $imageKey = 'postImage' . $i;
 
-            if ($request->hasFile($imageKey)) {
-                $postImages[$imageKey] = $request->file($imageKey)->store('postImages', 'public');
-            } else {
-                $postImages[$imageKey] = null;
-            }
-        }
-*/
+        //     if ($request->hasFile($imageKey)) {
+        //         $postImages[$imageKey] = $request->file($imageKey)->store('postImages', 'public');
+        //     } else {
+        //         $postImages[$imageKey] = null;
+        //     }
+        // }
 
+ foreach ($request->pictures as $picture) {
+    $validated->pictures()->store([
+         'url' => $picture['url'], // URL картинки
+     ]);
+ }
         $data = array_merge($validated/*,$postImages*/);
 
         Post::create($data);

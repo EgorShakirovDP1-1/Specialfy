@@ -27,6 +27,10 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
     /*
 
     public function getImageURLs()
@@ -54,6 +58,6 @@ class Post extends Model
 
         return null;
     }
-
-    */
+*/
+    
 }
