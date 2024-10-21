@@ -19,15 +19,20 @@ class Post extends Model
         'text'
     ];
 
-    public function likes() {
-        return $this->belongsToMany(User::class, 'likes');
-    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }   
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
-
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
     public function images()
     {
         return $this->hasMany(Image::class);

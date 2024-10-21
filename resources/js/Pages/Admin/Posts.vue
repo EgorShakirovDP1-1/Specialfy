@@ -29,21 +29,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-if="posts.data.length === 0">
-                                <td colspan="8" aria-label="no posts found">No posts found.</td>
-                            </tr>
-                            <tr v-for="(post, index) in posts.data" :key="post.id">
-                                <td aria-label="post number">{{ index + 1 }}.</td>
-                                <td aria-label="post author">{{ post.author}}</td>
-                                <td aria-label="post category">{{ post.category_id }}</td>
-                                <td aria-label="post title">{{ post.title }}</td>
-                                <td class="text-end" aria-label="post actions">
-                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit post">Edit</button>
-                                    <Button @click="destroy(post.id)" class="btn btn-sm btn-danger"
-                                        aria-label="delete post">Delete</Button>
-                                </td>
-                            </tr>
-                        </tbody>
+    <tr v-if="posts.data.length === 0">
+        <td colspan="8" aria-label="no posts found">No posts found.</td>
+    </tr>
+    <tr v-for="(post, index) in posts.data" :key="post.id">
+        <td aria-label="post number">{{ index + 1 }}.</td>
+        <td aria-label="post author">{{ post.user.name }}</td> <!-- Changed -->
+        <td aria-label="post category">{{ post.category.name }}</td> <!-- Changed -->
+        <td aria-label="post title">{{ post.title }}</td>
+        <td class="text-end" aria-label="post actions">
+            <button class="btn btn-sm btn-warning me-1" aria-label="edit post">Edit</button>
+            <Button @click="destroy(post.id)" class="btn btn-sm btn-danger" aria-label="delete post">Delete</Button>
+        </td>
+    </tr>
+</tbody>
                     </table>
                     <Pagination :links="posts.links" class="d-flex justify-content-end"
                         aria-label="pagination for posts list" />
@@ -69,9 +68,9 @@ export default {
     },
     props: {
         posts: {
-            type: Object, //Array
-            required: true,
-        },
+        type: Object, // The posts object contains the paginated posts and relationships
+        required: true,
+    },
         users: {
             type: Object, //Array
             required: true,

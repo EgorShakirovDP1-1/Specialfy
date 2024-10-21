@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     public function postsTable()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::with('user', 'category')->paginate(10);
 
         return Inertia::render('Admin/Posts', ['posts' => $posts]);
     }

@@ -32,23 +32,17 @@ class PostController extends Controller
         $dislike_count = $post->likes()->where('value', '0')->count();
         $raiting = ($like_count - $dislike_count);
 
-        // Access the author's name using the eager-loaded relationship
-        $authorname = $post->user->name ?? 'Unknown'; // Fallback if user is null
-
-        // Return the formatted post data
-        return [
-            'id' => $post->id,
-            'user_id' => $post->user_id,
-            'category' => $post->category,
-            'Title' => $post->Title,
-            'text' => $post->description,
-            'rating' => $raiting,
-            'author' => $post->name,
-            'likesCount' => $like_count,
-            'isLikedByUser' => $isLikedByUser ?? false,
-        ];
-    });
-
+            return [
+                'id' => $post->id,
+                'author' => $post->author,
+                'category' => $post->category,
+                'Title' => $post->Title,
+                'text' => $post->description,
+                'rating' => $raiting,
+                'likesCount' => $like_count,
+                'isLikedByUser' => $isLikedByUser ?? false,
+            ];
+        });
 
         return Inertia::render('Posts/Posts', [
             'posts' => $posts,
@@ -138,53 +132,54 @@ class PostController extends Controller
         return redirect()->route('home')->with('message', 'Post created successfully!');
     }
     public function toggleLike(Request $request, $postId)
-{
-    $userId = auth()->id();
-    $action = $request->action; // either 'like' or 'dislike'
-
-    // Find the post and ensure it exists
-    $post = Post::findOrFail($postId);
-
-    // Check if the user has already liked or disliked this post
-    $existingLike = $post->likes()->where('user_id', $userId)->first();
-
-    if ($action === 'like') {
-        if ($existingLike) {
-            if ($existingLike->value === 1) {
-                // User is unliking the post
-                $existingLike->delete();
+    {
+        $userId = auth()->id();
+        $action = $request->action; // either 'like' or 'dislike'
+    
+        // Find the post and ensure it exists
+        $post = Post::findOrFail($postId);
+    
+        // Check if the user has already liked or disliked this post
+        $existingLike = $post->likes()->where('user_id', $userId)->first();
+    
+        if ($action === 'like') {
+            if ($existingLike) {
+                if ($existingLike->value === 1) {
+                    // User is unliking the post
+                    $existingLike->delete();
+                } else {
+                    // User is switching from dislike to like
+                    $existingLike->update(['value' => 1]);
+                }
             } else {
-                // User is switching from dislike to like
-                $existingLike->update(['value' => 1]);
+                // Add a new like
+                $post->likes()->create([
+                    'user_id' => $userId,
+                    'value' => 1
+                ]);
             }
-        } else {
-            // Add a new like
-            $post->likes()->create([
-                'user_id' => $userId,
-                'value' => 1
-            ]);
-        }
-    } elseif ($action === 'dislike') {
-        if ($existingLike) {
-            if ($existingLike->value === 0) {
-                // User is undisliking the post
-                $existingLike->delete();
+        } elseif ($action === 'dislike') {
+            if ($existingLike) {
+                if ($existingLike->value === 0) {
+                    // User is undisliking the post
+                    $existingLike->delete();
+                } else {
+                    // User is switching from like to dislike
+                    $existingLike->update(['value' => 0]);
+                }
             } else {
-                // User is switching from like to dislike
-                $existingLike->update(['value' => 0]);
+                // Add a new dislike
+                $post->likes()->create([
+                    'user_id' => $userId,
+                    'value' => 0
+                ]);
             }
-        } else {
-            // Add a new dislike
-            $post->likes()->create([
-                'user_id' => $userId,
-                'value' => 0
-            ]);
         }
+    
+        // After toggling like/dislike, redirect back to the same post
+        return redirect()->route('post.show', ['post' => $postId]);
     }
-
-    // After toggling like/dislike, redirect back to the same post
-    return redirect()->route('post.show', ['post' => $postId]);
-}
+    
 
     
     public function destroy($post_id)
