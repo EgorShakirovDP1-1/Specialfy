@@ -34,7 +34,7 @@
                                 <td aria-label="user number">{{ index + 1 }}.</td>
                                 <td aria-label="user name">{{ user.name }}</td>
                                 <td aria-label="user email">{{ user.email }}</td>
-                                <td aria-label="user role">{{ user.role }}</td>
+                                <td aria-label="user role">{{ user.is_admin }}</td>
                                 <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
                                 <td class="text-end" aria-label="user actions">
                                     <button 

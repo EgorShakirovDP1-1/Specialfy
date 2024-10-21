@@ -18,59 +18,73 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-center me-5 my-3 my-lg-0">
-                                <i class="bi bi-file-earmark-ruled text-white" aria-label="rental terms icon"></i>
                                 <Link :href="route('terms')" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/terms'),
-                                    'text-white': $page.url.includes('/terms'),
-                                }" aria-label="rental terms page">Terms</Link>
-                            </li>sticky-top
-                            приваси полиси сюда
+                                    'text-black': $page.url.includes('/terms'),
+                                }" aria-label="rental terms page">
+                                <i class="bi bi-file-earmark-ruled" :class="{
+                                    'text-secondary': !$page.url.includes('/terms'),
+                                    'text-black': $page.url.includes('/terms'),
+                                }" aria-label="rental terms icon"></i>Terms
+                                </Link>
+                            </li>
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
-                                <i class="bi bi-list text-white" aria-label="our post list icon"></i>
+                                
+                                <i class="bi bi-list text-black" aria-label="our post list icon"></i>
                                 <Link :href="route('posts')" class="nav-link p-1" :class="{
                                     'text-secondary': $page.url !== '/posts',
-                                    'text-white': $page.url === '/posts',
+                                    'text-black': $page.url === '/posts',
+                                }"
+                                aria-label="our post list page">приваси полиси сюда
+                                </Link>
+                            </li>
+                            
+                            <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
+                                <i class="bi bi-list text-black" aria-label="our post list icon"></i>
+                                <Link :href="route('posts')" class="nav-link p-1" :class="{
+                                    'text-secondary': $page.url !== '/posts',
+                                    'text-black': $page.url === '/posts',
                                 }" aria-label="our post list page">Posts</Link>
                             </li>
 
                             <li v-if="$page.props.auth"
                                 class="nav-item d-flex align-items-center ms-0 ms-lg-4 me-3 my-2 my-lg-0">
-                                <i class="bi bi-person-circle text-white" aria-label="profile page icon"></i>
+                                <i class="bi bi-person-circle text-black" aria-label="profile page icon"></i>
                                 <Link :href="route('profile', { user: $page.props.auth })" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/profile'),
-                                    'text-white': $page.url.includes('/profile'),
+                                    'text-black': $page.url.includes('/profile'),
                                 }" aria-label="profile page">Profile Page</Link>
                             </li>
 
                             <li v-if="$page.props.auth && $page.props.isAdmin"
                                 class="nav-item d-flex align-items-center ms-0 me-3 my-2 my-lg-0">
-                                <i class="bi bi-gear-fill text-white" aria-label="admin panel icon"></i>
-                                <Link :href="route('admin')" class="nav-link p-1 text-white" :class="{
+                                <i class="bi bi-gear-fill text-black" aria-label="admin panel icon"></i>
+                                <Link :href="route('admin')" class="nav-link p-1 text-black" :class="{
                                     'text-secondary': !$page.url.includes('/admin'),
-                                    'text-white': $page.url.includes('/admin'),
+                                    'text-black': $page.url.includes('/admin'),
                                 }" aria-label="admin panel">Admin Panel</Link>
                             </li>
 
                             <li v-if="$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0 me-0">
-                                <i class="bi bi-box-arrow-right text-white" aria-label="log out icon"></i>
-                                <Link :href="route('logout')" class="nav-link p-1 text-white" aria-label="log out">Log
+                                <i class="bi bi-box-arrow-right text-black" aria-label="log out icon"></i>
+                                <Link :href="route('logout')" class="nav-link p-1 text-black" aria-label="log out">Log
                                 Out</Link>
                             </li>
 
                             <li v-if="!$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0">
-                                <i class="bi bi-box-arrow-in-right text-white ms-0 ms-lg-5"
+                                <i class="bi bi-box-arrow-in-right text-black ms-0 ms-lg-5"
                                     aria-label="log in icon"></i>
                                 <Link :href="route('login')" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/login'),
-                                    'text-white': $page.url === '/login',
+                                    'text-black': $page.url === '/login',
                                 }" aria-label="log in">Log In</Link>
                             </li>
 
                             <li v-if="!$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0">
-                                <i class="bi bi-box-arrow-in-left text-white" aria-label="register icon"></i>
+                                <i class="bi bi-box-arrow-in-left text-black" aria-label="register icon"></i>
                                 <Link :href="route('register')" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/register'),
-                                    'text-white': $page.url === '/register',
+                                    'text-black': $page.url === '/register',
                                 }" aria-lasticky-topbel="register">Sign up</Link>
                             </li>
                         </ul>
@@ -96,5 +110,9 @@ export default {
 .logo{
     height: 70px;
     width: auto;
+}
+.nav-item{
+    font-size: 17px;
+
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-light text-white text-center p-4">
+    <footer class="bg-light text-black text-center p-4">
         <div class="container">
 
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">

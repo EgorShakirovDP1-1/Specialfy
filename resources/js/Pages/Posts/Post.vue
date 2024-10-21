@@ -70,38 +70,40 @@
                                 <div class="d-flex">
                                     <div>
                                         <button v-if="$page.props.auth"
-                                            class="btn btn-light border-none px-2 py-0 btn-48"
-                                            @click="toggleLike(post.id)">
+                                                class="btn btn-light border-none px-2 py-0 btn-48"
+                                                @click="toggleLike(post.id)">
                                             <div class="d-flex align-items-center m-0">
-                                                {{ post.likesCount }}
+                                                {{ post.likesCount || 0 }}  <!-- Display 0 if undefined -->
+                                                <i class="bi h4 text-success ms-1 mt-2"
+                                                :class="{ 'bi-hand-thumbs-up-fill': post.isLikedByUser, 'bi-hand-thumbs-up': !post.isLikedByUser }"></i>
+                                            </div>
+                                        </button>
+
+                                        <!-- Dislike Button -->
+                                        <button v-if="$page.props.auth"
+                                                class="btn btn-light border-none px-2 py-0 btn-48"
+                                                @click="toggleDislike(post.id)">
+                                            <div class="d-flex align-items-center m-0">
+                                                {{ post.dislikesCount || 0 }}  <!-- Display 0 if undefined -->
                                                 <i class="bi h4 text-danger ms-1 mt-2"
-                                                    :class="{ 'bi-heart-fill': post.isLikedByUser, 'bi-heart': !post.isLikedByUser }"></i>
+                                                :class="{ 'bi-hand-thumbs-down-fill': post.isDislikedByUser, 'bi-hand-thumbs-down': !post.isDislikedByUser }"></i>
                                             </div>
                                         </button>
-                                        <Link v-if="!$page.props.auth" :href="route('login')">
-                                        <button class="btn btn-light border-none px-2 py-2 btn-48">
-                                            <div class="d-flex align-items-center m-0">
-                                                {{ post.raiting }}
-                                                <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
-                                            </div>
-                                        </button>
-                                        </Link>
                                     </div>
                                     <div>
-                                        <Comments :profilePhoto="profilePhoto" :errors="errors" :postId="post.id"
-                                            :comments="comments" />
-                                    </div>
+                                        <Comments :profilePhoto="profilePhoto" :errors="errors" :postId="post.id" :comments="comments" />
+                                    </div> 
                                 </div>
                             </div>
 
                             <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
                                 <div class="ousel-inner">
                                     <div class="carousel-item active">
-                                        <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" />
+                                         <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" /> 
                                     </div>
-                                    <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
-                                        <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image" />
-                                    </div>
+                                     <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
+                                         <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image" /> 
+                                     </div> 
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="carouselExample"
                                     data-bs-slide="prev" aria-label="Previous">
@@ -128,7 +130,7 @@
 <script>
 import Layout from "../../Layout/App.vue";
 import ContactUs from "../Home/Components/ContactUs.vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import Comments from "../Posts/Comments.vue";
 import Message from "../Home/Components/Message.vue";
 
@@ -147,100 +149,47 @@ export default {
             type: Object,
             required: true,
         },
-        postImages: {
-            type: Array,
-            required: true,
-        },
-        profilePhoto: {
-            type: Image,
-            required: true,
-        },
+        // postImages: {
+        //     type: Array,
+        //     required: true,
+        // },
+        // profilePhoto: {
+        //     type: Image,
+        //     required: true,
+        // },
         comments: {
             type: Array,
             required: true,
         },
+     
     },
-    setup(props) {
-        const form = useForm({
-            watch: null,
-            post_pickup_place: "",
-            post_return_place: "",
-            start_date: "",
-            end_date: "",
-            start_date: "",
-            postId: props.post.id,
-            end_price: 0
-        });
+    
+       
 
-        const calculateTripDuration = () => {
-            const endDate = new Date(form.end_date);
-            const startDate = new Date(form.start_date);
+     
 
-            const tripDuration = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24))
-
-            return tripDuration;
-        };
-
-        const calculateTotalPrice = () => {
-            const pricePerSubscribtion = props.post.price_per_subscribtion;
-            const pricePerwatch = props.post.price_per_watch;
-
-            const tripDuration = calculateTripDuration();
-
-            const totalSubscribtionsPrice = tripDuration * pricePerSubscribtion;
-            const totalwatchPrice = form.watch * pricePerwatch;
-
-            let totalPrice = totalSubscribtionsPrice + totalwatchPrice;
-
-            const startingAddresses = ['Lidosta Rīga', 'Aspazijas bulvāris 32', 'Brīvības iela 366'];
-
-            const endingAddresses = ['Lidosta Rīga', 'Aspazijas bulvāris 32', 'Brīvības iela 366'];
-
-            if (!startingAddresses.includes(form.post_pickup_place)) {
-                totalPrice += 10;
-            }
-
-            if (!endingAddresses.includes(form.post_return_place)) {
-                totalPrice += 10;
-            }
-
-            if (totalPrice >= 1000) {
-                totalPrice *= 0.85;
-            } else if (totalPrice >= 500) {
-                totalPrice *= 0.9;
-            } else if (totalPrice >= 200) {
-                totalPrice *= 0.94;
-            } else if (totalPrice >= 100) {
-                totalPrice *= 0.97;
-            }
-
-            totalPrice = parseFloat(totalPrice.toFixed(2));
-
-            return totalPrice;
-        };
-
-        const submitForm = () => {
-            const totalPrice = calculateTotalPrice();
-            form.end_price = totalPrice;
-            form.post(`/posts/${props.post.id}`);
-        };
-
-        return { form, calculateTotalPrice, submitForm };
-    },
-    computed: {
-        totalPrice() {
-            return this.calculateTotalPrice();
-        },
-    },
     data() {
         return {
             isPressed: {}
         }
     },
+    
     methods: {
         toggleLike(postId) {
-            this.$inertia.post(`/posts/${postId}/like`, {}, { preserveScroll: true })
-        }
+            const post = this.post;
+
+            this.$inertia.post(`/Posts/${postId}/toggleLike`, { action: 'like' })
+        
+    },
+
+    toggleDislike(postId) {
+    const post = this.post;
+
+    this.$inertia.post(`/Posts/${postId}/toggleLike`, { action: 'dislike' })
+       
+},
+
+        
     },
     mounted() {
         let modalBackdrop = document.querySelector('.modal-backdrop');
@@ -253,7 +202,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped>     
 #main-container {
     min-height: 600px;
 }

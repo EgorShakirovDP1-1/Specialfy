@@ -22,10 +22,10 @@
                                 <h3 class="card-title">
                                     {{ post.author }} {{ post.model }}
                                 </h3>
-                                <p class="text-white mb-0">
+                                <p class="text-black mb-0">
                                     Price Per Subscribtion: {{ post.price_per_subscribtion }}€
                                 </p>
-                                <p class="text-white">
+                                <p class="text-black">
                                     Price Per watch: {{ post.price_per_watch }}€
                                 </p>
                                 <!-- Button group -->
