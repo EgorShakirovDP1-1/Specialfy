@@ -5,14 +5,7 @@
                 <form enctype="multipart/form-data" @submit.prevent="handleSubmit">
                     <h1 class="text-center">Add New Post</h1>
                     <div class="form-group mt-3" aria-labelledby="authorLabel">
-                        <label for="author" class="text-dark" id="authorLabel">Author</label><br>
-                        <input v-model="form.author" type="text" name="author" id="author"
-                            class="form-control border-primary" placeholder="Enter author">
-                        <div v-if="errors.author" class="d-block mt-2" role="alert">
-                            <span class="fs-5 text-danger">
-                                {{ errors.author }}
-                            </span>
-                        </div>
+                       
                     </div>
                     <div class="form-group mt-3" aria-labelledby="modelLabel">
                         <label for="model" class="text-dark" id="modelLabel">Model</label><br>

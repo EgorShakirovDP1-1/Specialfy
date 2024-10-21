@@ -23,10 +23,19 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'likes');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function likes_count() {
         return $this->hasMany(Like::class);
     }
 
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
     /*
 
     public function getImageURLs()
@@ -54,6 +63,6 @@ class Post extends Model
 
         return null;
     }
-
-    */
+*/
+    
 }

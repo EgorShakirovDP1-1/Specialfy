@@ -16,6 +16,7 @@ class AdminController extends Controller
         $users = User::all()->count();
         $admins = User::where('is_admin', true)->count();
         $posts = Post::all()->count();
+        //$postswithusers = Post::with('users')->get();
         $terms = Term::all()->count();
         $comments = Comment::all()->count();
         if (auth()->user()->is_admin) {
