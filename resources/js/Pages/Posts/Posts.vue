@@ -52,8 +52,8 @@
                                             <i class="bi bi-chevron-right"></i> Read More
                                             </Link>
                                             <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                                @click="toggleLike(post.id)">
+                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none"
+                                                >
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ post.rating }}
                                                     <i class="bi h4 text-danger ms-1 mt-2"
@@ -66,7 +66,7 @@
                                                 aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ post.rating }}
-                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"
+                                                    <i class="bi bi-star-fill h4 text-danger ms-1 mt-2"
                                                         aria-hidden="true"></i>
                                                 </div>
                                             </button>
