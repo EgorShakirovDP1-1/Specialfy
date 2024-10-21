@@ -28,8 +28,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likes_count() {
-        return $this->hasMany(Like::class);
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 
     public function pictures()

@@ -20,6 +20,7 @@ class MainSeeder extends Seeder
             PostsSeeder::class,
             LikesTableSeeder::class,
             CommentsSeeder::class,
+            ImageSeeder::class,
         ]);
     }
 }

@@ -6,7 +6,7 @@
                     <img class="img-fluid rounded img-zoom" :src="twentycentuaryfoxImage" alt="" />
                 </div>
                 <div class="col-lg-6">
-                    <h1 id="mobilityApproach" class="text-white">
+                    <h1 id="mobilityApproach" class="text-black">
                         <span class="text-warning">A new approach</span> to
                         post     industry!
                     </h1>

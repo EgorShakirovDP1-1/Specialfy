@@ -10,11 +10,12 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Like;
 
 
 
 class PostController extends Controller
+
 {
     public function index()
 {
@@ -53,15 +54,22 @@ class PostController extends Controller
             'posts' => $posts,
         ]);
     }
+    
+    // public function show($post_id)
+    // {
+        // $post = Post::find($post_id);
+
 
     public function show($post_id)
     {
+    
+        // $post = Post::find($post_id);
+        // $post['postImage1'] = $post->getFirstImageURL();
+
         $post = Post::find($post_id);
-        $post['postImage1'] = $post->getFirstImageURL();
+        // $postimg = Post::with('images')->findOrFail($post_id);
 
-        $postImages = $post->getImageURLs();
-
-        $post->likesCount = $post->likes()->where('value', '1')->count();
+        $post->likesCount  = $post->likes()->where('value', '1')->count();
         $post->dislikesCount = $post->likes()->where('value', '0')->count();
 
 
@@ -85,23 +93,23 @@ class PostController extends Controller
                 'user_id' => $comment->user->id,
                 'id' => $comment->id,
                 'post_id' => $comment->post_id,
-                'editing' => true,
+                'editing'  => true,
             ];
         });
 
         if (auth()->user()) {
-            $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
-            $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
+            $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 1)->exists();
+            $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 0)->exists();
         }
 
         return Inertia::render('Posts/Post', [
             'post' => $post,
-            'postImages' => $postImages,
+            // 'postImages' => $postImages,
             'profilePhoto' => $profilePhoto,
             'comments' => $comments
         ]);
     }
-
+        
     public function create()
     {
         return Inertia::render('Posts/CreatePost');
@@ -123,18 +131,62 @@ class PostController extends Controller
         //     }
         // }
 
- foreach ($request->pictures as $picture) {
-    $validated->pictures()->store([
-         'url' => $picture['url'], // URL картинки
-     ]);
- }
-        $data = array_merge($validated/*,$postImages*/);
+
 
         Post::create($data);
 
         return redirect()->route('home')->with('message', 'Post created successfully!');
     }
+    public function toggleLike(Request $request, $postId)
+{
+    $userId = auth()->id();
+    $action = $request->action; // either 'like' or 'dislike'
 
+    // Find the post and ensure it exists
+    $post = Post::findOrFail($postId);
+
+    // Check if the user has already liked or disliked this post
+    $existingLike = $post->likes()->where('user_id', $userId)->first();
+
+    if ($action === 'like') {
+        if ($existingLike) {
+            if ($existingLike->value === 1) {
+                // User is unliking the post
+                $existingLike->delete();
+            } else {
+                // User is switching from dislike to like
+                $existingLike->update(['value' => 1]);
+            }
+        } else {
+            // Add a new like
+            $post->likes()->create([
+                'user_id' => $userId,
+                'value' => 1
+            ]);
+        }
+    } elseif ($action === 'dislike') {
+        if ($existingLike) {
+            if ($existingLike->value === 0) {
+                // User is undisliking the post
+                $existingLike->delete();
+            } else {
+                // User is switching from like to dislike
+                $existingLike->update(['value' => 0]);
+            }
+        } else {
+            // Add a new dislike
+            $post->likes()->create([
+                'user_id' => $userId,
+                'value' => 0
+            ]);
+        }
+    }
+
+    // After toggling like/dislike, redirect back to the same post
+    return redirect()->route('post.show', ['post' => $postId]);
+}
+
+    
     public function destroy($post_id)
     {
         if($post_id == null) {
