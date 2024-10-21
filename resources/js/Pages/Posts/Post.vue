@@ -90,21 +90,21 @@
                                             </div>
                                         </button>
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <Comments :profilePhoto="profilePhoto" :errors="errors" :postId="post.id" :comments="comments" />
-                                    </div> 
+                                    </div>  -->
                                 </div>
                             </div>
 
-                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+                            <!-- <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
                                 <div class="ousel-inner">
-                                    <div class="carousel-item active">
+                                     <div class="carousel-item active">
                                          <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" /> 
                                     </div>
-                                     <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
+                                      <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
                                          <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image" /> 
-                                     </div> 
-                                </div>
+                                     </div>   
+                                </div> 
                                 <button class="carousel-control-prev" type="button" data-bs-target="carouselExample"
                                     data-bs-slide="prev" aria-label="Previous">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -115,7 +115,7 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
