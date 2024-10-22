@@ -15,7 +15,7 @@
                         </Link>
                     </li>
                     <li class="mb-1 mt-0">
-                        <likedFilms :likedFilms="likedFilms" />
+                        <likedPosts :likedPosts="likedPosts" />
                     </li>
                     <li class="mb-1 mt-0">
                         <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216"
@@ -57,11 +57,11 @@
                 </div>
                 <div class="rent-history rounded bg-black mt-2 p-3 overflow-auto">
                     <h3 class="text-center">Rents</h3>
-                    
-                  
+                   
+                    </div>
                 </div>
             </div>
-        </div>
+     
     </Layout>
 </template>
 
@@ -70,28 +70,28 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import { router } from "@inertiajs/vue3";
-import likedFilms from "./Profile/likedFilms.vue";
+import likedPosts from "./Profile/likedPosts.vue";
 
 export default {
     components: {
         Layout,
         Link,
-        likedFilms,
+        likedPosts,
     },
     props: {
         user: {
             type: Object,
             required: true,
         },
- 
-        likedFilms: {
+     
+        likedPosts: {
             type: Array,
             required: false,
         },
     },
-   
-       
-    
+    methods: {
+      
+    },
     data() {
         return {
             moment: moment,

@@ -11,17 +11,17 @@ use App\Http\Requests\UserAuthenticateRequest;
 class AuthController extends Controller
 {
     public function register() {
-        $film = asset(Storage::url('filmImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
+        $post = asset(Storage::url('postImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
 
-        return Inertia::render('Auth/Register', ['film' => $film]);
+        return Inertia::render('Auth/Register', ['post' => $post]);
     }
 
     public function store(UserCreateRequest $request) {
 
         User::create([
             'name' => $request->name,
-            'phone_number' => $request->phone_number,
-            'email' => $request->email,
+            'phone_number' => ($request->phone_number),
+            'email' => ($request->email),
             'password' => bcrypt($request->password),]);
 
         // Mail::to($user->email)
@@ -31,9 +31,9 @@ class AuthController extends Controller
     }
 
     public function login() {
-        $film = asset(Storage::url('filmImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
+        $post = asset(Storage::url('postImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
 
-        return Inertia::render('Auth/Login', ['film' => $film]);
+        return Inertia::render('Auth/Login', ['post' => $post]);
     }
 
     public function authenticate(UserAuthenticateRequest $request){

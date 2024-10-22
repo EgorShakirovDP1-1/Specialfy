@@ -6,9 +6,9 @@
                     <img class="img-fluid rounded img-zoom" :src="twentycentuaryfoxImage" alt="" />
                 </div>
                 <div class="col-lg-6">
-                    <h1 id="mobilityApproach" class="text-white">
+                    <h1 id="mobilityApproach" class="text-black">
                         <span class="text-warning">A new approach</span> to
-                        film     industry!
+                        post     industry!
                     </h1>
                     <p class="lead .text-black">
                         "Movie Hunter" aims to create a richer and more vibrant city culture. How? One "Movie Hunter" screening that can be shared can replace up to 12 private screenings that most of the time stand still and lack communal engagement.

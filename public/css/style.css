@@ -14,7 +14,7 @@ body{
 }
 
 /* home */
-#carouselFilms {
+#carouselPosts {
     max-width: 700px;
 }
 
@@ -70,7 +70,7 @@ body{
     justify-content: space-between;
 }
 
-/* Films list */
+/* Posts list */
 .box {
     width: 90%;
 }
@@ -87,7 +87,7 @@ body{
     width: 120px;
 }
 
-/* Film show */
+/* Post show */
 .main-container {
     width: 90%;
 }

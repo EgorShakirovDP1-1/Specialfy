@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
+use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
-
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
+
+
+
+
     public function profile($id) {
         $user = User::find($id);
 
-    
 
-        $likedFilmIds = Like::where('user_id', $user->id)
-                   ->pluck('film_id')
+
+        $likedPostIds = Like::where('user_id', $user->id)
+                   ->pluck('post_id')
                    ->toArray();
 
-        if(!empty($likedFilmIds)){
-            foreach ($likedFilmIds as $filmId) {
-                $likedFilms[] = Film::find($filmId);
+        if(!empty($likedPostIds)){
+            foreach ($likedPostIds as $postId) {
+                $likedPosts[] = Post::find($postId);
             }
     
-            foreach ($likedFilms as $likedFilm) {
-                $likedFilm->filmImage1 = asset($likedFilm->filmImage1);
-                $likedFilm->likesCount = $likedFilm->likes->count();
+            foreach ($likedPosts as $likedPost) {
+                $likedPost->postImage1 = asset($likedPost->postImage1);
+                $likedPost->likesCount = $likedPost->likes->count();
             
                 if(auth()->user()){
-                    $likedFilm->isLikedByUser = $likedFilm->likes()->where('user_id', auth()->id())->exists();
+                    $likedPost->isLikedByUser = $likedPost->likes()->where('user_id', auth()->id())->exists();
                 }
             }
         }
@@ -41,7 +45,7 @@ class UserController extends Controller
         return Inertia::render("User/Profile", [
             'user' => $user,
            
-            'likedFilms' => $likedFilms ?? null,
+            'likedPosts' => $likedPosts ?? null,
         ]);
     }
 
@@ -77,7 +81,14 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('message', 'Profile updated successfully!');
     }
+    public function makeAdmin(User $user)
+    {
+        // Update the user's role to 'admin'
+        $user->is_admin = '1';
+        $user->save();
 
+        return back()->with('success', 'User has been given admin rights.');
+    }
     public function destroy($id) {
         $user = User::find($id);
 
