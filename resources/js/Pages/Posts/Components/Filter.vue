@@ -17,10 +17,6 @@
                     Comercial posts
                 </label>
             </div>
-            
-            
-          
-            <hr>
         </div>
 
       

@@ -1,6 +1,6 @@
 <template>
     <section class="sticky-top">
-        <div class="container">
+        <div class="container ps-0 pe-0">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid px-0">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -9,13 +9,16 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                      
+                        <!-- LOGO -->
                         <ul class="navbar-nav">
-                            <li class="nav-item d-flex align-items-center m-0">
+                            <li class="nav-item d-flex align-items-start my-2">
                                 <Link :href="route('home')" aria-label="home page">
                                     <img class="logo" src="/public/images/logo.png" >
                                 </Link> 
                             </li>
                         </ul>
+
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-center me-5 my-3 my-lg-0">
                                 <Link :href="route('terms')" class="nav-link p-1" :class="{
@@ -53,6 +56,7 @@
                                 }" aria-label="our post list page">Posts</Link>
                             </li>
 
+                            <!-- PROFILE PAGE -->
                             <li v-if="$page.props.auth"
                                 class="nav-item d-flex align-items-center ms-0 ms-lg-4 me-3 my-2 my-lg-0">
                                 <i class="bi bi-person-circle text-black" aria-label="profile page icon"></i>
@@ -62,6 +66,7 @@
                                 }" aria-label="profile page">Profile Page</Link>
                             </li>
 
+                            <!-- ADMIN PANEL -->
                             <li v-if="$page.props.auth && $page.props.isAdmin"
                                 class="nav-item d-flex align-items-center ms-0 me-3 my-2 my-lg-0">
                                 <i class="bi bi-gear-fill text-black" aria-label="admin panel icon"></i>
@@ -71,6 +76,7 @@
                                 }" aria-label="admin panel">Admin Panel</Link>
                             </li>
 
+                            <!-- LOG OUT -->
                             <li v-if="$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0 me-0">
                                 <i class="bi bi-box-arrow-right text-black" aria-label="log out icon"></i>
                                 <Link :href="route('logout')" class="nav-link p-1 text-black" aria-label="log out">Log
@@ -93,6 +99,7 @@
                                     'text-black': $page.url === '/register',
                                 }" aria-lasticky-topbel="register">Sign up</Link>
                             </li>
+
                         </ul>
                     </div>
                 </div>

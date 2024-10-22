@@ -26,7 +26,7 @@
                     <Search @search="handleSearch" />
                 </div>
 
-                <section class="bg-black mt-2 rounded">
+                <section class="bg-light mt-2 rounded">
                     <div class="p-2">
                         <div class="container text-center">
                             <div class="row justify-content-between">

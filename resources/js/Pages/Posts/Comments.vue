@@ -40,7 +40,7 @@
                             <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo me-2">
                             <div class="mb-3 w-100">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0 text-secondary">{{ comment.name }}</h6>
+                                    <h6 class="mb-0 text-black">{{ comment.name }}</h6>
                                     <div class="d-flex" v-if="$page.props.auth">
                                         <button v-if="$page.props.auth.id === comment.user_id" type="button"
                                             class="btn btn-info text-primary me-1 px-2 py-1"

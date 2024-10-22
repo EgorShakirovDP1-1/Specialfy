@@ -11,24 +11,24 @@
                         <div class="d-flex">
                             <div id="statistics" class="me-2">
                                 <ul class="list-unstyled mb-2">
-                                    <li class="bg-black py-2 px-4 d-flex mb-2 mt-0 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0 rounded">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class="">
                                             {{ post.title }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Category :
                                         </p>
                                         <span class="">{{ post.category_id.name }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Autor :
                                         </p>
                                         <span class="">{{ post.user_id }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
                                         </p>
