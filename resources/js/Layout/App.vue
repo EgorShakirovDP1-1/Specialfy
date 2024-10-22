@@ -20,7 +20,7 @@ export default {
 
 <style>
 body {
-background-color: azure;
+background-color: var(--bs-secondary);
 }
 body::-webkit-scrollbar {
     display: none;
@@ -33,5 +33,10 @@ body::-webkit-scrollbar {
 .img-zoom:hover {
     transform: scale(1.03);
 }
+
+:root {
+      --bs-primary: rgb(240, 70, 70);   /* Custom primary color */
+      --bs-secondary: rgb(255, 255, 255); /* Custom secondary color */
+    }
 
 </style>

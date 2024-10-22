@@ -1,10 +1,10 @@
 <template>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-black border-0 rounded-3 py-3 my-3">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light border-0 rounded-3 py-3 my-3">
         <ul class="nav nav-pills flex-column d-flex">
             <div class="">
                 <li>
                     <Link :href="route('admin')" class="nav-link" :class="{
-                        'text-secondary':
+                        'text-black':
                             !$page.url.includes('/admin/dashboard'),
                         'text-white': $page.url.includes('/admin/dashboard'),
                     }">
@@ -14,7 +14,7 @@
                 </li>
                 <li>
                     <Link :href="route('admin')" class="nav-link" :class="{
-                        'text-secondary':
+                        'text-black':
                             !$page.url.includes('/admin/users'),
                         'text-white': $page.url.includes('/admin/users'),
                     }">
@@ -24,7 +24,7 @@
                 </li>
                 <li>
                     <Link :href="route('admin.posts')" class="nav-link" :class="{
-                        'text-secondary':
+                        'text-black':
                             !$page.url.includes('/admin/posts'),
                         'text-white': $page.url.includes('/admin/posts'),
                     }">
@@ -34,7 +34,7 @@
                 </li>
                 <li>
                     <Link :href="route('admin')" class="nav-link" :class="{
-                        'text-secondary':
+                        'text-black':
                             !$page.url.includes('/admin/terms'),
                         'text-white': $page.url.includes('/admin/terms'),
                     }">
@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <Link :href="route('admin')" class="nav-link" :class="{
-                        'text-secondary':
+                        'text-black':
                             !$page.url.includes('/admin/comments'),
                         'text-white': $page.url.includes('/admin/comments'),
                     }">

@@ -60,6 +60,9 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::delete('/{term}', [TermController::class, 'destroy'])->name('terms.delete');
 });
 
+//privacy policy
+Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('privacypolicy');
+
 //learn
 Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 
@@ -96,8 +99,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
     
 });
-
-
 
 // GET	/photos	index	photos.index
 // GET	/photos/create	create	photos.create

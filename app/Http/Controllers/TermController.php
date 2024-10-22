@@ -33,4 +33,9 @@ class TermController extends Controller
 
         return redirect()->route('home')->with('message', 'Term deleted successfully!');
     }
+
+    public function indexpriv() {
+        $terms = Term::all();
+        return Inertia::render('PrivacyPolicy/PrivacyPolicy', compact('privacypolicy'));
+    }
 }

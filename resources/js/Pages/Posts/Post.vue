@@ -11,16 +11,16 @@
                         <div class="d-flex">
                             <div id="statistics" class="me-2">
                                 <ul class="list-unstyled mb-2">
-                                    <li class="bg-black py-2 px-4 d-flex mb-2 mt-0 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0 rounded">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class="">{{ post.author }}
                                             {{ post.model }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">Year:</p>
                                         <span class="">{{ post.year }}.</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Name :
                                         </p>
@@ -28,13 +28,13 @@
                                             post.postname
                                             }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
                                         </p>
                                         <span class="">{{ post.description }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Genre:
                                         </p>
@@ -42,25 +42,25 @@
                                             post.genre
                                             }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Duration:
                                         </p>
                                         <span class="">{{ post.duration }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Volume:
                                         </p>
                                         <span class="">{{ post.volume }}</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price Per Subscribtion:
                                         </p>
                                         <span class="">{{ post.price_per_subscribtion }}€</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price Per watch:
                                         </p>

@@ -1,6 +1,6 @@
 <template>
-    <div class="dropdown filter rounded bg-black p-4 me-2" aria-labelledby="sortingDropdown">
-        <h4 class="text-center">Sorting</h4>
+    <div class="dropdown filter rounded bg-light p-4 me-2 mb-2" aria-labelledby="sortingDropdown">
+        <h4 class="text-center text-black">Sorting</h4>
         <button class="btn btn-secondary dropdown-toggle" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Please select an option
         </button>

@@ -1,5 +1,5 @@
 <template>
-    <div class="filter rounded bg-black p-4 me-2">
+    <div class="filter rounded bg-light p-4 me-2 mb-2">
         <div class="filter-box">
             <div class="d-flex align-items-center justify-content-between">
                 <h4>Author</h4>
@@ -93,22 +93,7 @@
                     Comercial posts
                 </label>
             </div>
-            
-            
-          
-            <hr>
         </div>
-
-      
-       
-
-   
-    
-       
-        
-
-      
-      
 
    
         
