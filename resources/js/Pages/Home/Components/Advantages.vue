@@ -1,7 +1,7 @@
 <template>
-    <section class="p-lg-5 mt-4" aria-labelledby="postSharingBenefitsHeading">
+    <section class="p-lg-5 mt-4" aria-labelledby="filmSharingBenefitsHeading">
         <div class="container text-center">
-            <h1 id="postSharingBenefitsHeading" class="mb-1 text-dark">
+            <h1 id="filmSharingBenefitsHeading" class="mb-1 text-dark">
                 Supermen are not who save the world, but those who put their effort into work and fun!
             </h1>
 
@@ -14,7 +14,7 @@
                             </div>
                             <h3 class="card-title mb-3">All Inclusive</h3>
                             <p class="card-text text-dark lead">
-                               Spend your free time enjoying posts and TV shows
+                               Spend your free time enjoying films and TV shows
                             </p>
                         </div>
                     </div>
