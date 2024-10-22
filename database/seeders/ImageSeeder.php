@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Post;
-use App\Models\Image;
+use App\Models\Picture;
 
 class ImageSeeder extends Seeder
 {

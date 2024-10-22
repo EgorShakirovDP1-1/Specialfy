@@ -20,13 +20,14 @@ class PostStoreRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
-            'author' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-            'Title' => 'required',
-            'text' => 'required',
-        ];
-    }
-}
+{
+    return [
+        'author' => 'required|string|max:255',
+        'category_id' => 'required|exists:categories,id',
+        'price' => 'required|numeric',
+        'title' => 'required|string|max:50',
+        'text' => 'required|string|max:6000',
+        'postImage1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Validation for images
+        // Repeat validation rules for other postImage fields as needed
+    ];
+}}

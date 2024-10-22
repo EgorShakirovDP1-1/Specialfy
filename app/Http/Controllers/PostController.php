@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Like;
-
+use App\Models\Category;
 
 
 class PostController extends Controller
@@ -35,8 +35,9 @@ class PostController extends Controller
             return [
                 'id' => $post->id,
                 'author' => $post->author,
-                'category' => $post->category,
-                'Title' => $post->Title,
+                'category_id' => $post->category,
+                'price' => $post->price,
+                'title' => $post->Title,
                 'text' => $post->description,
                 'rating' => $raiting,
                 'likesCount' => $like_count,
@@ -54,83 +55,98 @@ class PostController extends Controller
         // $post = Post::find($post_id);
 
 
-    public function show($post_id)
-    {
-    
-        // $post = Post::find($post_id);
-        // $post['postImage1'] = $post->getFirstImageURL();
-
-        $post = Post::find($post_id);
-        // $postimg = Post::with('images')->findOrFail($post_id);
-
-        $post->likesCount  = $post->likes()->where('value', '1')->count();
-        $post->dislikesCount = $post->likes()->where('value', '0')->count();
-
-
-        if (auth()->user()) {
-            $authUser = auth()->user()->id;
-            $user = User::find($authUser);
-            $profilePhoto = $user->getImageURL();
-        } else {
-            $profilePhoto = asset(Storage::url('images/default-profile.png'));
+        public function show($post_id)
+        {
+            // Find the post by its ID
+            $post = Post::with('pictures')->findOrFail($post_id);  // Load the related pictures
+            $categories = Category::all();
+            $users = User::all();
+            
+        
+            // Count likes and dislikes
+            $post->likesCount  = $post->likes()->where('value', '1')->count();
+            $post->dislikesCount = $post->likes()->where('value', '0')->count();
+        
+            // Get profile photo of the authenticated user or default
+            if (auth()->user()) {
+                $authUser = auth()->user()->id;
+                $user = User::find($authUser);
+                $profilePhoto = $user->getImageURL();
+            } else {
+                $profilePhoto = asset(Storage::url('images/default-profile.png'));
+            }
+        
+            // Get comments related to the post
+            $comments = Comment::where('post_id', $post_id)
+                ->orderBy('created_at', 'DESC')
+                ->get();
+        
+            // Map comments to include user profile photos and other details
+            $comments = $comments->map(function ($comment) {
+                return [
+                    'comment' => $comment->comment,
+                    'profilePhoto' => $comment->user->getImageURL(),
+                    'name' => $comment->user->name,
+                    'user_id' => $comment->user->id,
+                    'id' => $comment->id,
+                    'post_id' => $comment->post_id,
+                    // 'category_id' => $categories -> id,
+                    
+                    'editing'  => true,
+                ];
+            });
+        
+            // Check if the post is liked or disliked by the authenticated user
+            if (auth()->user()) {
+                $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 1)->exists();
+                $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 0)->exists();
+            }
+        
+            // Pass the post, images, and other necessary data to the view
+            return Inertia::render('Posts/Post', [
+                'post' => $post,
+                'images' => $post->pictures,  // Pass the pictures to the view
+                'profilePhoto' => $profilePhoto,
+                'comments' => $comments
+            ]);
         }
-
-        $comments = Comment::where('post_id', $post_id)
-            ->orderBy('created_at', 'DESC')
-            ->get();
-
-        $comments = $comments->map(function ($comment) {
-            return [
-                'comment' => $comment->comment,
-                'profilePhoto' => $comment->user->getImageURL(),
-                'name' => $comment->user->name,
-                'user_id' => $comment->user->id,
-                'id' => $comment->id,
-                'post_id' => $comment->post_id,
-                'editing'  => true,
-            ];
-        });
-
-        if (auth()->user()) {
-            $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 1)->exists();
-            $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 0)->exists();
-        }
-
-        return Inertia::render('Posts/Post', [
-            'post' => $post,
-            // 'postImages' => $postImages,
-            'profilePhoto' => $profilePhoto,
-            'comments' => $comments
-        ]);
-    }
         
     public function create()
     {
-        return Inertia::render('Posts/CreatePost');
+        $categories = Category::all();
+        return Inertia::render('Posts/CreatePost',
+    ['categories' => $categories]);
     }
 
     public function store(PostStoreRequest $request)
     {
-
+        // Validate the incoming request data
         $validated = $request->validated();
+       
 
-        //  $PostImages = [];
-        // for ($i = 1; $i <= 8; $i++) {
-        //     $imageKey = 'postImage' . $i;
-
-        //     if ($request->hasFile($imageKey)) {
-        //         $postImages[$imageKey] = $request->file($imageKey)->store('postImages', 'public');
-        //     } else {
-        //         $postImages[$imageKey] = null;
-        //     }
-        // }
-
-
-
-        Post::create($data);
-
+        // Save the post with the category_id
+        $post = Post::create([
+            'user_id' => auth()->id(),
+            'category_id' => $validated['category_id'],  // Ensure this is the correct category ID
+            'price' => $validated['price'],
+            'title' => $validated['title'],
+            'text' => $validated['text'],
+        ]);
+    
+        // Handle images separately
+        for ($i = 1; $i <= 8; $i++) {
+            $imageKey = 'postImage' . $i;
+            if ($request->hasFile($imageKey)) {
+                $filePath = $request->file($imageKey)->store('postImages', 'public');
+                // Associate the image with the post
+                $post->pictures()->create([
+                    'path_to_img' => $filePath,
+                ]);
+            }
+        }
         return redirect()->route('home')->with('message', 'Post created successfully!');
     }
+    
     public function toggleLike(Request $request, $postId)
     {
         $userId = auth()->id();

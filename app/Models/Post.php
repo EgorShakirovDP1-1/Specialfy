@@ -13,9 +13,9 @@ class Post extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'category',
+        'category_id',
         'price',
-        'Title',
+        'title',
         'text'
     ];
 
@@ -29,46 +29,19 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     
+   
+    
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-    public function images()
-    {
-        return $this->hasMany(Image::class);
+        return $this->belongsTo(Category::class);
     }
 
+    // Post has many pictures
     public function pictures()
     {
         return $this->hasMany(Picture::class);
     }
-    /*
-
-    public function getImageURLs()
-    {
-        $maxImages = 8;
-        $images = [];
-
-        for ($i = 2; $i <= $maxImages; $i++) {
-            $postImage = 'postImage' . $i;
-            $image = $this->$postImage;
-            if ($image) {
-                $images[] = url('storage/' . $image);
-            }
-        }
-
-        return $images;
-    }
-
-    public function getFirstImageURL()
-    {
-        $postImage = $this->postImage1;
-        if ($postImage) {
-            return url('storage/'.$postImage);
-        }
-
-        return null;
-    }
-*/
+   
     
 }
