@@ -37,7 +37,7 @@ class PostController extends Controller
                 'author' => $post->author,
                 'category_id' => $post->category,
                 'price' => $post->price,
-                'title' => $post->Title,
+                'title' => $post->title,
                 'text' => $post->description,
                 'rating' => $raiting,
                 'likesCount' => $like_count,
@@ -58,7 +58,7 @@ class PostController extends Controller
         public function show($post_id)
         {
             // Find the post by its ID
-            $post = Post::with('pictures')->findOrFail($post_id);  // Load the related pictures
+            $post = Post::with('pictures')->find($post_id);  // Load the related pictures
             $categories = Category::all();
             $users = User::all();
             
@@ -90,7 +90,7 @@ class PostController extends Controller
                     'user_id' => $comment->user->id,
                     'id' => $comment->id,
                     'post_id' => $comment->post_id,
-                    // 'category_id' => $categories -> id,
+                    
                     
                     'editing'  => true,
                 ];
@@ -105,6 +105,7 @@ class PostController extends Controller
             // Pass the post, images, and other necessary data to the view
             return Inertia::render('Posts/Post', [
                 'post' => $post,
+                'category_id' => $post->category,
                 'images' => $post->pictures,  // Pass the pictures to the view
                 'profilePhoto' => $profilePhoto,
                 'comments' => $comments
@@ -113,6 +114,7 @@ class PostController extends Controller
         
     public function create()
     {
+        
         $categories = Category::all();
         return Inertia::render('Posts/CreatePost',
     ['categories' => $categories]);
