@@ -41,10 +41,10 @@
 
                             <!-- PRIVACY POLICY -->
                             <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
-                                <Link :href="route('privacypolicy')" class="nav-link p-1"
+                                <Link :href="route('privacy')" class="nav-link p-1"
                                     :class="{
-                                        'text-black': !$page.url.includes('/privacypolicy'),
-                                        'text-white': $page.url.includes('/privacypolicy'),
+                                        'text-black': !$page.url.includes('/privacy'),
+                                        'text-white': $page.url.includes('/privacy'),
                                     }"
                                     aria-label="privacy policy link">
                                         <i class="bi bi-file-earmark-ruled"

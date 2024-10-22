@@ -16,11 +16,12 @@
                                         <span class="">
                                             {{ post.title }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
+                                   <p>{{ post }}</p>
+                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Category :
                                         </p>
-                                        <span class="">{{ post.category_id.name }}</span>
+                                        <span class="">{{ post.category.name }}</span>
                                     </li>
                                     <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
@@ -77,7 +78,7 @@
                              <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
                                 <div class="ousel-inner">
                                      <div class="carousel-item active">
-                                         <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" /> 
+                                         <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image 1" /> 
                                     </div>
                                       <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
                                          <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image" /> 
@@ -127,14 +128,14 @@ export default {
             type: Object,
             required: true,
         },
-        // postImages: {
-        //     type: Array,
-        //     required: true,
-        // },
-        // profilePhoto: {
-        //     type: Image,
-        //     required: true,
-        // },
+         postImages: {
+            type: Array,
+           required: true,
+         },
+         profilePhoto: {
+             type: Image,
+             required: true,
+         },
         comments: {
             type: Array,
             required: true,
@@ -153,6 +154,8 @@ export default {
     },
     
     methods: {
+        getImageUrl(path) {
+            return `/storage/${path}`;},
         toggleLike(postId) {
             const post = this.post;
 

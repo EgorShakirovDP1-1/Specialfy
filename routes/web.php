@@ -53,11 +53,13 @@ Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
 
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
+Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
 
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
     Route::put('/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
     Route::delete('/{term}', [TermController::class, 'destroy'])->name('terms.delete');
+    
 });
 
 //privacy policy

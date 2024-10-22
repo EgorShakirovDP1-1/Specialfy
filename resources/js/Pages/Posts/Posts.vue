@@ -41,13 +41,14 @@
                                             {{ post.category_id.name }} 
                                         </h3>
                                            <!-- Render the post images -->
+                                            <!-- <p>{{ post }}</p> -->
             <div class="post-images">
                 <div v-for="image in images" :key="image.id" class="post-image">
                     <img :src="getImageUrl(image.path_to_img)" alt="Post Image" />
                 </div>
             </div>
                                         <p class="text-black mb-0">
-                                            Price Per Subscribtion: {{ post.Title }}€
+                                             {{ post.title }}
                                         </p>
                                         <p class="text-black">
                                             Price Per Watch: {{ post.price }}€
