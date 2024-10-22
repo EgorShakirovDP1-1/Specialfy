@@ -4,7 +4,7 @@
         <section class="p-4 bg-light">
             <div class="container">
                 <h1 class="text-center mb-2 text-warning">
-                    {{ post.postname }} 
+                    {{ post.title }} 
                 </h1>
                 <div class="px-5">
                     <div id="main-container" class="container">
@@ -13,59 +13,37 @@
                                 <ul class="list-unstyled mb-2">
                                     <li class="bg-black py-2 px-4 d-flex mb-2 mt-0 rounded">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
-                                        <span class="">{{ post.author }}
-                                            {{ post.model }}</span>
-                                    </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
-                                        <p class="mb-0 me-2 fw-bold">Year:</p>
-                                        <span class="">{{ post.year }}.</span>
+                                        <span class="">
+                                            {{ post.title }}</span>
                                     </li>
                                     <li class="bg-black py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Name :
+                                            Category :
                                         </p>
-                                        <span class="">{{
-                                            post.postname
-                                            }}</span>
+                                        <span class="">{{ post.category_id.name }}</span>
+                                    </li>
+                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                        <p class="mb-0 me-2 fw-bold">
+                                            Autor :
+                                        </p>
+                                        <span class="">{{ post.user_id }}</span>
                                     </li>
                                     <li class="bg-black py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
                                         </p>
-                                        <span class="">{{ post.description }}</span>
+                                        <span class="">{{ post.text }}</span>
                                     </li>
+                                    
+
+                                    
                                     <li class="bg-black py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Genre:
+                                            Price:
                                         </p>
-                                        <span class="">{{
-                                            post.genre
-                                            }}</span>
+                                        <span class="">{{ post.price }}€</span>
                                     </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
-                                        <p class="mb-0 me-2 fw-bold">
-                                            Duration:
-                                        </p>
-                                        <span class="">{{ post.duration }}</span>
-                                    </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
-                                        <p class="mb-0 me-2 fw-bold">
-                                            Volume:
-                                        </p>
-                                        <span class="">{{ post.volume }}</span>
-                                    </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
-                                        <p class="mb-0 me-2 fw-bold">
-                                            Price Per Subscribtion:
-                                        </p>
-                                        <span class="">{{ post.price_per_subscribtion }}€</span>
-                                    </li>
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
-                                        <p class="mb-0 me-2 fw-bold">
-                                            Price Per watch:
-                                        </p>
-                                        <span class="">{{ post.price_per_watch }}€</span>
-                                    </li>
+                                    
                                 </ul>
                                 <div class="d-flex">
                                     <div>
@@ -90,13 +68,13 @@
                                             </div>
                                         </button>
                                     </div>
-                                    <!-- <div>
+                                     <div>
                                         <Comments :profilePhoto="profilePhoto" :errors="errors" :postId="post.id" :comments="comments" />
-                                    </div>  -->
+                                    </div>  
                                 </div>
                             </div>
 
-                            <!-- <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+                             <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
                                 <div class="ousel-inner">
                                      <div class="carousel-item active">
                                          <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" /> 
@@ -113,9 +91,9 @@
                                 <button class="carousel-control-next" type="button" data-bs-target="carouselExample"
                                     data-bs-slide="next" aria-label="Next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
+                                    <span class="visually-hidden">NPostext</span>
                                 </button>
-                            </div> -->
+                            </div> 
                         </div>
                     </div>
                 </div>

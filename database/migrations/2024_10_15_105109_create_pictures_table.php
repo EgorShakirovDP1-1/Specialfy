@@ -10,14 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
+
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
+            
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade'); // Fixed foreign key
+            $table->string('path_to_img');
             $table->timestamps();
-            $table->foreignId('posts_id')->constrained()->onDelete('cascade') -> Unique();
-            $table->string('picture_code');
         });
     }
+
 
     /**
      * Reverse the migrations.
