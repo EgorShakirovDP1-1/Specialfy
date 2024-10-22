@@ -10,23 +10,23 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
+
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('pictures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade') ;
-            $table->foreignId('category_id')->constrained()->onDelete('cascade') ;
-            $table->decimal('price', 7, 2);
-            $table->string('title', 50);
-            $table->string('text', 6000);
+            
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade'); // Fixed foreign key
+            $table->string('path_to_img');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('pictures');
     }
 };

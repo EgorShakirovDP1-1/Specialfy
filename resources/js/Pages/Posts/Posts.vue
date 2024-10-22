@@ -38,13 +38,19 @@
                                     <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Post Image" />
                                     <div class="d-body">
                                         <h3 class="d-title">
-                                            {{ post.postname }} 
+                                            {{ post.category_id.name }} 
                                         </h3>
-                                        <p class="text-white mb-0">
-                                            Price Per Subscribtion: {{ post.price_per_subscribtion }}€
+                                           <!-- Render the post images -->
+            <div class="post-images">
+                <div v-for="image in images" :key="image.id" class="post-image">
+                    <img :src="getImageUrl(image.path_to_img)" alt="Post Image" />
+                </div>
+            </div>
+                                        <p class="text-black mb-0">
+                                            Price Per Subscribtion: {{ post.Title }}€
                                         </p>
-                                        <p class="text-white">
-                                            Price Per Watch: {{ post.price_per_watch }}€
+                                        <p class="text-black">
+                                            Price Per Watch: {{ post.price }}€
                                         </p>
                                         <div class="d-flex justify-content-center">
                                             <Link :href="route('post.show', post.id)"
@@ -52,21 +58,21 @@
                                             <i class="bi bi-chevron-right"></i> Read More
                                             </Link>
                                             <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                                @click="toggleLike(post.id)">
+                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none"
+                                                >
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ post.rating }}
                                                     <i class="bi h4 text-danger ms-1 mt-2"
-                                                        :class="{ 'bi-heart-fill': post.isLikedByUser, 'bi-heart': !post.isLikedByUser }"
+                                                        :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
                                                         aria-label="Like"></i>
                                                 </div>
                                             </button>
                                             <Link v-if="!$page.props.auth" :href="route('login')">
-                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
+                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48 pe-none"
                                                 aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ post.rating }}
-                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"
+                                                    <i class="bi bi-star-fill h4 text-danger ms-1 mt-2"
                                                         aria-hidden="true"></i>
                                                 </div>
                                             </button>
@@ -107,6 +113,10 @@ export default {
             type: String,
             required: true
         },
+        images: {
+            type: Array,
+            required: true
+        }
     },
     data() {
         return {
@@ -123,6 +133,9 @@ export default {
         }
     },
     methods: {
+        getImageUrl(path) {
+            return `/storage/${path}`;
+        },
         toggleLike(postId) {
             this.$inertia.post(`/posts/${postId}/like`, { filteredPosts: this.filteredPosts }, { preserveScroll: true })
         },
@@ -132,8 +145,8 @@ export default {
         handlePricePerWatchFilter(pricePerWatch) {
             this.pricePerWatchFilter = pricePerWatch;
         },
-        handleSetPriceFilter(pricePerSubscribtion) {
-            this.pricePerSubscribtionFilter = pricePerSubscribtion;
+        handleSetPriceFilter(price) {
+            this.priceFilter = price;
         },
         handleDescriptionFilter(description) {
             if (this.descriptionFilter.includes(description)) {
@@ -142,23 +155,9 @@ export default {
                 this.descriptionFilter.push(description);
             }
         },
-        handleFuelTypeFilter(fuelType) {
-            if (this.fuelTypeFilters.includes(fuelType)) {
-                this.fuelTypeFilters.splice(this.fuelTypeFilters.indexOf(fuelType), 1);
-            } else {
-                this.fuelTypeFilters.push(fuelType);
-            }
-        },
-        updateVolumeilter(volume) {
-            this.volumeFilter = volume;
-        },
-        handleBodyTypeFilter(bodyType) {
-            if (this.bodyTypeFilters.includes(bodyType)) {
-                this.bodyTypeFilters.splice(this.bodyTypeFilters.indexOf(bodyType), 1);
-            } else {
-                this.bodyTypeFilters.push(bodyType);
-            }
-        },
+       
+       
+       
         handleAuthorFilter(author) {
             if (this.authorFilters.includes(author)) {
                 this.authorFilters.splice(this.authorFilters.indexOf(author), 1);
@@ -168,47 +167,31 @@ export default {
         },
         handleSort(value) {
             if (value === 'cheapToExpensiveSubscribtion') {
-                this.posts.sort((a, b) => a.price_per_subscribtion - b.price_per_subscribtion);
+                this.posts.sort((a, b) => a.price - b.price);
             } else if (value === 'expensiveToCheapSubscribtion') {
-                this.posts.sort((a, b) => b.price_per_subscribtion - a.price_per_subscribtion);
-            } else if (value === 'cheapToExpensiveWATCH') {
-                this.posts.sort((a, b) => a.price_per_watch - b.price_per_watch);
-            } else if (value === 'expensiveToCheapWATCH') {
-                this.posts.sort((a, b) => b.price_per_watch - a.price_per_watch);
-            } else if (value === 'mostPopular') {
-                this.posts.sort((a, b) => b.likesCount - a.likesCount);
-            } else if (value === 'leastPopular') {
-                this.posts.sort((a, b) => a.likesCount - b.likesCount);
-            }
+                this.posts.sort((a, b) => b.price - a.price);
+            } 
         }
     },
     computed: {
         filteredPosts() {
             let posts = this.posts;
 
-            if (this.pricePerWatchFilter !== '') {
-                posts = posts.filter(post => post.price_per_watch <= this.pricePerWatchFilter);
-            }
+            
 
             if (this.pricePerSubscribtionFilter !== '') {
                 posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
             }
 
             if (this.descriptionFilter.length > 0) {
-                posts = posts.filter(post => this.descriptionFilter.includes(post.description));
+                posts = posts.filter(post => this.descriptionFilter.includes(post.text));
             }
 
-            if (this.fuelTypeFilters.length > 0) {
-                posts = posts.filter(post => this.fuelTypeFilters.includes(post.genre));
-            }
+            
 
-            if (this.volumeFilter !== '') {
-                posts = posts.filter(post => post.volume <= this.volumeFilter);
-            }
+            
 
-            if (this.bodyTypeFilters.length > 0) {
-                posts = posts.filter(post => this.bodyTypeFilters.includes(post.postname));
-            }
+            
 
             if (this.authorFilters.length > 0) {
                 posts = posts.filter(post => this.authorFilters.includes(post.author));

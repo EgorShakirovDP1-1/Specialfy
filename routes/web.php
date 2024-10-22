@@ -67,7 +67,8 @@ Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('privac
 Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 
 //posts
-Route::prefix('posts')->group(function () {
+Route::prefix('Posts')->group(function () {
+    // Route::post('/{postId}/toggle-like', [PostController::class, 'toggleLike']);
     Route::get('/', [PostController::class, 'index'])->name('posts');
 
     Route::get('/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
@@ -75,15 +76,18 @@ Route::prefix('posts')->group(function () {
 
 
     Route::get('/{post}', [PostController::class, 'show'])->name('post.show');
- 
+    Route::post('/{postId}/toggleLike', [PostController::class, 'toggleLike'])->name('posts.toggleLike');
 
-    Route::delete('/{post}/destroy', [PostController::class, 'destroy'])->middleware(['auth', 'admin'])->name('post.destroy');
+
+   
+
+   
 });
 
 // Likes
-Route::middleware('auth')->prefix('posts/{post}')->group(function () {
-    Route::post('/like', [LikeController::class, 'toggle'])->name('like');
-    Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
+Route::middleware('auth')->prefix('Posts/{post}')->group(function () {
+    
+   
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comment');
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
@@ -95,6 +99,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
 
     Route::get('/posts/table', [AdminController::class, 'postsTable'])->name('admin.posts');
+   //Route::get('/posts/table', [AdminController::class, 'index'])->name('admin.users');
     Route::get('/posts/charts', [AdminController::class, 'postsCharts'])->name('admin.posts.charts');
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
     

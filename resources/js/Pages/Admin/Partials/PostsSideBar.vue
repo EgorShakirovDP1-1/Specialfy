@@ -6,9 +6,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/dashboard'),
-                        'text-white': $page.url.includes('/admin/dashboard'),
+                        'text-black': $page.url.includes('/admin/dashboard'),
                     }">
-                    <i class="bi bi-clipboard text-white me-1"></i>
+                    <i class="bi bi-clipboard text-black me-1"></i>
                     <span>Dashboard</span>
                     </Link>
                 </li>
@@ -16,9 +16,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/users'),
-                        'text-white': $page.url.includes('/admin/users'),
+                        'text-black': $page.url.includes('/admin/users'),
                     }">
-                    <i class="bi bi-people-fill text-white me-1"></i>
+                    <i class="bi bi-people-fill text-black me-1"></i>
                     <span>Users</span>
                     </Link>
                 </li>
@@ -26,9 +26,9 @@
                     <Link :href="route('admin.posts')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/posts'),
-                        'text-white': $page.url.includes('/admin/posts'),
+                        'text-black': $page.url.includes('/admin/posts'),
                     }">
-                    <i class="bi bi-camera-reels-fill text-white me-1"></i>
+                    <i class="bi bi-camera-reels-fill text-black me-1"></i>
                     <span>Posts</span>
                     </Link>
                 </li>
@@ -36,9 +36,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/terms'),
-                        'text-white': $page.url.includes('/admin/terms'),
+                        'text-black': $page.url.includes('/admin/terms'),
                     }">
-                    <i class="bi bi-file-earmark-ruled text-white me-1"></i>
+                    <i class="bi bi-file-earmark-ruled text-black me-1"></i>
                     <span>Terms</span>
                     </Link>
                 </li>
@@ -46,9 +46,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/comments'),
-                        'text-white': $page.url.includes('/admin/comments'),
+                        'text-black': $page.url.includes('/admin/comments'),
                     }">
-                    <i class="bi bi-chat-left-dots-fill text-white me-1"></i>
+                    <i class="bi bi-chat-left-dots-fill text-black me-1"></i>
                     <span>Comments</span>
                     </Link>
                 </li>

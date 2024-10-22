@@ -6,9 +6,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/dashboard'),
-                        'text-white': $page.url.includes('/admin/dashboard'),
+                        'text-black': $page.url.includes('/admin/dashboard'),
                     }">
-                    <i class="bi bi-clipboard text-white me-1"></i>
+                    <i class="bi bi-clipboard text-black me-1"></i>
                     <span>Dashboard</span>
                     </Link>
                 </li>
@@ -26,14 +26,14 @@
                     <div class="dropdown">
                         <button class="btn dropdown-toggle px-3" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="bi bi-camera-reels-fill text-white me-1"></i>
+                            <i class="bi bi-camera-reels-fill text-black me-1"></i>
                             Posts
                         </button>
                         <ul class="dropdown-menu bg-light">
                             <Link :href="route('admin.posts')" class="nav-link text-black">
                             <span>Table</span>
                             </Link>
-                            <Link :href="route('admin.posts.charts')" class="nav-link text-white">
+                            <Link :href="route('admin.posts.charts')" class="nav-link text-black">
                             <span>Statistics</span>
                             </Link>
                         </ul>
@@ -43,9 +43,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/terms'),
-                        'text-white': $page.url.includes('/admin/terms'),
+                        'text-black': $page.url.includes('/admin/terms'),
                     }">
-                    <i class="bi bi-file-earmark-ruled text-white me-1"></i>
+                    <i class="bi bi-file-earmark-ruled text-black me-1"></i>
                     <span>Terms</span>
                     </Link>
                 </li>
@@ -53,9 +53,9 @@
                     <Link :href="route('admin')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/comments'),
-                        'text-white': $page.url.includes('/admin/comments'),
+                        'text-black': $page.url.includes('/admin/comments'),
                     }">
-                    <i class="bi bi-chat-left-dots-fill text-white me-1"></i>
+                    <i class="bi bi-chat-left-dots-fill text-black me-1"></i>
                     <span>Comments</span>
                     </Link>
                 </li>

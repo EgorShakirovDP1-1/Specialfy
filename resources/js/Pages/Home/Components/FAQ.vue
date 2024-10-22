@@ -2,7 +2,7 @@
     <section class="p-lg-5 py-3 my-4 bg-light" aria-labelledby="faqHeading">
         <div class="container mb-3">
             <div class="accordion" id="accordionExample">
-                <h2 id="faqHeading" class="text-center text-white mb-3">FAQ</h2>
+                <h2 id="faqHeading" class="text-center text-black mb-3">FAQ</h2>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"

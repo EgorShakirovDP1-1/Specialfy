@@ -37,10 +37,10 @@ export default {
 
         onMounted(() => {
             const chart = echarts.init(chartRef.value);
-            let title = "Posts production by year";
+            let title = "Post quantity by category";
 
-            let seriesData = Object.entries(props.postsCountByYear).map(([year, count]) => {
-                return { value: count, name: year };
+            let seriesData = Object.entries(props.postsCountByYear).map(([category, count]) => {
+                return { value: count, name: category };
             });
 
             let legendData = seriesData.map(item => item.name);

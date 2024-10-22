@@ -13,47 +13,35 @@ class Post extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'category',
+        'category_id',
         'price',
-        'Title',
+        'title',
         'text'
     ];
 
-    public function likes() {
-        return $this->belongsToMany(User::class, 'likes');
-    }
-
-    public function likes_count() {
+    public function likes()
+    {
         return $this->hasMany(Like::class);
-    }
+    }   
 
-    /*
-
-    public function getImageURLs()
+    public function user()
     {
-        $maxImages = 8;
-        $images = [];
-
-        for ($i = 2; $i <= $maxImages; $i++) {
-            $postImage = 'postImage' . $i;
-            $image = $this->$postImage;
-            if ($image) {
-                $images[] = url('storage/' . $image);
-            }
-        }
-
-        return $images;
+        return $this->belongsTo(User::class, 'user_id');
     }
+    
+   
+    
 
-    public function getFirstImageURL()
+    public function category()
     {
-        $postImage = $this->postImage1;
-        if ($postImage) {
-            return url('storage/'.$postImage);
-        }
-
-        return null;
+        return $this->belongsTo(Category::class);
     }
 
-    */
+    // Post has many pictures
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
+   
+    
 }
