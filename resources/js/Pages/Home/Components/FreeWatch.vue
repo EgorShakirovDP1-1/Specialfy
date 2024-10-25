@@ -7,10 +7,10 @@
                 </div>
                 <div class="col-lg-6 mt-3 mt-lg-0">
                     <h1 class="text-primary" id="parkingSectionHeading">
-                        Something <span class="text-warning">Something!</span>
+                        Find your perfect <span class="text-warning">Service!</span>
                     </h1>
                     <p class="lead text-primary">
-Blah blah suck my balls
+                        
                     </p>
                 </div>
             </div>
