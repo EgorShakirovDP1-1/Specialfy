@@ -7,13 +7,13 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            What do I need to post?
+                            What do I need to post a service?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
                         aria-labelledby="headingOne">
                         <div class="accordion-body">
-                            The only thing you require is a service to provide and a logged in account.
+                            The only thing you require is a service to provide, logged in account and nothing but your imagination
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Sure, you can choose one movie and pay for that one just by pressing watch now button
+                            Sure, you can check out posts while not being logged in
                         </div>
                     </div>
                 </div>
