@@ -1,9 +1,8 @@
 <template>
     <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-info text-primary pb-2" data-bs-toggle="modal"
+        <button type="button" class="btn btn-danger pb-2" data-bs-toggle="modal"
             data-bs-target="#createTermModal">
             <div class="d-flex">
-                <i class="bi bi-file-earmark-plus h4"></i>
                 Create new Term
             </div>
         </button>
