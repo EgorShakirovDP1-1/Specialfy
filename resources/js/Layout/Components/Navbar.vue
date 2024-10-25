@@ -35,7 +35,7 @@
                                     'text-secondary': $page.url !== '/posts',
                                     'text-black': $page.url === '/posts',
                                 }"
-                                aria-label="our post list page">приваси полиси сюда
+                                aria-label="our post list page">Privacy Policy
                                 </Link>
                             </li>
                             

@@ -7,13 +7,13 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            What do I need to post a movie?
+                            What do I need to post?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
                         aria-labelledby="headingOne">
                         <div class="accordion-body">
-                            The only thing you require is a camera, logged in account and nothing but your imagination
+                            The only thing you require is a service to provide and a logged in account.
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Can I watch just one movie without paying for subscription?
+                            Can I see posts without logging in?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"

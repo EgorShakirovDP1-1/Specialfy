@@ -2,7 +2,7 @@
     <section class="p-lg-5 mt-4" aria-labelledby="postSharingBenefitsHeading">
         <div class="container text-center">
             <h1 id="postSharingBenefitsHeading" class="mb-1 text-dark">
-                Supermen are not who save the world, but those who put their effort into work and fun!
+                Find your every need!
             </h1>
 
             <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                             </div>
                             <h3 class="card-title mb-3">All Inclusive</h3>
                             <p class="card-text text-dark lead">
-                               Spend your free time enjoying posts and TV shows
+                               Feel free to search any service you need!
                             </p>
                         </div>
                     </div>
