@@ -37,7 +37,7 @@ class PostController extends Controller
                 'author' => $post->author,
                 'category_id' => $post->category,
                 'price' => $post->price,
-                'title' => $post->Title,
+                'title' => $post->title,
                 'text' => $post->description,
                 'rating' => $raiting,
                 'likesCount' => $like_count,
@@ -56,63 +56,61 @@ class PostController extends Controller
 
 
         public function show($post_id)
-        {
-            // Find the post by its ID
-            $post = Post::with('pictures')->findOrFail($post_id);  // Load the related pictures
-            $categories = Category::all();
-            $users = User::all();
-            
-        
-            // Count likes and dislikes
-            $post->likesCount  = $post->likes()->where('value', '1')->count();
-            $post->dislikesCount = $post->likes()->where('value', '0')->count();
-        
-            // Get profile photo of the authenticated user or default
-            if (auth()->user()) {
-                $authUser = auth()->user()->id;
-                $user = User::find($authUser);
-                $profilePhoto = $user->getImageURL();
-            } else {
-                $profilePhoto = asset(Storage::url('images/default-profile.png'));
-            }
-        
-            // Get comments related to the post
-            $comments = Comment::where('post_id', $post_id)
-                ->orderBy('created_at', 'DESC')
-                ->get();
-        
-            // Map comments to include user profile photos and other details
-            $comments = $comments->map(function ($comment) {
-                return [
-                    'comment' => $comment->comment,
-                    'profilePhoto' => $comment->user->getImageURL(),
-                    'name' => $comment->user->name,
-                    'user_id' => $comment->user->id,
-                    'id' => $comment->id,
-                    'post_id' => $comment->post_id,
-                    // 'category_id' => $categories -> id,
-                    
-                    'editing'  => true,
-                ];
-            });
-        
-            // Check if the post is liked or disliked by the authenticated user
-            if (auth()->user()) {
-                $post->isLikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 1)->exists();
-                $post->isDislikedByUser = $post->likes()->where('user_id', auth()->id())->where('value', 0)->exists();
-            }
-        
-            // Pass the post, images, and other necessary data to the view
-            return Inertia::render('Posts/Post', [
-                'post' => $post,
-                'images' => $post->pictures,  // Pass the pictures to the view
-                'profilePhoto' => $profilePhoto,
-                'comments' => $comments
-            ]);
-        }
+{
+    // Find the post by its ID and load related pictures
+    $post = Post::with('pictures')->find($post_id);
+
+    // Generate URLs for images by removing "storage/app/"
+    $postImages = $post->pictures->map(function ($picture) {
+        $relativePath = str_replace('storage/app/public/', '', $picture->path_to_img);
+        return asset('storage/' . $relativePath);
+    });
+
+    // Count likes and dislikes
+    $post->likesCount = $post->likes()->where('value', '1')->count();
+    $post->dislikesCount = $post->likes()->where('value', '0')->count();
+
+    // Get profile photo of the authenticated user or default
+    if (auth()->user()) {
+        $authUser = auth()->user()->id;
+        $user = User::find($authUser);
+        $profilePhoto = $user->getImageURL();
+    } else {
+        $profilePhoto = asset(Storage::url('images/default-profile.png'));
+    }
+
+    // Get comments related to the post
+    $comments = Comment::where('post_id', $post_id)
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+    // Map comments to include user profile photos and other details
+    $comments = $comments->map(function ($comment) {
+        return [
+            'comment' => $comment->comment,
+            'profilePhoto' => $comment->user->getImageURL(),
+            'name' => $comment->user->name,
+            'user_id' => $comment->user->id,
+            'id' => $comment->id,
+            'post_id' => $comment->post_id,
+            'editing' => true,
+        ];
+    });
+
+    // Pass the post, images, and other necessary data to the view
+    return Inertia::render('Posts/Post', [
+        'post' => $post,
+        'category_id' => $post->category,
+        'profilePhoto' => $profilePhoto,
+        'comments' => $comments,
+        'postImages' => $postImages,  // Pass image URLs to the view
+    ]);
+}
+
         
     public function create()
     {
+        
         $categories = Category::all();
         return Inertia::render('Posts/CreatePost',
     ['categories' => $categories]);

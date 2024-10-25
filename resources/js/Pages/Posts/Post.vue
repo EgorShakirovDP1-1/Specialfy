@@ -74,26 +74,22 @@
                                 </div>
                             </div>
 
-                             <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
-                                <div class="ousel-inner">
-                                     <div class="carousel-item active">
-                                         <img :src="post.postImage1" class="d-block w-100 rounded" alt="Post Image 1" /> 
-                                    </div>
-                                      <div class="carousel-item" v-for="(PostImage, index) in postImages" :key="index">
-                                         <img :src="PostImage" class="d-block w-100 rounded" alt="Post Image" /> 
-                                     </div>   
-                                </div> 
-                                <button class="carousel-control-prev" type="button" data-bs-target="carouselExample"
-                                    data-bs-slide="prev" aria-label="Previous">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="carouselExample"
-                                    data-bs-slide="next" aria-label="Next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">NPostext</span>
-                                </button>
-                            </div> 
+                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
+            <img :src="image" class="d-block w-100 rounded" alt="Post Image" />
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="carouselExample" data-bs-slide="next" aria-label="Next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -127,10 +123,10 @@ export default {
             type: Object,
             required: true,
         },
-        // postImages: {
-        //     type: Array,
-        //     required: true,
-        // },
+         postImages: {
+             type: Array,
+             required: true,
+        },
         // profilePhoto: {
         //     type: Image,
         //     required: true,

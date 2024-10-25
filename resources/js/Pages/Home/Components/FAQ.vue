@@ -35,13 +35,13 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            How my movies are being checked?
+                            How are my posts being checked?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Our moderator team is checking all the movies you posted, so it can take some time.
+                            Our moderator team is checking all the posts you posted, so it can take some time.
                         </div>
                     </div>
                 </div>
