@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="btn btn-info text-primary mb-3" data-bs-toggle="modal"
+    <button type="button" class="btn btn-dark mb-3" data-bs-toggle="modal"
         :data-bs-target="'#editTermModal' + term.id">
         <i class="bi bi-pencil-square h5"></i>
     </button>

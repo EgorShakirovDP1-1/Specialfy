@@ -30,10 +30,10 @@
                             Posts
                         </button>
                         <ul class="dropdown-menu bg-light">
-                            <Link :href="route('admin.posts')" class="nav-link text-black">
+                            <Link :href="route('admin.posts')" class="nav-link ">
                             <span>Table</span>
                             </Link>
-                            <Link :href="route('admin.posts.charts')" class="nav-link text-black">
+                            <Link :href="route('admin.posts.charts')" class="nav-link">
                             <span>Statistics</span>
                             </Link>
                         </ul>

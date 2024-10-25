@@ -3,7 +3,7 @@
         <Message />
         <section class="p-4 bg-light">
             <div class="container">
-                <h1 class="text-center mb-2 text-warning">
+                <h1 class="text-center mb-2 text-black">
                     {{ post.title }} 
                 </h1>
                 <div class="px-5">
@@ -11,7 +11,7 @@
                         <div class="d-flex">
                             <div id="statistics" class="me-2">
                                 <ul class="list-unstyled mb-2">
-                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0 rounded">
+                                    <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class="">
                                             {{ post.title }}</span>
@@ -22,13 +22,13 @@
                                         </p>
                                         <span class="">{{ post.category_id.name }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
+                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Autor :
                                         </p>
                                         <span class="">{{ post.user_id }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
+                                    <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
                                         </p>
@@ -37,7 +37,7 @@
                                     
 
                                     
-                                    <li class="bg-black py-2 px-4 d-flex my-2 rounded">
+                                    <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price:
                                         </p>
@@ -203,5 +203,9 @@ input {
 
 .container {
     margin-bottom: 300px;
+}
+.background{
+    background-color: rgb(230,230,230);
+
 }
 </style>

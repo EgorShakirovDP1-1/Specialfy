@@ -1,11 +1,10 @@
 <template>
     <Layout>
-        <div v-if="$page.props.isAdmin" id="create" class="text-center mb-0" role="region" aria-label="Admin Actions">
-            <a :href="route('posts.create')" class="btn btn-info text-primary pb-2 align-items-center">
+        <div v-if="$page.props.isAdmin" id="create" class="text-center my-4" role="region" aria-label="Admin Actions">
+            <a :href="route('posts.create')" class="btn btn-dark py-3 px-5 align-items-center">
                 <div class="d-flex">
-                    <i class="bi bi-camera-reels-fill h4 me-1"></i>
                     <p class="mb-0">
-                        Add New post
+                        Add New listings
                     </p>
                 </div>
             </a>
@@ -26,61 +25,60 @@
                     <Search @search="handleSearch" />
                 </div>
 
-                <section class="bg-light mt-2 rounded">
+                <section class=" mt-2 rounded background">
                     <div class="p-2">
                         <div class="container text-center">
                             <div class="row justify-content-between">
                                 <div class="" v-if="filteredPosts.length === 0" role="status" aria-live="polite">
                                     This record doesn't exist
                                 </div>
-                                <div class="d col-lg-3 col-md-5 p-0 m-3 bg-light .text-black border-primary"
+                                <!-- LISTING CARDS -->
+                                <div class="d col-lg-3 col-md-5 py-4 px-4 m-3 bg-light text-black border-primary rounded d-flex flex-column"
                                     v-for="post in filteredPosts" :key="post.id" role="listitem">
-                                    <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Post Image" />
-                                    <div class="d-body">
+                                    <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Listing Image" />
+                                    <div class="d-body flex-grow-1">
                                         <h3 class="d-title">
                                             {{ post.category_id.name }} 
                                         </h3>
-                                           <!-- Render the post images -->
-                                            <!-- <p>{{ post }}</p> -->
-            <div class="post-images">
-                <div v-for="image in images" :key="image.id" class="post-image">
-                    <img :src="getImageUrl(image.path_to_img)" alt="Post Image" />
-                </div>
-            </div>
+                                        <div class="post-images">
+                                            <div v-for="image in images" :key="image.id" class="post-image">
+                                                <img :src="getImageUrl(image.path_to_img)" alt="Listing Image" />
+                                            </div>
+                                        </div>
                                         <p class="text-black mb-0">
-                                             {{ post.title }}
+                                            {{ post.title }}
                                         </p>
                                         <p class="text-black">
-                                            Price Per Watch: {{ post.price }}€
+                                            Price: {{ post.price }}€
                                         </p>
-                                        <div class="d-flex justify-content-center">
-                                            <Link :href="route('post.show', post.id)"
-                                                class="btn btn-info mb-3 img-zoom text-primary">
+                                    </div>
+
+                                    <!-- Bottom-aligned section -->
+                                    <div class="d-flex justify-content-center align-items-center mt-auto">
+                                        <Link :href="route('post.show', post.id)" class="btn bg-danger mb-3 img-zoom text-white">
                                             <i class="bi bi-chevron-right"></i> Read More
-                                            </Link>
-                                            <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none"
-                                                >
+                                        </Link>
+                                        
+                                        <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none">
+                                            <div class="d-flex align-items-center m-0">
+                                                {{ post.rating }}
+                                                <i class="bi h4 text-danger ms-1 mt-1"
+                                                    :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
+                                                    aria-label="Like"></i>
+                                            </div>
+                                        </button>
+
+                                        <Link v-if="!$page.props.auth" :href="route('login')">
+                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48 pe-none" aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ post.rating }}
-                                                    <i class="bi h4 text-danger ms-1 mt-2"
-                                                        :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
-                                                        aria-label="Like"></i>
+                                                    <i class="bi bi-star-fill h4 text-danger ms-1 mt-1" aria-hidden="true"></i>
                                                 </div>
                                             </button>
-                                            <Link v-if="!$page.props.auth" :href="route('login')">
-                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48 pe-none"
-                                                aria-label="Login to Like">
-                                                <div class="d-flex align-items-center m-0">
-                                                    {{ post.rating }}
-                                                    <i class="bi bi-star-fill h4 text-danger ms-1 mt-2"
-                                                        aria-hidden="true"></i>
-                                                </div>
-                                            </button>
-                                            </Link>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -227,5 +225,10 @@ export default {
 
 .btn-48 {
     height: 48px;
+}
+
+.background{
+    background-color: rgb(230,230,230)
+
 }
 </style>
