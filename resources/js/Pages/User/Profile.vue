@@ -1,20 +1,20 @@
 <template>
     <Layout>
         <div class="profile d-flex mx-auto mb-5">
-            <div class="profileImg-navBar text-center rounded bg-black me-2 p-3" aria-labelledby="profile-nav">
+            <div class="profileImg-navBar text-center rounded me-2 p-3 background" aria-labelledby="profile-nav">
                 <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
                 <ul class="list-unstyled" id="profile-nav">
                     <li class="mb-1 mt-0">
-                        <Link :href="route('edit', { user: $page.props.auth })" class="btn btn-primary d-block py-2">
+                        <Link :href="route('edit', { user: $page.props.auth })" class="btn btn-dark d-block py-2">
                         <i class="bi bi-person-lines-fill me-2"></i> Edit Profile
                         </Link>
                     </li>
                     <li class="mb-1 mt-0">
-                        <Link :href="route('logout')" class="btn btn-primary d-block py-2">
+                        <Link :href="route('logout')" class="btn btn-dark d-block py-2">
                         <i class="bi bi-box-arrow-right me-2"></i> Log Out
                         </Link>
                     </li>
-                    <li class="mb-1 mt-0">
+                    <li class="mb-1 mt-0 ">
                         <likedPosts :likedPosts="likedPosts" />
                     </li>
                     <li class="mb-1 mt-0">
@@ -26,8 +26,8 @@
                 </ul>
             </div>
 
-            <div class="right-info" aria-labelledby="user-info">
-                <div class="about rounded bg-black p-3">
+            <div class="right-info rounded background mx-2" aria-labelledby="user-info">
+                <div class="about rounded p-3">
                     <h3 class="text-center" id="user-info">About You</h3>
                     <ul class="list-group list-group-flush lead">
                         <li>
@@ -55,10 +55,6 @@
                         </li>
                     </ul>
                 </div>
-                <div class="rent-history rounded bg-black mt-2 p-3 overflow-auto">
-                    <h3 class="text-center">Rents</h3>
-                   
-                    </div>
                 </div>
             </div>
      
@@ -167,4 +163,10 @@ export default {
 .width-216 {
     width: 216px;
 }
+
+.background{
+    background-color: rgb(230,230,230)
+
+}
+
 </style>

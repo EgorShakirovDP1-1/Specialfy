@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="btn btn-info text-primary d-block py-2" style="width: 216px;" data-bs-toggle="modal"
+    <button type="button" class="btn btn-dark d-block py-2" style="width: 216px;" data-bs-toggle="modal"
         data-bs-target="#staticBackdrop" aria-label="Liked Posts Button">
         <i class="bi bi-heart-fill me-2"></i> Liked Posts
     </button>

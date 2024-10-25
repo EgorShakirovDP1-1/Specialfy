@@ -1,16 +1,14 @@
 <template>
-    <div class="dropdown filter rounded bg-light p-4 me-2 mb-2" aria-labelledby="sortingDropdown">
+    <div class="dropdown filter rounded p-4 mx-3 mb-2 background" aria-labelledby="sortingDropdown">
         <h4 class="text-center text-black">Sorting</h4>
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-light border border-black  dropdown-toggle" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Please select an option
         </button>
-        <ul class="dropdown-menu" id="sortingOptions" aria-labelledby="sortingDropdown">
-            <li class="dropdown-item" @click="sort('cheapToExpensiveSubscribtion')" aria-label="Sort from cheapest to most expensive per subscribtion">From cheapest to most expensive (subscribtion)</li>
-            <li class="dropdown-item" @click="sort('expensiveToCheapSubscribtion')" aria-label="Sort from most expensive to cheapest per subscribtion">From most expensive to cheapest (subscribtion)</li>
-            <li class="dropdown-item" @click="sort('cheapToExpensivewatch')" aria-label="Sort from cheapest to most expensive per watch">From cheapest to most expensive (watch)</li>
-            <li class="dropdown-item" @click="sort('expensiveToCheapwatch')" aria-label="Sort from most expensive to cheapest per watch">From most expensive to cheapest (watch)</li>
-            <li class="dropdown-item" @click="sort('mostPopular')" aria-label="Sort by most popular">Most popular</li>
-            <li class="dropdown-item" @click="sort('leastPopular')" aria-label="Sort by least popular">Least popular</li>
+        <ul class="dropdown-menu border border-black" id="sortingOptions" aria-labelledby="sortingDropdown">
+            <li class="dropdown-item" @click="sort('cheapToExpensiveSubscribtion')" aria-label="Sort from cheapest to most expensive per subscribtion">Price ascending</li>
+            <li class="dropdown-item" @click="sort('expensiveToCheapSubscribtion')" aria-label="Sort from most expensive to cheapest per subscribtion">Price descending</li>
+            <li class="dropdown-item" @click="sort('mostPopular')" aria-label="Sort by most popular">Top rated descending</li>
+            <li class="dropdown-item" @click="sort('leastPopular')" aria-label="Sort by least popular">Top rated ascending</li>
         </ul>
     </div>
 </template>

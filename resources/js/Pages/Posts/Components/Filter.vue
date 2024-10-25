@@ -1,20 +1,20 @@
 <template>
         
 
-        <div class="filter-box">
-            <h4>Post Type</h4>
+        <div class="filter-box rounded p-4 mx-3 mb-2 background">
+            <h4 class="text-center">Listing Type</h4>
             <div class="one-line">
                 <label for="ZaglushkaNePridumalCheckbox">
                     <input type="checkbox" id="ZaglushkaNePridumalCheckbox" name="postnames[]" value="ZaglushkaNePridumal"
                         @change="updateBodyTypeFilter('ZaglushkaNePridumal')" aria-label="Filter by ZaglushkaNePridumal body type">
-                    Users posts
+                    Users' posts
                 </label>
             </div>
             <div class="one-line">
                 <label for="ZaglushkaNePridumal2Checkbox">
                     <input type="checkbox" id="ZaglushkaNePridumal2Checkbox" name="postnames[]" value="ZaglushkaNePridumal2"
                         @change="updateBodyTypeFilter('ZaglushkaNePridumal2')" aria-label="Filter by ZaglushkaNePridumal2 body type">
-                    Comercial posts
+                    Commercial posts
                 </label>
             </div>
         </div>

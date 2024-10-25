@@ -9,21 +9,20 @@
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div id="commentModal" class="modal-dialog" role="dialog" aria-label="Comments Modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Comments</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content p-5 ">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title mb-3" id="staticBackdropLabel">Comments</h5>
+                    <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-genre">
                     <form @submit.prevent="handleSubmit">
-                        <div class="form-group d-flex">
+                        <div class="form-group d-flex pb-2">
                             <img v-if="$props.auth" :src="profilePhoto" alt="profile photo" class="rounded-circle profile-photo me-2">
                             <img v-else src="/public/images/default-profile.png" alt="profile photo" class="rounded-circle profile-photo me-2">
-                            <div class=""></div>
                             <input v-model="form.comment" type="text" name="comment" id="comment"
-                                class="border-0 border-bottom flex-grow-1">
+                                class="flex-grow-1 rounded form-control" placeholder="Write a comment...">
                             <button type="submit" :disabled="form.processing"
-                                class="btn btn-info text-primary ms-1 px-3 py-2">Save</button>
+                                class="btn btn-dark px-3 py-2 ms-4">Save</button>
                         </div>
                         <div class="d-block mt-2 text-center" v-if="errors.comment" role="alert" aria-live="assertive">
                             <span class="fs-5 text-danger">
@@ -37,13 +36,13 @@
                     </div>
                     <div class="" v-for="comment in comments" :key="comment.id">
                         <div class="d-flex">
-                            <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo me-2">
+                            <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo mt-3 me-2">
                             <div class="mb-3 w-100">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6 class="mb-0 text-black">{{ comment.name }}</h6>
                                     <div class="d-flex" v-if="$page.props.auth">
                                         <button v-if="$page.props.auth.id === comment.user_id" type="button"
-                                            class="btn btn-info text-primary me-1 px-2 py-1"
+                                            class="btn btn-dark me-1 px-2 py-1"
                                             @click="editComment(comment)" aria-label="Edit Comment">
                                             <i class="bi bi-pencil-square h5 ms-1" aria-hidden="true"></i>
                                         </button>
@@ -58,9 +57,9 @@
                                     <form
                                         @submit.prevent="handleEditSubmit(comment.comment, comment.post_id, comment.id)">
                                         <div class="form-group d-flex mt-1">
-                                            <input class="w-100" type="text" v-model="comment.comment">
+                                            <input class="w-100 form-control rounded text-black" type="text" v-model="comment.comment">
                                             <button type="submit" :disabled="form.processing"
-                                                class="btn btn-info text-primary ms-1 px-2 py-1 ms-2">Save</button>
+                                                class="btn btn-dark px-3 py-2 ms-4">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -155,4 +154,19 @@ export default {
     width: 48px;
     height: 48px;
 }
+
+.form-control {
+
+    background-color: rgb(230, 230, 230);
+    color: black;
+}
+.form-control::placeholder{
+
+    color: rgb(100,100,100);
+}
+
+
+
+
 </style>
+
