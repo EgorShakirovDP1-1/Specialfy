@@ -38,8 +38,8 @@
         <td aria-label="post category">{{ post.category.name }}</td> <!-- Changed -->
         <td aria-label="post title">{{ post.title }}</td>
         <td class="text-end" aria-label="post actions">
-            <button class="btn btn-sm btn-warning me-1" aria-label="edit post">Edit</button>
-            <Button @click="destroy(post.id)" class="btn btn-sm btn-danger" aria-label="delete post">Delete</Button>
+            <button class="btn btn-sm btn-dark me-2 m-1 fixed-width" aria-label="edit post">Edit</button>
+            <button @click="destroy(post.id)" class="btn btn-sm btn-danger me-2 fixed-width" aria-label="delete post">Delete</button>
         </td>
     </tr>
 </tbody>
@@ -90,4 +90,10 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+    .fixed-width {
+        width: 80px; /* Adjust this value as needed */
+    }
+
+
+</style>

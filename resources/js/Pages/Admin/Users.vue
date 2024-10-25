@@ -36,17 +36,20 @@
                                 <td aria-label="user email">{{ user.email }}</td>
                                 <td aria-label="user role">{{ user.is_admin }}</td>
                                 <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
-                                <td class="text-end" aria-label="user actions">
-                                    <button 
-                                        v-if="user.role !== 'admin'" 
-                                        @click="makeAdmin(user.id)" 
-                                        class="btn btn-sm btn-info me-1" 
-                                        aria-label="make user admin">
-                                        Make Admin
-                                    </button>
-                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit user">Edit</button>
-                                    <Button @click="destroy(user.id)" class="btn btn-sm btn-danger"
-                                        aria-label="delete user">Delete</Button>
+                                <td class="text-end m-5 p-1" aria-label="user actions">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <button 
+                                            v-if="user.role !== 'admin'" 
+                                            @click="makeAdmin(user.id)" 
+                                            class="btn btn-sm btn-info me-1 mb-2" 
+                                            aria-label="make user admin">
+                                            Make Admin
+                                        </button>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button>
+                                            <button @click="destroy(user.id)" class="btn btn-sm btn-danger fixed-width" aria-label="delete user">Delete</button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -97,3 +100,8 @@ export default {
     },
 };
 </script>
+<style>
+    .fixed-width {
+        width: 80px; /* Adjust this value as needed */
+    }
+</style>

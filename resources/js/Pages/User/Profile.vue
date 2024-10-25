@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <div class="profile d-flex mx-auto mb-5">
-            <div class="profileImg-navBar text-center rounded bg-secondary me-2 p-3" aria-labelledby="profile-nav">
+            <div class="profileImg-navBar text-center rounded bg-black me-2 p-3" aria-labelledby="profile-nav">
                 <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
                 <ul class="list-unstyled" id="profile-nav">
                     <li class="mb-1 mt-0">
@@ -27,7 +27,7 @@
             </div>
 
             <div class="right-info" aria-labelledby="user-info">
-                <div class="about rounded bg-secondary p-3">
+                <div class="about rounded bg-black p-3">
                     <h3 class="text-center" id="user-info">About You</h3>
                     <ul class="list-group list-group-flush lead">
                         <li>
@@ -55,8 +55,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="rent-history rounded bg-secondary mt-2 p-3 overflow-auto">
-                    <h3 class="text-center">Posts</h3>
+                <div class="rent-history rounded bg-black mt-2 p-3 overflow-auto">
+                    <h3 class="text-center">Rents</h3>
                    
                     </div>
                 </div>
