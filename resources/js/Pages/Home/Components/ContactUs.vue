@@ -9,7 +9,7 @@
                     <ul class="list-group list-group-flush lead">
                         <li class="list-group-item">
                             <span class="fw-bold">Main Location: </span>
-                            За Арбатом первый поворот налево
+                            Hanza
                         </li>
                         <li class="list-group-item">
                             <span class="fw-bold">Tech Support Phone: </span>

@@ -4,8 +4,8 @@
             <div class="row justify-content-between align-items-center">
                 <div class="text-warning col-lg-6">
                     <h1 class="text-warning" id="getStartedHeading">Easy to get started!</h1>
-                    <p class="lead .text-black">1.Registrate account!</p>
-                    <p class="lead .text-black">2. Choose and pay or watch community posts!</p>
+                    <p class="lead .text-black">1. Register an account!</p>
+                    <p class="lead .text-black">2. Choose to post ur service or use one!</p>
                     <p class="lead .text-black">3. Enjoy!</p>
                 </div>
                 <div id="carouselPosts" class="ousel slide col-lg-6" data-bs-ride="ousel" aria-hidden="true">

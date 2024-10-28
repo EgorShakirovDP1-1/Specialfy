@@ -1,8 +1,7 @@
 <template>
     <div class="search-container">
-        <input type="text" class="form-control" @input="search" placeholder="Search for post" aria-label="Search for post"
+        <input type="text" class="rounded form-control " @input="search" placeholder="Search for listings" aria-label="Search for post"
             aria-describedby="search-description">
-        <span id="search-description" hidden>Type to search for posts</span>
     </div>
 </template>
 
@@ -15,4 +14,19 @@ const search = (e) => {
 
 </script>
 
-<style scoped></style>
+
+
+<style scoped>
+.form-control {
+
+    /* border-radius: 10px; */
+    background-color: rgb(230, 230, 230);
+    color: black;
+}
+ .form-control::placeholder{
+
+    color: rgb(40,40,40);
+ }
+
+
+</style>
