@@ -53,7 +53,7 @@ Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
 
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
-Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
+Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('indexpriv');
 
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
@@ -62,7 +62,7 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     
 });
 
-//privacy policy
+//indexpriv policy
 // Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('privacypolicy');
 
 //learn

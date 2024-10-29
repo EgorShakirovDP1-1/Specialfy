@@ -40,7 +40,7 @@
                                 }"
                                 aria-label="our post list page">
                                 </Link>
-                                <Link :href="route('privacy')" class="nav-link p-1" :class="{
+                                <Link :href="route('indexpriv')" class="nav-link p-1" :class="{
                                     'text-secondary': $page.url !== '/posts',
                                     'text-black': $page.url === '/posts',
                                 }"
