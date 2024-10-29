@@ -7,13 +7,13 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            What do I need to post a service?
+                            What do I need to post?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample"
                         aria-labelledby="headingOne">
                         <div class="accordion-body">
-                            The only thing you require is a service to provide, logged in account and nothing but your imagination
+                            The only thing you require is a service to provide and a logged in account.
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Sure, you can check out posts while not being logged in
+                            Sure, you can choose one movie and pay for that one just by pressing watch now button
                         </div>
                     </div>
                 </div>
@@ -35,13 +35,13 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            How my posts being checked?
+                            How are my posts being checked?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Our moderator team is checking all the services you posted, so it can take some time.
+                            Our moderator team is checking all the posts you posted, so it can take some time.
                         </div>
                     </div>
                 </div>

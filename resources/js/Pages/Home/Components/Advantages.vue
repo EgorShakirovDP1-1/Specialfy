@@ -15,7 +15,7 @@
                             </div>
                             <h3 class="card-title mb-3">All Inclusive</h3>
                             <p class="card-text text-dark lead">
-                               Get your self a specialist for your needs!
+                               Feel free to search any service you need!
                             </p>
                         </div>
                     </div>
