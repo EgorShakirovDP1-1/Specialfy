@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->string('title')->after('id');
+        Schema::table('films', function (Blueprint $table) {
+            $table->string('description')->change();
+            $table->integer('price_per_subscribtion')->change();
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->dropColumn('title');
+        Schema::table('films', function (Blueprint $table) {
+            $table->integer('description')->change();
+            $table->float('price_per_subscribtion')->change();
         });
     }
 };

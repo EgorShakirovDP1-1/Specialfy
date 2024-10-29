@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('terms', function (Blueprint $table) {
-            $table->id();
-            $table->text('content');
-            $table->timestamps();
+        Schema::table('films', function (Blueprint $table) {
+            $table->string('genre')->change();
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('terms');
+        Schema::table('films', function (Blueprint $table) {
+            $table->integer('genre')->change();
+        });
     }
 };
