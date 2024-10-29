@@ -19,14 +19,14 @@ class PostsSeeder extends Seeder
 
         $posts = [
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 1,
                 'price' => 12.50,
                 'title' => '50.000 tons of concrete',
                 'text' => 'I will transport 50.000 tons of concrete anywhere u need it, price is 12.50 dollars per gramm for every kilometer. Call me!',
             ],
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 2,
                 'price' => 200.99,
                 'title' => 'Lip implants. Cheap price!',
@@ -34,28 +34,28 @@ class PostsSeeder extends Seeder
 
             ],
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 3,
                 'price' => 500.00,
                 'title' => 'Implanting massage system into any car seat',
                 'text' => 'I will insert massage system into any car seat, yes even into your grandparents old Moskvitch!',
             ],
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 1,
                 'price' => 50.50,
                 'Title' => 'Prop transport',
                 'text' => 'I will transport props for any video to the location of your choice within Baltia. Price is 50.50 per hour of transportation',
             ],
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 2,
                 'price' => 15.25,
                 'TItle' => 'Nails for cool girls',
                 'text' => 'If you are a cool girl that needs her nails done contact me, only 15.25 euros for a coll nail makeup!',
             ],
             [
-                'user_id' => $userIds[random_int(0,count($userIds))],
+                'user_id' => $userIds[random_int(0,count($userIds)-1)],
                 'category_id' => 3,
                 'price' => 10.00,
                 'Title' => 'Winter tires cheap',

@@ -1,5 +1,6 @@
 <template>
     <footer class=" text-white text-center p-4 footer">
+    <footer class=" text-white text-center p-4 footer">
         <div class="container">
 
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -15,6 +16,7 @@
                 </li>
                 <li class="nav-item">
                     <Link :href="route('posts')" class="nav-link px-2 text-black" aria-label="posts page">Listings</Link>
+                    <Link :href="route('posts')" class="nav-link px-2 text-black" aria-label="posts page">Listings</Link>
                 </li>
                 <li v-if="$page.props.auth" class="nav-item">
                     <Link :href="route('profile', { user: $page.props.auth })" class="nav-link px-2 text-black"
@@ -25,7 +27,9 @@
                 </li>
             </ul>
             <p class="lead text-black">
+            <p class="lead text-black">
                 
+                <span class="text-black">Copyright © 2024 MVTEK Group</span>
                 <span class="text-black">Copyright © 2024 MVTEK Group</span>
             </p>
         </div>
@@ -46,6 +50,10 @@ export default {
 };
 </script>
 
+<style scoped>
+
+
+</style>
 <style scoped>
 
 

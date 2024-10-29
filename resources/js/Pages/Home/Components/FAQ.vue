@@ -2,7 +2,7 @@
     <section class="p-lg-5 py-3 my-4 bg-light" aria-labelledby="faqHeading">
         <div class="container mb-3">
             <div class="accordion" id="accordionExample">
-                <h2 id="faqHeading" class="text-center text-black mb-3">FAQ</h2>
+                <h2 id="faqHeading" class="text-center text-white mb-3">FAQ</h2>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -22,12 +22,13 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Can I see posts without logging in?
+                            Can I see posts without logging in?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Sure, you can choose one movie and pay for that one just by pressing watch now button
+                            Sure, you can check out posts while not being logged in
                         </div>
                     </div>
                 </div>

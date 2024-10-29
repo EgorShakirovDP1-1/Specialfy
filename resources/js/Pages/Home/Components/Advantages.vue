@@ -1,5 +1,5 @@
 <template>
-    <section class="p-lg-5 mt-4" aria-labelledby="postSharingBenefitsHeading">
+    <section class="p-lg-5 mt-4" aria-labelledby="filmSharingBenefitsHeading">
         <div class="container text-center">
             <h1 id="postSharingBenefitsHeading" class="mb-1 text-dark">
                 Sometimes you come across things you can't do by yourself...
@@ -7,6 +7,7 @@
                 We got people that can do it for you!
             </h1>
 
+            <div class="row justify-content-center mt-6">
             <div class="row justify-content-center mt-6">
                 <div class="col-lg-6" s>
                     <div class="card bg-light text-dark" role="region" aria-label="All Inclusive">

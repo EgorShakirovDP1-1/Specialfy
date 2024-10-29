@@ -3,11 +3,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 my-3 mx-2 rounded background">
+                <div class="col-lg-2 my-3 mx-2 rounded background">
                     <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="overflow-auto col-md-9 my-3 mx-2 rounded background">
                     <div class="d-flex justify-content-between mt-3 mx-2 background" aria-label="posts list header">
+                <div class="overflow-auto col-md-9 my-3 mx-2 rounded background">
+                    <div class="d-flex justify-content-between mt-3 mx-2 background" aria-label="posts list header">
                         <h3>Posts list</h3>
+                        <Link :href="route('posts.create')" class="btn btn-dark pb-2 rounded"
                         <Link :href="route('posts.create')" class="btn btn-dark pb-2 rounded"
                             aria-label="add new post">
                         <div class="d-flex align-items-center justify-content-center">
@@ -18,10 +22,12 @@
                         </Link>
                     </div>
                     <table class="table mt-2 " aria-label="posts list table">
+                    <table class="table mt-2 " aria-label="posts list table">
                         <thead>
                             <tr>
                                 <th aria-label="number column">No.</th>
                                 <th aria-label="author column">author</th>
+                                <th aria-label="category category">category</th>
                                 <th aria-label="category category">category</th>
                                 <th aria-label="Title column">Title</th>
                                 <th class="text-end" aria-label="actions column">Actions</th>
@@ -37,8 +43,8 @@
         <td aria-label="post category">{{ post.category.name }}</td> <!-- Changed -->
         <td aria-label="post title">{{ post.title }}</td>
         <td class="text-end" aria-label="post actions">
-            <button class="btn btn-sm btn-warning me-1" aria-label="edit post">Edit</button>
-            <Button @click="destroy(post.id)" class="btn btn-sm btn-danger" aria-label="delete post">Delete</Button>
+            <button class="btn btn-sm btn-dark me-2 m-1 fixed-width" aria-label="edit post">Edit</button>
+            <button @click="destroy(post.id)" class="btn btn-sm btn-danger me-2 fixed-width" aria-label="delete post">Delete</button>
         </td>
     </tr>
 </tbody>

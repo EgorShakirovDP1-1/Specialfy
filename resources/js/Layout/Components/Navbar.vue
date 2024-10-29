@@ -1,6 +1,7 @@
 <template>
     <section class="sticky-top">
         <div class="container ps-0 pe-0">
+        <div class="container ps-0 pe-0">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid px-0">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -11,13 +12,17 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                       
                         <!-- LOGO -->
+                      
+                        <!-- LOGO -->
                         <ul class="navbar-nav">
+                            <li class="nav-item d-flex align-items-start my-2">
                             <li class="nav-item d-flex align-items-start my-2">
                                 <Link :href="route('home')" aria-label="home page">
                                     <img class="logo" src="/public/images/logo.png" >
                                 </Link> 
                             </li>
                         </ul>
+
 
                         <ul class="navbar-nav">
                             <!-- TERMS -->
@@ -75,8 +80,27 @@
                                         </i>
                                     Listings
                                 </Link>
+
+                            <!-- POSTS -->
+                            <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
+                                <Link :href="route('posts')" class="nav-link p-1"
+                                    :class="{
+                                        'text-black': !$page.url.includes('/Posts'),
+                                        'text-white': $page.url.includes('/Posts'),
+                                    }"
+                                    aria-label="post link">
+                                        <i class="bi bi-list"
+                                        :class="{
+                                            'text-black': !$page.url.includes('/Posts'),
+                                            'text-white': $page.url.includes('/Posts'),
+                                        }"
+                                        aria-label="our post list icon">
+                                        </i>
+                                    Listings
+                                </Link>
                             </li>
 
+                            <!-- PROFILE PAGE -->
                             <!-- PROFILE PAGE -->
                             <li v-if="$page.props.auth"
                             class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
@@ -98,6 +122,7 @@
                             </li>
 
                             <!-- ADMIN PANEL -->
+                            <!-- ADMIN PANEL -->
                             <li v-if="$page.props.auth && $page.props.isAdmin"
                             class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
                                 <Link :href="route('admin')" class="nav-link p-1"
@@ -117,6 +142,7 @@
                                 </Link>
                             </li>
 
+                            <!-- LOG OUT -->
                             <!-- LOG OUT -->
                             <li v-if="$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0 me-0">
                                 <Link :href="route('logout')" class="nav-link p-1 text-black" aria-label="log out">
@@ -163,6 +189,7 @@
                                     Sign up
                                 </Link>
                             </li>
+
 
                         </ul>
                     </div>
