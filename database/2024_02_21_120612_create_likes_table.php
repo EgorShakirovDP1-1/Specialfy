@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -11,14 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('film_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->text('comment');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade') -> Unique();
+            $table->foreignId('post_id')->constrained()->onDelete('cascade') -> Unique();
+            $table->boolean('value')->default(0);
             $table->timestamps();
-            $table->softDeletes();
+            
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('likes');
     }
 };

@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('films', function (Blueprint $table) {
-            $table->integer('volume')->after('genre');
+        Schema::create('terms', function (Blueprint $table) {
+            $table->id();
+            $table->string('content', 6000);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('films', function (Blueprint $table) {
-            $table->dropColumn('volume');
-        });
+        Schema::dropIfExists('terms');
     }
 };

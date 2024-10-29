@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('film_id')->constrained()->cascadeOnDelete();
-            $table->dateTime('start');
-            $table->String('film_pickup_place');
-            $table->dateTime('end');
-            $table->string('film_return_place');
-            $table->decimal('end_price', 10, 2);
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->text('comment');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('comments');
     }
 };
