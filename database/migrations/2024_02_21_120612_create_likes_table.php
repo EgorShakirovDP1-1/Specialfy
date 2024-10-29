@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('film_id')->constrained()->onDelete('cascade');
             $table->boolean('value')->default(0);
             $table->timestamps();
-            
         });
     }
 
