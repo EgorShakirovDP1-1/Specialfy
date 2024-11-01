@@ -3,8 +3,7 @@
 
         <div class="filter-box rounded p-4 mx-3 mb-2 background">
             <h4 class="text-center">Listing Type</h4>
-            <div class="one-line">
-                
+            <div class="one-line">   
             </div>
             <div class="one-line">
                 
