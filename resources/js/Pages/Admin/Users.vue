@@ -30,25 +30,35 @@
                             <tr v-if="users.data.length === 0">
                                 <td colspan="6" aria-label="no users found">No users found.</td>
                             </tr>
-                            <tr v-for="(user, index) in users.data" :key="user.id">
-                                <td aria-label="user number">{{ index + 1 }}.</td>
-                                <td aria-label="user name">{{ user.name }}</td>
-                                <td aria-label="user email">{{ user.email }}</td>
-                                <td aria-label="user role">{{ user.is_admin }}</td>
-                                <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
-                                <td class="text-end" aria-label="user actions">
+                                                    <tr v-for="(user, index) in users.data" :key="user.id">
+                            <td aria-label="user number">{{ index + 1 }}.</td>
+                            <td aria-label="user name">{{ user.name }}</td>
+                            <td aria-label="user email">{{ user.email }}</td>
+                            <td aria-label="user role">{{ user.is_admin }}</td>
+                            <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
+                            <td class="text-end m-5 p-1" aria-label="user actions">
+                                <div class="d-flex flex-column align-items-center">
                                     <button 
                                         v-if="user.role !== 'admin'" 
                                         @click="makeAdmin(user.id)" 
-                                        class="btn btn-sm btn-info me-1" 
+                                        class="btn btn-sm btn-info me-1 mb-2" 
                                         aria-label="make user admin">
                                         Make Admin
                                     </button>
-                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit user">Edit</button>
-                                    <Button @click="destroy(user.id)" class="btn btn-sm btn-danger"
-                                        aria-label="delete user">Delete</Button>
-                                </td>
-                            </tr>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button>
+                                        <button 
+                                            v-if="user.id !== authUserId" 
+                                            @click="destroy(user.id)" 
+                                            class="btn btn-sm btn-danger fixed-width" 
+                                            aria-label="delete user">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
 
@@ -79,6 +89,10 @@ export default {
             type: Object, // Assuming users is an object with paginated data
             required: true,
         },
+        authUserId: {
+        type: Number,
+        required: true,
+    },
     },
     setup() {
                // Method to make user admin
@@ -89,7 +103,7 @@ export default {
         };
         const destroy = (id) => {
             if (confirm("Are you sure you want to delete this user?")) {
-                router.delete(route("users.destroy", { user: id }));
+                router.delete(route("delete_by_admin", id ));
             }
         };
 
@@ -97,3 +111,8 @@ export default {
     },
 };
 </script>
+<style>
+    .fixed-width {
+        width: 80px; /* Adjust this value as needed */
+    }
+</style>

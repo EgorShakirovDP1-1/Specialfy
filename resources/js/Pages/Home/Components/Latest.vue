@@ -11,31 +11,34 @@
                             {{ post.postname }} 
                         </h3>
                         <p class="text-black mb-0">
-                            Price Per Subscribtion: {{ post.price_per_subscribtion }}€
+                            {{ post.title }}
                         </p>
                         <p class="text-black">
-                            Price Per watch: {{ post.price_per_watch }}€
+                            Price Per watch: {{ post.price }}€
                         </p>
                         <div class="card-flex justify-content-center">
                             <Link :href="route('post.show', post.id)" class="btn btn-info mb-3 img-zoom text-primary">
                             <i class="bi bi-chevron-right"></i> Read More
                             </Link>
-                            <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                @click="toggleLike(post.id)">
-                                <div class="card-flex align-items-center m-0" aria-label="Like Button">
-                                    {{ post.likesCount }}
-                                    <i class="bi h4 text-danger ms-1 mt-2"
-                                        :class="{ 'bi-heart-fill': post.isLikedByUser, 'bi-heart': !post.isLikedByUser }"></i>
+                            <button v-if="$page.props.auth"
+                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none">
+                                    <div class="d-flex align-items-center m-0">
+                                        {{ post.rating }}
+                                        <i class="bi h4 text-danger ms-1 mt-2"
+                                            :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
+                                            aria-label="Like"></i>
                                 </div>
                             </button>
                             <Link v-if="!$page.props.auth" :href="route('login')">
-                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48" aria-label="Like Button">
-                                <div class="card-flex align-items-center m-0">
-                                    {{ post.likesCount }}
-                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
-                                </div>
-                            </button>
-                            </Link>
+                                <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48 pe-none"
+                                aria-label="Login to Like">
+                                    <div class="d-flex align-items-center m-0">
+                                        {{ post.rating }}
+                                        <i class="bi bi-star-fill h4 text-danger ms-1 mt-2"
+                                            aria-hidden="true"></i>
+                                        </div>
+                                    </button>
+                             </Link>
                         </div>
                     </div>
                 </div>

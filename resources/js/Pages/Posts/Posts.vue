@@ -14,10 +14,10 @@
             <div class="left">
                 <Sort @sort="handleSort" />
 
-                <Filter @setPricePerWatchFilter="handlePricePerWatchFilter" @setPriceFilter="handleSetPriceFilter"
-                    @setDescriptionFilter="handleDescriptionFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
-                    @updateBodyTypeFilter="handleBodyTypeFilter" @updateAuthorFilter="handleAuthorFilter"
-                    @setVolumeilter="updateVolumeilter" />
+                <Filter  @setCategoryFilter="handleSetCategoryFilter"
+                    @setRatingFilter="handleRatingFilter" 
+                   
+                     />
             </div>
 
             <div class="right w-75">
@@ -38,7 +38,7 @@
                                     <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Listing Image" />
                                     <div class="d-body flex-grow-1">
                                         <h3 class="d-title">
-                                            {{ post.category_id.name }} 
+                                             {{ post.title }}
                                         </h3>
                                         <div class="post-images">
                                             <div v-for="image in images" :key="image.id" class="post-image">
@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                         <p class="text-black mb-0">
-                                            {{ post.title }}
+                                            {{ post.category_id.name }}
                                         </p>
                                         <p class="text-black">
                                             Price: {{ post.price }}€
@@ -120,14 +120,13 @@ export default {
     data() {
         return {
             isPressed: {},
+            authorFilters: [],
             searchFilter: '',
             pricePerWatchFilter: '',
             pricePerSubscribtionFilter: '',
-            descriptionFilter: [],
-            fuelTypeFilters: [],
-            volumeFilter: '',
-            bodyTypeFilters: [],
-            authorFilters: [],
+            
+           
+           
             sortedPosts: [],
         }
     },
@@ -141,76 +140,63 @@ export default {
         handleSearch(search) {
             this.searchFilter = search;
         },
-        handlePricePerWatchFilter(pricePerWatch) {
-            this.pricePerWatchFilter = pricePerWatch;
+        handleRatingFilter(rating) {
+            this.RatingFilter = rating;
         },
         handleSetPriceFilter(price) {
             this.priceFilter = price;
         },
-        handleDescriptionFilter(description) {
-            if (this.descriptionFilter.includes(description)) {
-                this.descriptionFilter.splice(this.descriptionFilter.indexOf(description), 1);
-            } else {
-                this.descriptionFilter.push(description);
-            }
-        },
+        
        
        
        
-        handleAuthorFilter(author) {
-            if (this.authorFilters.includes(author)) {
-                this.authorFilters.splice(this.authorFilters.indexOf(author), 1);
-            } else {
-                this.authorFilters.push(author);
-            }
-        },
+        
         handleSort(value) {
             if (value === 'cheapToExpensiveSubscribtion') {
                 this.posts.sort((a, b) => a.price - b.price);
             } else if (value === 'expensiveToCheapSubscribtion') {
                 this.posts.sort((a, b) => b.price - a.price);
             } 
+            if (value === 'mostPopular') {
+                this.posts.sort((a, b) => a.rating - b.rating);
+            }
+            else if (value === 'leastPopular') {
+                this.posts.sort((a, b) => b.rating - a.rating);
+            }
         }
     },
     computed: {
-        filteredPosts() {
-            let posts = this.posts;
+    filteredPosts() {
+        let posts = this.posts;
 
-            
-
-            if (this.pricePerSubscribtionFilter !== '') {
-                posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
-            }
-
-            if (this.descriptionFilter.length > 0) {
-                posts = posts.filter(post => this.descriptionFilter.includes(post.text));
-            }
-
-            
-
-            
-
-            
-
-            if (this.authorFilters.length > 0) {
-                posts = posts.filter(post => this.authorFilters.includes(post.author));
-            }
-
-            if (this.sortedPosts.length > 0) {
-                posts = this.sortedPosts;
-            }
-
-            if (this.searchFilter !== '') {
-                posts = posts.filter(post => post.author.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
-                    post.model.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
-                    post.postname.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
-                    post.genre.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
-                    post.description.toLowerCase().includes(this.searchFilter.toLowerCase()));
-            }
-
-            return posts;
+        // Apply price filter if set
+        if (this.pricePerSubscribtionFilter !== '') {
+            posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
         }
+
+        // Apply search filter if set
+        if (this.searchFilter !== '') {
+            const searchQuery = this.searchFilter.toLowerCase();
+
+            posts = posts.filter(post => {
+                // Safely check if each property exists and matches the search query
+                return (
+                   
+                    (post.title && post.title.toLowerCase().includes(searchQuery)) ||
+                    (post.category_id.name && post.category_id.name.toLowerCase().includes(searchQuery)) ||
+                    (post.text && post.text.toLowerCase().includes(searchQuery))
+                );
+            });
+        }
+
+        // Apply sorting if any sorted posts are available
+        if (this.sortedPosts.length > 0) {
+            posts = this.sortedPosts;
+        }
+
+        return posts;
     }
+}
 }
 </script>
 
