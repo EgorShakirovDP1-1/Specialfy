@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
@@ -101,4 +102,20 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('message', 'User not found!');
     }
+    public function destroyByAdmin($user_id)
+{
+    if ($user_id === Auth::id()) {
+        return redirect()->route('home')->with('message', 'You cannot delete yourself!');
+    }
+
+    $user = User::find($user_id);
+    
+    if (!$user) {
+        return redirect()->route('home')->with('message', 'User not found!');
+    }
+
+    $user->delete();
+
+    return redirect()->route('home')->with('message', 'User deleted successfully!');
+}
 }

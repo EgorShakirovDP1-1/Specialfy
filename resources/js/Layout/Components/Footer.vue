@@ -7,7 +7,7 @@
                     <Link :href="route('home')" class="nav-link px-2 text-black" aria-label="home page">Home</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('indexpriv')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">indexpriv policy</Link>
+                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">privacy policy</Link>
                 </li>
                 <li class="nav-item">
                     <Link :href="route('terms')" class="nav-link px-2 text-black"

@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('profile/{user}')->group(function () {
     Route::get('/edit', [UserController::class, 'edit'])->name('edit');
     Route::put('/edit', [UserController::class, 'update'])->name('update');
     Route::delete('/', [UserController::class, 'destroy'])->name('delete');
- 
+    Route::delete('/', [UserController::class, 'destroyByAdmin'])->name('delete_by_admin');
 
 Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
     ->name('users.make-admin');
@@ -53,7 +53,7 @@ Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
 
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
-Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('indexpriv');
+Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
 
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
@@ -79,7 +79,7 @@ Route::prefix('Posts')->group(function () {
 
     Route::get('/{post}', [PostController::class, 'show'])->name('post.show');
     Route::post('/{postId}/toggleLike', [PostController::class, 'toggleLike'])->name('posts.toggleLike');
-
+    Route::delete('/{postId}', [PostController::class, 'destroy'])->name('post.destroy');
 
    
 

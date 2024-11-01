@@ -13,6 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $authUserId = auth()->id();
         $users = User::all()->count();
         $admins = User::where('is_admin', true)->count();
         $posts = Post::all()->count();
@@ -22,7 +23,7 @@ class AdminController extends Controller
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'posts' => $posts, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
+                ['users' => $users, 'authUserId' => $authUserId, 'posts' => $posts, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
             );
         }
 

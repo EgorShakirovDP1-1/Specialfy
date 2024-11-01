@@ -30,12 +30,11 @@ class TermController extends Controller
 
     public function destroy(Term $term) {
         Term::find($term->id)->delete();
-
+        
         return redirect()->route('home')->with('message', 'Term deleted successfully!');
     }
 
-    public function indexpriv() {
-        $terms = Term::all();
-        return Inertia::render('PrivacyPolicy/PrivacyPolicy', compact('privacypolicy'));
+    public function privacy() {
+        return Inertia::render('Terms/PrivacyPolicy');
     }
 }
