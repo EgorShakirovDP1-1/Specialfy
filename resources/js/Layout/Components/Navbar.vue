@@ -62,23 +62,7 @@
                             </li>
 
                             <!-- POSTS -->
-                            <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
-                                <Link :href="route('posts')" class="nav-link p-1"
-                                    :class="{
-                                        'text-black': !$page.url.includes('/Posts'),
-                                        'text-white': $page.url.includes('/Posts'),
-                                    }"
-                                    aria-label="post link">
-                                        <i class="bi bi-list"
-                                        :class="{
-                                            'text-black': !$page.url.includes('/Posts'),
-                                            'text-white': $page.url.includes('/Posts'),
-                                        }"
-                                        aria-label="our post list icon">
-                                        </i>
-                                    Listings
-                                </Link>
-                            </li>
+                           
 
                             <!-- POSTS -->
                             <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
