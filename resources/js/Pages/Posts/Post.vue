@@ -21,6 +21,7 @@
                                             Category :
                                         </p>
                                         <span class="">{{ post.category_id.name }}</span>
+                                        <span class="">{{ post.category_id.name }}</span>
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
@@ -34,8 +35,6 @@
                                         </p>
                                         <span class="">{{ post.text }}</span>
                                     </li>
-                                    
-
                                     
                                     <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
@@ -90,6 +89,22 @@
     </button>
 </div>
 
+                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
+            <img :src="image" class="d-block w-100 rounded" alt="Post Image" />
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="carouselExample" data-bs-slide="next" aria-label="Next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -127,6 +142,10 @@ export default {
              type: Array,
              required: true,
         },
+        // profilePhoto: {
+        //     type: Image,
+        //     required: true,
+        // },
         // profilePhoto: {
         //     type: Image,
         //     required: true,
@@ -203,6 +222,10 @@ input {
 
 .container {
     margin-bottom: 300px;
+}
+.background{
+    background-color: rgb(230,230,230);
+
 }
 .background{
     background-color: rgb(230,230,230);

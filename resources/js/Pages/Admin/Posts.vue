@@ -121,4 +121,8 @@ export default {
     background-color: rgb(230,230,230)
 
 }
+.fixed-width {
+        width: 80px; /* Adjust this value as needed */
+    }
+
 </style>
