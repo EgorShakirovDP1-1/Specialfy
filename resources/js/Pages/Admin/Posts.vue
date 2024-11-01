@@ -3,15 +3,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 my-3 mx-2 rounded background">
-                <div class="col-lg-2 my-3 mx-2 rounded background">
                     <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="overflow-auto col-md-9 my-3 mx-2 rounded background">
                     <div class="d-flex justify-content-between mt-3 mx-2 background" aria-label="posts list header">
-                <div class="overflow-auto col-md-9 my-3 mx-2 rounded background">
-                    <div class="d-flex justify-content-between mt-3 mx-2 background" aria-label="posts list header">
                         <h3>Posts list</h3>
-                        <Link :href="route('posts.create')" class="btn btn-dark pb-2 rounded"
                         <Link :href="route('posts.create')" class="btn btn-dark pb-2 rounded"
                             aria-label="add new post">
                         <div class="d-flex align-items-center justify-content-center">
@@ -21,7 +17,6 @@
                         </div>
                         </Link>
                     </div>
-                    <table class="table mt-2 " aria-label="posts list table">
                     <table class="table mt-2 " aria-label="posts list table">
                         <thead>
                             <tr>

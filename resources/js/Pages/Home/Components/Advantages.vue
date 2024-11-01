@@ -6,8 +6,6 @@
                 <br><br>
                 We got people that can do it for you!
             </h1>
-
-            <div class="row justify-content-center mt-6">
             <div class="row justify-content-center mt-6">
                 <div class="col-lg-6" s>
                     <div class="card bg-light text-dark" role="region" aria-label="All Inclusive">

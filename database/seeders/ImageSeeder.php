@@ -23,7 +23,7 @@ class ImageSeeder extends Seeder
         ];
 
         foreach ($images as $image) {
-            Picture::create($image);
+            Image::create($image);
         }
     }
 }

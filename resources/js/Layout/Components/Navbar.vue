@@ -1,7 +1,6 @@
 <template>
     <section class="sticky-top">
         <div class="container ps-0 pe-0">
-        <div class="container ps-0 pe-0">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid px-0">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -15,7 +14,6 @@
                       
                         <!-- LOGO -->
                         <ul class="navbar-nav">
-                            <li class="nav-item d-flex align-items-start my-2">
                             <li class="nav-item d-flex align-items-start my-2">
                                 <Link :href="route('home')" aria-label="home page">
                                     <img class="logo" src="/public/images/logo.png" >
@@ -80,6 +78,7 @@
                                         </i>
                                     Listings
                                 </Link>
+                            </li>
 
                             <!-- POSTS -->
                             <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">

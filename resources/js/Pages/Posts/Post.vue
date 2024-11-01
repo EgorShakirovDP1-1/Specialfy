@@ -4,7 +4,6 @@
         <section class="p-4 bg-light">
             <div class="container">
                 <h1 class="text-center mb-2 text-black">
-                <h1 class="text-center mb-2 text-black">
                     {{ post.title }} 
                 </h1>
                 <div class="px-5">
@@ -12,7 +11,6 @@
                         <div class="d-flex">
                             <div id="statistics" class="me-2">
                                 <ul class="list-unstyled mb-2">
-                                    <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
                                     <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class="">
@@ -26,13 +24,11 @@
                                         <span class="">{{ post.category_id.name }}</span>
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
-                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Autor :
                                         </p>
                                         <span class="">{{ post.user_id }}</span>
                                     </li>
-                                    <li class="py-2 px-4 d-flex my-2 rounded background">
                                     <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
@@ -40,9 +36,6 @@
                                         <span class="">{{ post.text }}</span>
                                     </li>
                                     
-
-                                    
-                                    <li class="py-2 px-4 d-flex my-2 rounded background">
                                     <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price:
@@ -153,9 +146,6 @@ export default {
         //     type: Image,
         //     required: true,
         // },
-             type: Array,
-             required: true,
-        },
         // profilePhoto: {
         //     type: Image,
         //     required: true,

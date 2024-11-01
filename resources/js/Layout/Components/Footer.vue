@@ -1,6 +1,5 @@
 <template>
     <footer class=" text-white text-center p-4 footer">
-    <footer class=" text-white text-center p-4 footer">
         <div class="container">
 
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
@@ -26,7 +25,6 @@
                     <Link :href="route('login')" class="nav-link px-2 text-black" aria-label="login page">Login</Link>
                 </li>
             </ul>
-            <p class="lead text-black">
             <p class="lead text-black">
                 
                 <span class="text-black">Copyright © 2024 MVTEK Group</span>
