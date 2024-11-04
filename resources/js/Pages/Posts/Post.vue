@@ -16,11 +16,11 @@
                                         <span class="">
                                             {{ post.title }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
+                                    <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Category :
                                         </p>
-                                        <span class="">{{ post.category_id.name }}</span>
+                                        <span class="">{{ post.category.name }}</span>
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">

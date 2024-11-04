@@ -104,18 +104,25 @@ class UserController extends Controller
     }
     public function destroyByAdmin($user_id)
 {
-    if ($user_id === Auth::id()) {
-        return redirect()->route('home')->with('message', 'You cannot delete yourself!');
+    // Получаем текущего пользователя
+    $currentUser = Auth::user();
+
+    // Проверка, если пользователь пытается удалить сам себя
+    if ($user_id === $currentUser->id) {
+        return redirect()->route('home')->with('message', 'Вы не можете удалить свой собственный аккаунт!');
     }
 
+    // Находим пользователя по ID
     $user = User::find($user_id);
-    
+
+    // Проверка, существует ли пользователь
     if (!$user) {
-        return redirect()->route('home')->with('message', 'User not found!');
+        return redirect()->route('home')->with('message', 'Пользователь не найден!');
     }
 
+    // Удаляем пользователя, если все условия выполнены
     $user->delete();
 
-    return redirect()->route('home')->with('message', 'User deleted successfully!');
+    return redirect()->route('home')->with('message', 'Пользователь успешно удален!');
 }
 }
