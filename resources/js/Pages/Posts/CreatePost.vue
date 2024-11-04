@@ -39,28 +39,17 @@
                         <span v-if="errors.text" class="text-danger">{{ errors.text }}</span>
                     </div>
 
-                    <div id="photoInputsContainer" class="form-group mb-3">
-                        <button type="button" class="btn btn-outline-primary" @click="addFileInput">Add Image</button>
-                        <div v-for="(picture, index) in form.postImages" :key="index" class="mt-2">
-                            <label :for="'postImage' + (index + 1)">Post Image {{ index + 1 }}</label>
-                            <input type="file" class="form-control postImage" :name="'postImage' + (index + 1)" @change="handleFileChange($event, index)" />
-                        </div>
-                        <span v-if="errors.postImages" class="text-danger">{{ errors.postImages }}</span>
-                    </div>
-
-                    <button type="submit" class="btn btn-info text-primary py-2 px-3" aria-label="Submit Form">Save!</button>
-                </form>
+                    <!-- Dynamic image inputs -->
+             <input type="file" multiple @change="handleFileChange">
+        
+        <button type="submit">Submit</button></form>
            </div>
         </div>
     </Layout>
 </template>
 
 <script setup>
-import Layout from "../../Layout/App.vue";
-import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
-import { onMounted } from "vue";
-
+import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
     errors: Object,
@@ -76,36 +65,26 @@ const form = useForm({
     postImages: []
 });
 
-const addFileInput = () => {
-    if (form.postImages.length >= 8) {
-        alert('You can only add up to 8 images.');
-        return;
-    }
-    form.postImages.push(null);
-};
-
-const handleFileChange = (event, index) => {
-    form.postImages[index] = event.target.files[0];
+const handleFileChange = (event) => {
+    form.postImages = Array.from(event.target.files); // Capture multiple files
 };
 
 const submitForm = () => {
     const formData = new FormData();
-
-    // Append all form fields except images
+    
+    // Append non-file fields
     Object.keys(form).forEach((key) => {
         if (key !== 'postImages') {
             formData.append(key, form[key]);
         }
     });
 
-    // Append all images
-    form.postImages.forEach((picture, index) => {
-        if (picture) {
-            formData.append(`postImage${index + 1}`, picture);
-        }
+    // Append files as array
+    form.postImages.forEach((picture) => {
+        formData.append('postImages[]', picture);
     });
 
-    // Use Inertia to post the form data
+    // Submit with Inertia
     form.post(route('posts.create'), {
         forceFormData: true,
         onSuccess: () => {

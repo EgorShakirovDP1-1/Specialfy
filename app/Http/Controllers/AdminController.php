@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $authUserId = auth()->id();
+        $currentUser = auth()->id();
         $users = User::all()->count();
         $admins = User::where('is_admin', true)->count();
         $posts = Post::all()->count();
@@ -23,7 +23,7 @@ class AdminController extends Controller
         if (auth()->user()->is_admin) {
             return Inertia::render(
                 'Admin/Panel',
-                ['users' => $users, 'authUserId' => $authUserId, 'posts' => $posts, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
+                ['users' => $users, 'currentUser' => $currentUser, 'posts' => $posts, 'admins' => $admins, 'terms' => $terms, 'comments' => $comments ]
             );
         }
 
@@ -37,12 +37,18 @@ class AdminController extends Controller
         return Inertia::render('Admin/Posts', ['posts' => $posts]);
     }
 
-    public function usersTable()
-    {
-        $users = User::paginate(10);
+   public function usersTable()
+{
+    $currentUser = auth()->id();
 
-        return Inertia::render('Admin/Users', ['users' => $users]);
-    }
+    // Fetch users excluding the currently authenticated user
+    $users = User::where('id', '!=', $currentUser)->paginate(10);
+
+    return Inertia::render('Admin/Users', [
+        'users' => $users,
+        'currentUser' => $currentUser,
+    ]);
+}
     
     public function PostsCharts()
     {
