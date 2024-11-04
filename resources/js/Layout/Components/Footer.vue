@@ -7,14 +7,13 @@
                     <Link :href="route('home')" class="nav-link px-2 text-black" aria-label="home page">Home</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">privacy policy</Link>
+                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">Privacy Policy</Link>
                 </li>
                 <li class="nav-item">
                     <Link :href="route('terms')" class="nav-link px-2 text-black"
                         aria-label="terms and conditions page">Terms</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('posts')" class="nav-link px-2 text-black" aria-label="posts page">Listings</Link>
                     <Link :href="route('posts')" class="nav-link px-2 text-black" aria-label="posts page">Listings</Link>
                 </li>
                 <li v-if="$page.props.auth" class="nav-item">

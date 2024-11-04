@@ -88,8 +88,7 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-
-                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+    <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
     <div class="carousel-inner">
         <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
             <img :src="image" class="d-block w-100 rounded" alt="Post Image" />
