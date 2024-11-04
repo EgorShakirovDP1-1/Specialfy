@@ -118,32 +118,33 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request)
     {
-        // Validate the incoming request data
+        // Validate and save the main post data
         $validated = $request->validated();
-       
-
-        // Save the post with the category_id
+        
         $post = Post::create([
             'user_id' => auth()->id(),
-            'category_id' => $validated['category_id'],  // Ensure this is the correct category ID
+            'category_id' => $validated['category_id'],
             'price' => $validated['price'],
             'title' => $validated['title'],
             'text' => $validated['text'],
         ]);
     
-        // Handle images separately
-        for ($i = 1; $i <= 8; $i++) {
-            $imageKey = 'postImage' . $i;
-            if ($request->hasFile($imageKey)) {
-                $filePath = $request->file($imageKey)->store('postImages', 'public');
-                // Associate the image with the post
+        // Handle image uploads
+        if ($request->hasFile('postImages')) {
+            foreach ($request->file('postImages') as $image) {
+                // Save each image and store its path in the 'postImages' directory within 'public' disk
+                $filePath = $image->store('postImages', 'public');
+    
+                // Save image path in 'pictures' table associated with this post
                 $post->pictures()->create([
                     'path_to_img' => $filePath,
                 ]);
             }
         }
+    
         return redirect()->route('home')->with('message', 'Post created successfully!');
     }
+    
     
     public function toggleLike(Request $request, $postId)
     {
