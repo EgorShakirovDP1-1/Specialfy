@@ -54,6 +54,7 @@ Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
+Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
 
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
@@ -88,9 +89,6 @@ Route::prefix('Posts')->group(function () {
 
 // Likes
 Route::middleware('auth')->prefix('Posts/{post}')->group(function () {
-    
-   
-
     Route::post('/comment', [CommentController::class, 'store'])->name('comment');
     Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
@@ -99,7 +97,6 @@ Route::middleware('auth')->prefix('Posts/{post}')->group(function () {
 // admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
-
     Route::get('/posts/table', [AdminController::class, 'postsTable'])->name('admin.posts');
    //Route::get('/posts/table', [AdminController::class, 'index'])->name('admin.users');
     Route::get('/posts/charts', [AdminController::class, 'postsCharts'])->name('admin.posts.charts');

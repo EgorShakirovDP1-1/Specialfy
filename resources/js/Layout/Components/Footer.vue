@@ -7,7 +7,7 @@
                     <Link :href="route('home')" class="nav-link px-2 text-black" aria-label="home page">Home</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">privacy policy</Link>
+                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">Privacy Policy</Link>
                 </li>
                 <li class="nav-item">
                     <Link :href="route('terms')" class="nav-link px-2 text-black"
@@ -26,6 +26,7 @@
             </ul>
             <p class="lead text-black">
                 
+                <span class="text-black">Copyright © 2024 MVTEK Group</span>
                 <span class="text-black">Copyright © 2024 MVTEK Group</span>
             </p>
         </div>
@@ -46,6 +47,10 @@ export default {
 };
 </script>
 
+<style scoped>
+
+
+</style>
 <style scoped>
 
 

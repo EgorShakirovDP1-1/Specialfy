@@ -24,9 +24,12 @@
                         <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label text-black mb-1" for="phone_number">Phone number</label>
-                                <input type="text" v-model="form.phone_number" id="phone_number" name="phone_number"
-                                    class="rounded form-control " placeholder="Enter a valid phone number"
-                                    aria-label="phone number input" />
+                                <input type="tel" minlength="8" maxlength="11" v-model="form.phone_number" 
+       id="phone_number" name="phone_number"
+       class="rounded form-control" placeholder="Enter a valid phone number"
+       aria-label="phone number input" pattern="^\+?[0-9]{8,11}$" />
+
+                                <span id="phone-error" class="text-danger"></span>
                             </div>
                             <div v-if="errors.phone_number" class="d-block mt-1">
                                 <span class="fs-5 text-danger">
@@ -110,8 +113,7 @@ export default {
             email: "",
             password: "",
             password_confirmation: "",
-        });
-
+        })
         return { form };
     },
 };

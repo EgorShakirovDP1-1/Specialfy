@@ -7,10 +7,10 @@
                 </div>
                 <div class="col-lg-6 mt-3 mt-lg-0">
                     <h1 class="text-primary" id="parkingSectionHeading">
-                        Your Daily <span class="text-warning">Services!</span>
+                        Find your perfect <span class="text-warning">Service!</span>
                     </h1>
                     <p class="lead text-primary">
-                        Start Now!
+                        
                     </p>
                 </div>
             </div>
