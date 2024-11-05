@@ -19,37 +19,35 @@ class PostController extends Controller
 {
     public function index()
 {
-    // Eager-load the user relationship to include user data with posts
-    $posts = Post::with('user')->orderBy('created_at', 'ASC')->get()->map(function ($post) {
-        
-        // Check if the post is liked by the authenticated user
-        if (auth()->user()) {
-            $isLikedByUser = $post->likes()->where('user_id', auth()->id())->exists();
-        }
+    $categories = Category::all(); // Fetch all categories
 
-        // Calculate the like and dislike count and the rating
+    $posts = Post::with(['user', 'category'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
+        // Check if the post is liked by the authenticated user
+        $isLikedByUser = auth()->user() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
+
         $like_count = $post->likes()->where('value', '1')->count();
         $dislike_count = $post->likes()->where('value', '0')->count();
-        $raiting = ($like_count - $dislike_count);
+        $rating = $like_count - $dislike_count;
 
-            return [
-                'id' => $post->id,
-                'author' => $post->author,
-                'category_id' => $post->category,
-                'price' => $post->price,
-                'title' => $post->title,
-                'text' => $post->description,
-                'rating' => $raiting,
-                'likesCount' => $like_count,
-                'isLikedByUser' => $isLikedByUser ?? false,
-            ];
-        });
+        return [
+            'id' => $post->id,
+            'author' => $post->author,
+            'category_id' => $post->category->id,
+            'category_name' => $post->category->name,
+            'price' => $post->price,
+            'title' => $post->title,
+            'text' => $post->description,
+            'rating' => $rating,
+            'likesCount' => $like_count,
+            'isLikedByUser' => $isLikedByUser,
+        ];
+    });
 
-        return Inertia::render('Posts/Posts', [
-            'posts' => $posts,
-        ]);
-    }
-    
+    return Inertia::render('Posts/Posts', [
+        'posts' => $posts,
+        'categories' => $categories, // Pass categories to the component
+    ]);
+}
     // public function show($post_id)
     // {
         // $post = Post::find($post_id);
@@ -144,8 +142,6 @@ class PostController extends Controller
     
         return redirect()->route('home')->with('message', 'Post created successfully!');
     }
-    
-    
     public function toggleLike(Request $request, $postId)
     {
         $userId = auth()->id();
