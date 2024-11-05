@@ -17,7 +17,7 @@
                             Price Per watch: {{ post.price }}€
                         </p>
                         <div class="card-flex justify-content-center">
-                            <Link :href="route('post.show', post.id)" class="btn btn-info mb-3 img-zoom text-primary">
+                            <Link :href="route('post.show', post.id)" class="btn btn-dark mb-3 img-zoom text-primary text-white">
                             <i class="bi bi-chevron-right"></i> Read More
                             </Link>
                             <button v-if="$page.props.auth"

@@ -55,7 +55,7 @@
 
                                     <!-- Bottom-aligned section -->
                                     <div class="d-flex justify-content-center align-items-center mt-auto">
-                                        <Link :href="route('post.show', post.id)" class="btn bg-danger mb-3 img-zoom text-white">
+                                        <Link :href="route('post.show', post.id)" class="btn bg-dark mb-3 img-zoom text-white">
                                             <i class="bi bi-chevron-right"></i> Read More
                                         </Link>
                                         

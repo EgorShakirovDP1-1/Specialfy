@@ -25,8 +25,7 @@
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="btn btn-info text-primary py-2 px-3"
-                        >
+                            class="btn btn-dark text-white text-primary py-2 px-3">
                             Save Name
                         </button>
                     </div>

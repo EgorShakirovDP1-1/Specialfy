@@ -15,7 +15,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <button type="submit" class="btn btn-info text-primary py-2 px-3"
+                        <button type="submit" class="btn btn-dark text-white text-primary py-2 px-3"
                             aria-label="Save Profile Image Button">
                             Save Profile Image
                         </button>

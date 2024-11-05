@@ -21,6 +21,6 @@ export default {
 
 <style scoped>
 .icon {
-    -size: 4rem;
+    font-size: 4rem;
 }
 </style>

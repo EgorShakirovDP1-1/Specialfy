@@ -35,7 +35,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <div class="form-group d-flex justify-content-end">
                             <button type="submit" name="submit"
-                                class="btn btn-primary btn-md h3 text-warning">Submit</button>
+                                class="btn btn-primary btn-md h3 text-primary text-white">Submit</button>
                         </div>
                     </div>
                 </form>

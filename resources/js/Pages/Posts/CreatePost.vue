@@ -48,7 +48,7 @@
                         <span v-if="errors.postImages" class="text-danger">{{ errors.postImages }}</span>
                     </div>
 
-                    <button type="submit" class="btn btn-info text-primary py-2 px-3" aria-label="Submit Form">Save!</button>
+                    <button type="submit" class="btn btn-dark text-white text-primary py-2 px-3" aria-label="Submit Form">Save!</button>
                 </form>
            </div>
         </div>

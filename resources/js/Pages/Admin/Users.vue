@@ -45,7 +45,7 @@
                                         aria-label="make user admin">
                                         Make Admin
                                     </button>
-                                    <div class="d-flex justify-content-center">
+                                    <div class="d-flex justify-content-centerv">
                                         <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button>
                                         <button 
                                             v-if="user.id !== authUserId" 

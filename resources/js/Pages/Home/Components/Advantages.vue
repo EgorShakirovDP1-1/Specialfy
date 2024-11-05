@@ -13,7 +13,7 @@
                             </div>
                             <h3 class="card-title mb-3">All Inclusive</h3>
                             <p class="card-text text-dark lead">
-                               Spend your free time enjoying films and TV shows
+                               Spend your free time by employing our workers
                             </p>
                         </div>
                     </div>
