@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <section class="mb-3 mx-3 border border-light" id="section">
+        <section class="mb-3 mx-3" id="section">
             <p class="text-center text-black header">
                 Privacy Policy
             </p>
@@ -75,6 +75,7 @@ export default {
 
 .header {
     font-size: xx-large;
+    font-weight: bold;
 }
 
 .maintext{

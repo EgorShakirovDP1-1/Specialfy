@@ -21,12 +21,11 @@
                         aria-label="profile page">Profile</Link>
                 </li>
                 <li v-if="!$page.props.auth" class="nav-item">
-                    <Link :href="route('login')" class="nav-link px-2 text-black" aria-label="login page">Login</Link>
+                    <Link :href="route('login')" class="nav-link px-2 text-black" aria-label="login page">Log in</Link>
                 </li>
             </ul>
             <p class="lead text-black">
                 
-                <span class="text-black">Copyright © 2024 MVTEK Group</span>
                 <span class="text-black">Copyright © 2024 MVTEK Group</span>
             </p>
         </div>

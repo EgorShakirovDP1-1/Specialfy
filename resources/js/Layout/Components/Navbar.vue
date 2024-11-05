@@ -1,6 +1,6 @@
 <template>
-    <section class="sticky-top">
-        <div class="container ps-0 pe-0">
+    <section class="stick">
+        <div class="container px-0">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid px-0">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -171,7 +171,7 @@
                             </li>
 
                             <!-- SIGN UP -->
-                            <li v-if="!$page.props.auth" class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
+                            <li v-if="!$page.props.auth" class="nav-item d-flex align-items-center me-0 my-2 my-lg-0">
                                 
                                     <Link :href="route('register')" class="nav-link p-1"
                                     :class="{
@@ -207,16 +207,23 @@ export default {
 </script>
 
 <style>
-.sticky-top{
+.stick{
     background-color: rgb(240, 70, 70);
 }
-.logo{
-    height: 70px;
+.logo {
+    height: 50px; /* Reduce logo size for a slimmer navbar */
     width: auto;
 }
-.nav-item{
-    font-size: 14px;
 
+.navbar {
+    padding-top: 0.25rem; /* Reduce top padding */
+    padding-bottom: 0.25rem; /* Reduce bottom padding */
+}
+
+.nav-item{
+    font-size: 16px;
+    padding-top: 0.25rem; /* Adjust nav item padding */
+    padding-bottom: 0.25rem;
 }
 .navbar{
     padding-top: 0.25rem;
