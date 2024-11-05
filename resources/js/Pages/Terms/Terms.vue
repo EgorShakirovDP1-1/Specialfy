@@ -1,6 +1,9 @@
 <template>
     <Layout>
         <section class="mb-3" id="section">
+            <p class="text-center text-black header">
+                Terms
+            </p>
             <CreateTermModal :errors="$page.props.errors" />
 
             <div v-if="terms" class="container">
@@ -72,5 +75,10 @@ export default {
 <style scoped>
 #section {
     margin-top: 20px;
+}
+
+.header {
+    font-size: xx-large;
+    font-weight: bold;
 }
 </style>

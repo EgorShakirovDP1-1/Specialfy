@@ -20,7 +20,7 @@
                                         <p class="mb-0 me-2 fw-bold">
                                             Category :
                                         </p>
-                                        <span class="">{{ post.category.name }}</span/>
+                                        <span class="">{{ post.category.name }}</span>
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
