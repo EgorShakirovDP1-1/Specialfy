@@ -4,12 +4,13 @@
             <div class="col-12 col-sm-8 col-md-6">
                 <form enctype="multipart/form-data" @submit.prevent="submitForm">
                     <h1 class="text-center">Add New Post</h1>
-
+<!--
                     <div class="form-group mb-3">
                         <label for="author">Author</label>
                         <input v-model="form.author" type="text" class="form-control" id="author" />
                         <span v-if="errors.author" class="text-danger">{{ errors.author }}</span>
                     </div>
+-->
                     <div class="form-group mb-3">
     <label for="category">Category</label>
     <select v-model="form.category_id" class="form-control" id="category">
