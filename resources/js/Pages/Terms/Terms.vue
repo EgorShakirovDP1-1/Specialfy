@@ -4,11 +4,10 @@
             <p class="text-center text-black header">
                 Terms
             </p>
-            <CreateTermModal :errors="$page.props.errors" />
 
             <div v-if="terms" class="container">
                 <div class="row">
-                    <div class="card bg-light .text-black mb-3 p-2" v-for="(term, index) in terms" :key="term.id">
+                    <div class="card text-black mb-3 p-2" v-for="(term, index) in terms" :key="term.id">
                         <div class="card-body">
                             <div class="d-lg-flex align-items-center justify-content-between mb-2">
                                 <div class="d-flex align-items-center">
@@ -32,9 +31,10 @@
                     </div>
                 </div>
             </div>
+            <CreateTermModal :errors="$page.props.errors" />
 
             <div v-if="terms.length == 0" class="text-center mt-2 h-75" aria-label="No Terms Message">
-                <h1>We have no Terms and conditions! :)</h1>
+                <h1>We have no Terms and conditions!</h1>
             </div>
         </section>
     </Layout>
@@ -81,4 +81,9 @@ export default {
     font-size: xx-large;
     font-weight: bold;
 }
+
+.card{
+    background-color: rgb(230,230,230);
+}
+
 </style>

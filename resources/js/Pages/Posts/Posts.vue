@@ -4,7 +4,7 @@
             <a :href="route('posts.create')" class="btn btn-dark py-3 px-5 align-items-center">
                 <div class="d-flex">
                     <p class="mb-0">
-                        Add New listings
+                        Create a listing
                     </p>
                 </div>
             </a>
@@ -25,7 +25,7 @@
                     <Search @search="handleSearch" />
                 </div>
 
-                <section class=" mt-2 rounded background">
+                <section class=" mt-2 rounded background me-2">
                     <div class="p-2">
                         <div class="container text-center">
                             <div class="row justify-content-between">
