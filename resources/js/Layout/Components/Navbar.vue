@@ -1,30 +1,32 @@
 <template>
     <section class="stick">
-        <div class="container px-0">
-            <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container me-4 px-0">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid px-0">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler mt-2 me-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                      
-                        <!-- LOGO -->
-                      
-                        <!-- LOGO -->
-                        <ul class="navbar-nav">
-                            <li class="nav-item d-flex align-items-start my-2">
+                    
+                    <ul class="navbar-nav">
+                            <li class="nav-item me-3 my-3">
                                 <Link :href="route('home')" aria-label="home page">
                                     <img class="logo" src="/public/images/logo.png" >
                                 </Link> 
                             </li>
                         </ul>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                      
+                        <!-- LOGO -->
+                      
+                        <!-- LOGO -->
+                        
 
 
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav ms-auto ps-4">
                             <!-- TERMS -->
-                            <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
+                            <li class="nav-item d-flex align-items-start me-4 my-2 my-lg-0">
                                 <Link :href="route('terms')" class="nav-link p-1"
                                     :class="{
                                         'text-black': !$page.url.includes('/terms'),
@@ -57,7 +59,7 @@
                                         }"
                                         aria-label="our privacy policy icon">
                                         </i>
-                                    Privacy Policy
+                                    Help & Legal
                                 </Link>
                             </li>
 
@@ -127,7 +129,7 @@
 
                             <!-- LOG OUT -->
                             <!-- LOG OUT -->
-                            <li v-if="$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0 me-0">
+                            <li v-if="$page.props.auth" class="nav-item d-flex align-items-center mt-2 mb-4 my-lg-0 me-0">
                                 <Link :href="route('logout')" class="nav-link p-1 text-black" aria-label="log out">
                                     <i class="bi bi-box-arrow-right text-black"
                                     aria-label="log out icon"></i>

@@ -1,13 +1,13 @@
 <template>
-    <footer class=" text-white text-center p-4 footer">
+    <footer class="text-center pb-2 border border-top footer">
         <div class="container">
 
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <ul class="nav justify-content-center mb-3">
                 <li class="nav-item">
                     <Link :href="route('home')" class="nav-link px-2 text-black" aria-label="home page">Home</Link>
                 </li>
                 <li class="nav-item">
-                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">Privacy Policy</Link>
+                    <Link :href="route('privacy')" class="nav-link px-2 text-black" aria-label="indexpriv policy page">Help & Legal</Link>
                 </li>
                 <li class="nav-item">
                     <Link :href="route('terms')" class="nav-link px-2 text-black"
@@ -47,10 +47,8 @@ export default {
 </script>
 
 <style scoped>
-
-
-</style>
-<style scoped>
-
+.footer{
+    margin-top: 110px;
+}
 
 </style>
