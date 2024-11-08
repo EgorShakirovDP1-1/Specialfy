@@ -1,5 +1,5 @@
 <template>
-    <section class="p-lg-5 bg-light pt-3 my-4" aria-labelledby="mobilityApproach">
+    <section class="p-lg-5 bg-light pt-3 my-4 border-white" aria-labelledby="mobilityApproach">
         <div class="container mt-4">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">

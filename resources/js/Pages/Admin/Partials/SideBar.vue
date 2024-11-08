@@ -40,7 +40,7 @@
                     </div>
                 </li>
                 <li>
-                    <Link :href="route('admin')" class="nav-link" :class="{
+                    <Link :href="route('terms')" class="nav-link" :class="{
                         'text-black':
                             !$page.url.includes('/admin/terms'),
                         'text-black': $page.url.includes('/admin/terms'),

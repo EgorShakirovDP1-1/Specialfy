@@ -4,7 +4,6 @@
         <Mobility :unknownImage="unknownImage" />
         <Advantages />
         <NewApproach :twentycentuaryfoxImage="twentycentuaryfoxImage" />
-        <Latest :posts="posts" />
         <GetStarted :getStartedURLs="getStartedURLs" />
         <FreeWatch :watchImage="watchImage" />
         <FAQ />
@@ -18,7 +17,6 @@ import Message from "./Components/Message.vue";
 import Lightweight from "./Components/Lightweight.vue";
 import Advantages from "./Components/Advantages.vue";
 import NewApproach from "./Components/NewApproach.vue";
-import Latest from "./Components/Latest.vue";
 import GetStarted from "./Components/GetStarted.vue";
 import FreeWatch from "./Components/FreeWatch.vue";
 import FAQ from "./Components/FAQ.vue";
@@ -31,7 +29,6 @@ export default {
         Lightweight,
         Advantages,
         NewApproach,
-        Latest,
         GetStarted,
         FreeWatch,
         FAQ,
