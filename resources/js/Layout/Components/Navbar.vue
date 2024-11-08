@@ -60,7 +60,23 @@
                                     Privacy Policy
                                 </Link>
                             </li>
-
+                            <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
+                                <Link :href="route('manual')" class="nav-link p-1"
+                                    :class="{
+                                        'text-black': !$page.url.includes('/manual'),
+                                        'text-white': $page.url.includes('/manual'),
+                                    }"
+                                    aria-label="rental terms page">
+                                        <i class="bi bi-info-circle"
+                                        :class="{
+                                            'text-black': !$page.url.includes('/manual'),
+                                            'text-white': $page.url.includes('/manual'),
+                                        }"
+                                        aria-label="rental terms icon">
+                                        </i>
+                                    Manual
+                                </Link>
+                            </li>
                             <!-- POSTS -->
                            
 

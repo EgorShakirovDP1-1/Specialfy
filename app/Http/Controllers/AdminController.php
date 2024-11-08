@@ -39,15 +39,15 @@ class AdminController extends Controller
 
    public function usersTable()
 {
-    $currentUser = auth()->id();
+        $currentUser = auth()->id();
 
-    // Fetch users excluding the currently authenticated user
-    $users = User::where('id', '!=', $currentUser)->paginate(10);
+        // Fetch users excluding the currently authenticated user
+        $users = User::where('id', '!=', $currentUser)->paginate(10);
 
-    return Inertia::render('Admin/Users', [
-        'users' => $users,
-        'currentUser' => $currentUser,
-    ]);
+        return Inertia::render('Admin/Users', [
+            'users' => $users,
+            'currentUser' => $currentUser,
+        ]);
 }
     
     public function PostsCharts()
