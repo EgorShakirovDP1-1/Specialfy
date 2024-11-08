@@ -1,6 +1,32 @@
 <template>
     <Layout>
-        <section class="mb-3 mx-3 border border-light" id="section">
+        <section class="mb-5 mx-3" id="section">
+            <p class="text-center text-black header">
+                User manual
+            </p>
+            <div class="rounded text-black mb-3 mx-5 p-4 maintext">
+                <h4>User Registration</h4>
+                If a user wants to become a specialist and create their own listings, they need to register their profile by clicking the “Sign Up” button, available at the top of any page on the site. In the registration page, the user must provide a username, email, and mobile phone number for clients to reach them, select whether they are a legal or natural person, create a password, and confirm it in the “Password Confirmation” field to ensure the password is entered correctly. The user’s phone number must consist of 8 to 12 digits, with an optional “+” symbol. The email should include characters before and after the “@” symbol to be considered valid. The password must be at least 3 characters long.
+                <br><br>
+
+                <h5>Login</h5>
+                After registration, the user can log into their account as a registered Specialfy user. To access their new profile, they need to click the “Log In” button in the top menu and enter the email and password used during registration. If the credentials are correct, the user will enter their account, which provides more options than a guest account.
+                <br><br>
+
+                <h5>Creating Listings</h5>
+                Once registered, the user will see an option to create a listing at the top of the listings page. By clicking the “Create a Listing” button, the user is taken to the listing creation page. Here, they should select the category for the listing, specify an approximate job price, and provide the listing title and description. The price has a validation rule and cannot exceed €99,999, with no more than two decimal places. Optionally, the user can add one image to the listing by clicking the file attachment button and choosing the desired image. Once all information is entered, the user clicks “Submit,” and if there are no errors, the listing is successfully created.
+                <br><br>
+
+                <h5>Listing Ratings</h5>
+                Once registered, the user can rate a listing positively or negatively. This can be done after entering the listing. A positive rating (thumbs up) increases the listing’s score by one point, while a negative rating (thumbs down) decreases it by one point. The user cannot rate both positively and negatively simultaneously. The total rating of a listing is visible in the overall listings list.
+                <br><br>
+
+                <h5>Comments</h5>
+                Comments provide a way to critique a product and include various aspects such as execution speed, quality, user comfort, etc. To write a comment, users must be logged into their account, select one of the listings/products, and open the details page. They should click on the comment button next to the rating buttons, which opens a comments modal. In the “Write a comment…” field, they can type their comment. To save the comment, they click the “Save” button. Please note that comments cannot be edited after saving; they can only be deleted. To delete a comment, click the red “trash” icon next to the comment.
+            </div>
+        </section>
+
+        <section class="mb-3 mx-3" id="section">
             <p class="text-center text-black header">
                 Privacy Policy
             </p>
@@ -75,6 +101,7 @@ export default {
 
 .header {
     font-size: xx-large;
+    font-weight: bold;
 }
 
 .maintext{

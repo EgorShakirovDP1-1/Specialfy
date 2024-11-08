@@ -1,5 +1,5 @@
 <template>
-    <div class="search-container">
+    <div class="search-container me-2">
         <input type="text" class="rounded form-control " @input="search" placeholder="Search for listings" aria-label="Search for post"
             aria-describedby="search-description">
     </div>

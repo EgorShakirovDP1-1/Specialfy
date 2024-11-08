@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-3">
+    <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mt-3">
         <button type="button" class="btn btn-danger pb-2" data-bs-toggle="modal"
             data-bs-target="#createTermModal">
             <div class="d-flex">
