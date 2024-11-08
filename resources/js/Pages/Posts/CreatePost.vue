@@ -23,7 +23,7 @@
 
                     <div class="form-group mb-3">
                         <label for="price">Price</label>
-                        <input v-model="form.price" type="number" class="form-control" id="price" />
+                        <input v-model="form.price" type="number" max="99999" step=".01" class="form-control" id="price" />
                         <span v-if="errors.price" class="text-danger">{{ errors.price }}</span>
                     </div>
 

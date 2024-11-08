@@ -26,7 +26,7 @@
                                 <label class="form-label text-black mb-1" for="phone_number">Phone number</label>
                                 <input type="tel" minlength="8" maxlength="11" v-model="form.phone_number" 
        id="phone_number" name="phone_number"
-       class="rounded form-control" placeholder="Enter a valid phone number"
+       class="rounded form-control" placeholder="+371XXXXXXXX"
        aria-label="phone number input" pattern="^\+?[0-9]{8,11}$" />
 
                                 <span id="phone-error" class="text-danger"></span>
@@ -41,7 +41,7 @@
                             <div class="form-outline">
                                 <label class="form-label text-black mb-1" for="email">Email address</label>
                                 <input type="email" v-model="form.email" id="email" name="email" class="rounded form-control "
-                                    placeholder="Enter a valid email address" aria-label="email input" />
+                                    placeholder="example@example.com" aria-label="email input" />
                             </div>
                             <div v-if="errors.email" class="d-block mt-1">
                                 <span class="fs-5 text-danger">
