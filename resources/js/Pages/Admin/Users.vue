@@ -11,7 +11,13 @@
                 <div class="overflow-auto col-md-9 mt-3">
                     <div class="d-flex justify-content-between" aria-label="users list header">
                         <h3>Users List</h3>
-                        
+                        <input
+                            type="text"
+                            v-model="searchFilter"
+                            class="form-control w-25"
+                            placeholder="Search users"
+                            aria-label="Search posts"
+                        />
                         
                     </div>
 
@@ -28,9 +34,25 @@
                         </thead>
                         <tbody>
                             <tr v-if="filteredUsers.length === 0">
+                            <tr v-if="filteredUsers.length === 0">
                                 <td colspan="6" aria-label="no users found">No users found.</td>
                             </tr>
                             <tr v-for="(user, id) in users.data" :key="user.id">
+        <td aria-label="user number">{{ id + 1 }}.</td>
+        <td aria-label="user name">{{ user.name }}</td>
+        <td aria-label="user email">{{ user.email }}</td>
+        <td aria-label="user role">{{ user.is_admin }}</td>
+        <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
+        <td class="text-end m-5 p-1" aria-label="user actions">
+            <div class="d-flex align-items-center">
+                <button 
+                    v-if="user.role !== 'admin'" 
+                    @click="makeAdmin(user.id)" 
+                    class="btn btn-sm btn-info me-2 fixed-height" 
+                    aria-label="make user admin">
+                    Make Admin
+                </button>
+                            <tr v-for="(user, id) in filteredUsers" :key="user.id">
     <td aria-label="user number">{{ id + 1 }}.</td>
     <td aria-label="user name">{{ user.name }}</td>
     <td aria-label="user email">{{ user.email }}</td>
@@ -117,6 +139,30 @@ export default {
 
         return { makeAdmin, destroy };
     },
+    data() {
+        return {
+            searchFilter: '', // Holds the search query
+        };
+    },
+    computed: {
+        filteredUsers() {
+            let users = this.users.data;
+
+            if (this.searchFilter) {
+                const searchQuery = this.searchFilter.toLowerCase();
+
+                users = users.filter(user => {
+                    return (
+                        (user && user.name && user.name.toLowerCase().includes(searchQuery)) ||
+                        (user.email && user.email && user.email.toLowerCase().includes(searchQuery)) 
+                        
+                    );
+                });
+            }
+
+            return users;
+        }
+    }
     data() {
         return {
             searchFilter: '', // Holds the search query
