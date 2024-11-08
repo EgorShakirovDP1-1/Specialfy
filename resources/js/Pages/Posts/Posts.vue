@@ -115,7 +115,11 @@ export default {
         images: {
             type: Array,
             required: true
-        }
+        },
+        categories: { // Receive categories as a prop
+            type: Array,
+            required: true
+        },
     },
     data() {
         return {
@@ -124,6 +128,8 @@ export default {
             searchFilter: '',
             pricePerWatchFilter: '',
             pricePerSubscribtionFilter: '',
+            selectedCategory: null, // Holds the selected category ID
+            searchFilter: '',
             
            
            
@@ -146,7 +152,10 @@ export default {
         handleSetPriceFilter(price) {
             this.priceFilter = price;
         },
-        
+        handleSetCategoryFilter(categoryId) {
+            this.selectedCategory = categoryId; // Update the selected category
+        },
+
        
        
        
@@ -173,7 +182,9 @@ export default {
         if (this.pricePerSubscribtionFilter !== '') {
             posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
         }
-
+        if (this.selectedCategory) {
+                posts = posts.filter(post => post.category_id === this.selectedCategory);
+            }
         // Apply search filter if set
         if (this.searchFilter !== '') {
             const searchQuery = this.searchFilter.toLowerCase();

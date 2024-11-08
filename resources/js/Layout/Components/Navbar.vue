@@ -11,6 +11,8 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                       
                         <!-- LOGO -->
+                      
+                        <!-- LOGO -->
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-start my-2">
                                 <Link :href="route('home')" aria-label="home page">
@@ -18,6 +20,7 @@
                                 </Link> 
                             </li>
                         </ul>
+
 
                         <ul class="navbar-nav">
                             <!-- TERMS -->
@@ -59,6 +62,9 @@
                             </li>
 
                             <!-- POSTS -->
+                           
+
+                            <!-- POSTS -->
                             <li class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
                                 <Link :href="route('posts')" class="nav-link p-1"
                                     :class="{
@@ -77,6 +83,7 @@
                                 </Link>
                             </li>
 
+                            <!-- PROFILE PAGE -->
                             <!-- PROFILE PAGE -->
                             <li v-if="$page.props.auth"
                             class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
@@ -98,6 +105,7 @@
                             </li>
 
                             <!-- ADMIN PANEL -->
+                            <!-- ADMIN PANEL -->
                             <li v-if="$page.props.auth && $page.props.isAdmin"
                             class="nav-item d-flex align-items-center me-4 my-2 my-lg-0">
                                 <Link :href="route('admin')" class="nav-link p-1"
@@ -117,6 +125,7 @@
                                 </Link>
                             </li>
 
+                            <!-- LOG OUT -->
                             <!-- LOG OUT -->
                             <li v-if="$page.props.auth" class="nav-item d-flex align-items-center my-2 my-lg-0 me-0">
                                 <Link :href="route('logout')" class="nav-link p-1 text-black" aria-label="log out">
@@ -163,6 +172,7 @@
                                     Sign up
                                 </Link>
                             </li>
+
 
                         </ul>
                     </div>
