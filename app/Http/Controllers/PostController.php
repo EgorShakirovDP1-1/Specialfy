@@ -21,13 +21,16 @@ class PostController extends Controller
 {
     $categories = Category::all(); // Fetch all categories
 
-    $posts = Post::with(['user', 'category'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
+    $posts = Post::with(['user', 'category', 'pictures'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
         // Check if the post is liked by the authenticated user
         $isLikedByUser = auth()->user() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
 
         $like_count = $post->likes()->where('value', '1')->count();
         $dislike_count = $post->likes()->where('value', '0')->count();
         $rating = $like_count - $dislike_count;
+
+        // Get the first image from the pictures relationship, if available
+        $firstImage = $post->pictures->first()?->path_to_img;
 
         return [
             'id' => $post->id,
@@ -40,10 +43,11 @@ class PostController extends Controller
             'rating' => $rating,
             'likesCount' => $like_count,
             'isLikedByUser' => $isLikedByUser,
+            'postImage' => $firstImage, // Add the first image path
         ];
     });
 
-    return Inertia::render('Posts/Posts', [
+    return inertia('Posts/Posts', [
         'posts' => $posts,
         'categories' => $categories, // Pass categories to the component
     ]);
@@ -108,7 +112,6 @@ class PostController extends Controller
         
     public function create()
     {
-        
         $categories = Category::all();
         return Inertia::render('Posts/CreatePost',
     ['categories' => $categories]);
