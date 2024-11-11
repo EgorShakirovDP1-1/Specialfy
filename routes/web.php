@@ -98,7 +98,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
     Route::get('/posts/table', [AdminController::class, 'postsTable'])->name('admin.posts');
    //Route::get('/posts/table', [AdminController::class, 'index'])->name('admin.users');
-    Route::get('/posts/charts', [AdminController::class, 'postsCharts'])->name('admin.posts.charts');
+    Route::get('/posts/charts', [AdminController::class, 'showStatistics'])->name('admin.posts.charts');
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
     
 });
