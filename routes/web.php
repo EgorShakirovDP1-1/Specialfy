@@ -66,7 +66,7 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
 // Route::get('/privacypolicy', [TermController::class, 'indexpriv'])->name('privacypolicy');
 
 //learn
-Route::get('/learn', [LearnController::class, 'index'])->name('learn');
+
 
 //posts
 Route::prefix('Posts')->group(function () {
