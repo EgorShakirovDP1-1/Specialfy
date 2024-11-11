@@ -8,7 +8,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Comment;
 
-
+use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index()
@@ -37,18 +37,32 @@ class AdminController extends Controller
         return Inertia::render('Admin/Posts', ['posts' => $posts]);
     }
 
-   public function usersTable()
-{
+    public function usersTable(Request $request)
+    {
         $currentUser = auth()->id();
-
-        // Fetch users excluding the currently authenticated user
-        $users = User::where('id', '!=', $currentUser)->paginate(10);
-
+    
+        // Initialize query excluding the current user
+        $query = User::where('id', '!=', $currentUser);
+    
+        // Check if a search query is present
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('id', 'like', "%{$search}%");
+            });
+        }
+    
+        // Paginate after filtering
+        $users = $query->paginate(10)->withQueryString();
+    
         return Inertia::render('Admin/Users', [
             'users' => $users,
             'currentUser' => $currentUser,
+            'filters' => $request->only(['search']),
         ]);
-}
+    }
     
     public function PostsCharts()
     {
