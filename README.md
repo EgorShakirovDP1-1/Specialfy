@@ -51,7 +51,7 @@ Specialfy is a new experience in online post watching industry. With that being 
 
   
   ```bash
-  git clone https://github.com/EgorShakirovDP1-1/FH.git](https://github.com/EgorShakirovDP1-1/Specialfy.git
+  git clone https://github.com/EgorShakirovDP1-1/Specialfy.git
   ```
 
 
