@@ -1,5 +1,5 @@
-# Post Hunter (Beta)
-Post Hunter is a new experience in online post watching industry. With that being said, Post Hunter offers you a large catalogue of movies, as much as you have ever wished.
+# Specialfy (Beta)
+Specialfy is a new experience in online post watching industry. With that being said, Post Hunter offers you a large catalogue of movies, as much as you have ever wished.
 
   
 
@@ -51,7 +51,7 @@ Post Hunter is a new experience in online post watching industry. With that bein
 
   
   ```bash
-  git clone https://github.com/EgorShakirovDP1-1/FH.git](https://github.com/EgorShakirovDP1-1/FH3--------.git
+  git clone https://github.com/EgorShakirovDP1-1/FH.git](https://github.com/EgorShakirovDP1-1/Specialfy.git
   ```
 
 
@@ -61,7 +61,7 @@ Post Hunter is a new experience in online post watching industry. With that bein
 
 ```bash
 
-cd FH3--------
+cd Specialfy
 
 ```
 
