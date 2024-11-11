@@ -44,6 +44,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import Layout from "../../Layout/App.vue";
 
 const props = defineProps({
     errors: Object,
@@ -51,7 +52,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    author: "",
+  
     category_id: "",
     title: "",
     text: "",

@@ -35,7 +35,7 @@
                                 <!-- LISTING CARDS -->
                                 <div class="d col-lg-3 col-md-5 py-4 px-4 m-3 bg-light text-black border-primary rounded d-flex flex-column"
                                     v-for="post in filteredPosts" :key="post.id" role="listitem">
-                                    <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Listing Image" />
+                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid" alt="Post Image" />
                                     <div class="d-body flex-grow-1">
                                         <h3 class="d-title">
                                              {{ post.title }}
