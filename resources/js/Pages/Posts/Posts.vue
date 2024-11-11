@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                         <p class="text-black mb-0">
-                                            {{ post.category_id.name }}
+                                            {{ post.category_name}}
                                         </p>
                                         <p class="text-black">
                                             Price: {{ post.price }}€
@@ -65,6 +65,7 @@
                                                 <i class="bi h4 text-danger ms-1 mt-1"
                                                     :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
                                                     aria-label="Like"></i>
+                                               
                                             </div>
                                         </button>
 
@@ -183,7 +184,7 @@ export default {
             posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
         }
         if (this.selectedCategory) {
-                posts = posts.filter(post => post.category_id === this.selectedCategory);
+                posts = posts.filter(post => post.category_name === this.selectedCategory);
             }
         // Apply search filter if set
         if (this.searchFilter !== '') {
@@ -194,9 +195,10 @@ export default {
                 return (
                    
                     (post.title && post.title.toLowerCase().includes(searchQuery)) ||
-                    (post.category_id.name && post.category_id.name.toLowerCase().includes(searchQuery)) ||
+                   
                     (post.text && post.text.toLowerCase().includes(searchQuery))
                 );
+                
             });
         }
 

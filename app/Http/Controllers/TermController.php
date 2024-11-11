@@ -37,4 +37,7 @@ class TermController extends Controller
     public function privacy() {
         return Inertia::render('Terms/PrivacyPolicy');
     }
+    public function manual() {
+        return Inertia::render('Terms/userManual');
+    }
 }

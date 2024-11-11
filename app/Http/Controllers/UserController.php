@@ -95,7 +95,9 @@ class UserController extends Controller
 
         if ($user) {
             auth()->logout();
+            User::find($user_id)->delete();
             $user->delete();
+            
 
             return redirect()->route('home')->with('message', 'User deleted successfully!');
         }
@@ -121,7 +123,9 @@ class UserController extends Controller
     }
 
     // Удаляем пользователя, если все условия выполнены
+    User::find($user_id)->delete();
     $user->delete();
+    
 
     return redirect()->route('home')->with('message', 'Пользователь успешно удален!');
 }

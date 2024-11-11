@@ -50,6 +50,35 @@
                             </div>
                         </div>
                         <div class="mb-3">
+    <div class="form-outline">
+        <label class="form-label text-black mb-1" for="user-type">Who are you</label>
+        
+        <!-- Buttons to set user_type to either 0 or 1 -->
+        <button 
+            type="button" 
+            @click="form.user_type = 0" 
+            :class="{'btn-primary': form.user_type === 0, 'btn-outline-primary': form.user_type !== 0}" 
+            class="rounded btn me-2">
+            User Type 0
+        </button>
+        
+        <button 
+            type="button" 
+            @click="form.user_type = 1" 
+            :class="{'btn-primary': form.user_type === 1, 'btn-outline-primary': form.user_type !== 1}" 
+            class="rounded btn">
+            User Type 1
+        </button>
+    </div>
+
+    <!-- Error display for user_type -->
+    <div v-if="errors.user_type" class="d-block mt-1">
+        <span class="fs-5 text-danger">
+            {{ errors.user_type }}
+        </span>
+    </div>
+</div>
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label text-black mb-1" for="password">Password</label>
                                 <input type="password" v-model="form.password" id="password" name="password"
@@ -111,6 +140,7 @@ export default {
             name: "",
             phone_number: "",
             email: "",
+            user_type: "",
             password: "",
             password_confirmation: "",
         })
