@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Term;
 use App\Models\User;
+use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Comment;
 
@@ -50,23 +51,23 @@ class AdminController extends Controller
     ]);
 }
     
-    public function PostsCharts()
-    {
-        // Fetch posts with their categories as a collection
-        $posts = Post::with('category')->get();
-    
-        // Group posts by year or category name (depending on what 'name' refers to)
-        $postsGroupedByYear = $posts->groupBy(function ($post) {
-            return $post->created_at->format('Y');  // Group by the year the post was created
-        });
-    
-        // Map the grouped posts to get the count for each year
-        $postsCountByYear = $postsGroupedByYear->map(function ($postsInYear) {
-            return $postsInYear->count();
-        });
-    
-        // Return the data to Inertia
-        return Inertia::render('Admin/PostsCharts', ['postsCountByYear' => $postsCountByYear]);
-    }
+public function showStatistics()
+{
+    $postsCountByCategory = Post::select('category_id')
+        ->with('category')
+        ->get()
+        ->groupBy('category_id')
+        ->map(function ($posts, $categoryId) {
+            return [
+                'category' => Category::find($categoryId)->name ?? 'Unknown',
+                'count' => $posts->count(),
+            ];
+        })
+        ->values();
+
+    return inertia('Admin/PostsCharts', [
+        'postsCountByCategory' => $postsCountByCategory,
+    ]);
+}
     
 }
