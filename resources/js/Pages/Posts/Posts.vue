@@ -14,10 +14,7 @@
             <div class="left">
                 <Sort @sort="handleSort" />
 
-                <Filter  @setCategoryFilter="handleSetCategoryFilter"
-                    @setRatingFilter="handleRatingFilter" 
-                   
-                     />
+                <Filter :categories="categories" @setCategoryFilter="handleSetCategoryFilter" />
             </div>
 
             <div class="right w-75">
@@ -176,13 +173,10 @@ export default {
         }
     },
     computed: {
-    filteredPosts() {
+        filteredPosts() {
         let posts = this.posts;
 
-        // Apply price filter if set
-        if (this.pricePerSubscribtionFilter !== '') {
-            posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
-        }
+        // Filter by selected category name
         if (this.selectedCategory) {
                 posts = posts.filter(post => post.category_name === this.selectedCategory);
             }
