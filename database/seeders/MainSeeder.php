@@ -18,6 +18,7 @@ class MainSeeder extends Seeder
             TermsSeeder::class,
             UserTableSeeder::class,
             PostsSeeder::class,
+            PicturesSeeder::class,
             LikesTableSeeder::class,
             CommentsSeeder::class,
             // ImageSeeder::class,
