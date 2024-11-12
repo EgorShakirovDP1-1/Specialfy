@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar', 255)->nullable();
             $table->boolean('user_type')-> default(false);
-            $table->date('last_login') ->default(Date("Y-m-d"));
+            $table->timestamp('last_login') ->nullable()->default(Date("Y-m-d"));
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LikeController;
+
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -54,7 +54,7 @@ Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
-Route::get('/manual', [TermController::class, 'manual'])->name('manual');
+
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
     Route::put('/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
@@ -72,7 +72,7 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
 Route::prefix('Posts')->group(function () {
     // Route::post('/{postId}/toggle-like', [PostController::class, 'toggleLike']);
     Route::get('/', [PostController::class, 'index'])->name('posts');
-
+   
     Route::get('/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
     Route::post('/create', [PostController::class, 'store'])->name('posts.create');
 
