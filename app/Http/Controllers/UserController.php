@@ -96,14 +96,31 @@ class UserController extends Controller
 
         return back()->with('success', 'User has been given admin rights.');
     }
+
+        public function removeAdmin(User $user)
+    {
+        // Check if the user is already an admin
+        if ($user->is_admin) {
+            // Remove admin privileges
+            $user->is_admin = 0;
+            $user->save();
+
+            // Optional: Return a success message
+            return redirect()->back()->with('success', 'Admin privileges removed successfully.');
+        }
+
+        // Optional: Return an error message if the user was not an admin
+        return redirect()->back()->with('error', 'User is not an admin.');
+    }
+
     public function destroy($id) {
         $user = User::find($id);
 
         if ($user) {
             auth()->logout();
-            User::find($user_id)->delete();
+            User::find($id)->delete();
             $user->delete();
-            
+
 
             return redirect()->route('home')->with('message', 'User deleted successfully!');
         }

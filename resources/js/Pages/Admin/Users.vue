@@ -45,21 +45,31 @@
         <td aria-label="user role">{{ user.is_admin }}</td>
         <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
         <td class="text-end m-5 p-1" aria-label="user actions">
-            <div class="d-flex align-items-center">
+            <div class="d-flex flex-column align-items-center justify-content-center">
                 <button 
-                    v-if="user.role !== 'admin'" 
+                    v-if="!user.is_admin" 
                     @click="makeAdmin(user.id)" 
-                    class="btn btn-sm btn-info me-2 fixed-height" 
+                    class="btn btn-sm btn-info me-1 mb-2" 
                     aria-label="make user admin">
                     Make Admin
                 </button>
                 <button 
-                    v-if="user.id !== currentUser" 
-                    @click="destroy(user.id)" 
-                    class="btn btn-sm btn-danger fixed-height" 
-                    aria-label="delete user">
-                    Delete
+                    v-else 
+                    @click="deleteAdmin(user.id)" 
+                    class="btn btn-sm btn-warning me-1 mb-2" 
+                    aria-label="delete admin">
+                    Delete Admin
                 </button>
+                <!-- <div class="d-flex justify-content-center align-items-center"> -->
+                    <!-- <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button> -->
+                    <button 
+                        v-if="user.id !== currentUser" 
+                        @click="destroy(user.id)" 
+                        class="btn btn-sm btn-danger fixed-width" 
+                        aria-label="delete user">
+                        Delete
+                    </button>
+                <!-- </div> -->
             </div>
         </td>
     </tr>
@@ -118,6 +128,12 @@ export default {
             }
         };
 
+        const deleteAdmin = (id) => {
+            if (confirm("Are you sure you want to remove admin privileges from this user?")) {
+                router.patch(route('users.remove-admin', { user: id }));
+            }
+        };
+
         const destroy = (id) => {
             if (id === props.currentUser) {
                 alert("You cannot delete your own account.");
@@ -126,7 +142,7 @@ export default {
             }
         };
 
-        return { searchQuery, filteredUsers, makeAdmin, destroy };
+        return { searchQuery, filteredUsers, makeAdmin, deleteAdmin, destroy };
     }
 };
 </script>

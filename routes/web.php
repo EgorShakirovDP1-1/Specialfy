@@ -49,6 +49,9 @@ Route::middleware('auth')->prefix('profile/{user}')->group(function () {
 Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
     ->name('users.make-admin');
 
+Route::patch('/remove-admin', [UserController::class, 'removeAdmin'])
+    ->name('users.remove-admin');
+
 });
 
 //terms

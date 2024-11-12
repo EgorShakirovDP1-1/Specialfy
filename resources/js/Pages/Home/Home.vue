@@ -5,7 +5,7 @@
         <Advantages />
         <NewApproach :twentycentuaryfoxImage="twentycentuaryfoxImage" />
         <GetStarted :getStartedURLs="getStartedURLs" />
-        <FreeWatch :watchImage="watchImage" />
+        <FindYourService :watchImage="watchImage" />
         <FAQ />
         <ContactUs />
     </Layout>
@@ -18,7 +18,7 @@ import Lightweight from "./Components/Lightweight.vue";
 import Advantages from "./Components/Advantages.vue";
 import NewApproach from "./Components/NewApproach.vue";
 import GetStarted from "./Components/GetStarted.vue";
-import FreeWatch from "./Components/FreeWatch.vue";
+import FindYourService from "./Components/FindYourService.vue";
 import FAQ from "./Components/FAQ.vue";
 import ContactUs from "./Components/ContactUs.vue";
 
@@ -30,7 +30,7 @@ export default {
         Advantages,
         NewApproach,
         GetStarted,
-        FreeWatch,
+        FindYourService,
         FAQ,
         ContactUs,
     },
