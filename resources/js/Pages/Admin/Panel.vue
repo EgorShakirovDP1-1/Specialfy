@@ -7,16 +7,15 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row my-3">
-                        <UsersCount :users="users" aria-label="users count" />
-                        <AdminsCount :admins="admins" aria-label="admins count" />
+                        <UsersCount :users="users" aria-label="users count" class="label-size" />
+                        <AdminsCount :admins="admins" aria-label="admins count" class="label-size" />
                     </div>
                     <div class="row">
-                        <PostsCount :posts="posts" aria-label="posts count" />
-                        <TermsCount :terms="terms" aria-label="terms count" />
+                        <PostsCount :posts="posts" aria-label="posts count" class="label-size" />
+                        <TermsCount :terms="terms" aria-label="terms count" class="label-size" />
                     </div>
                     <div class="row my-3">
-                        <CommentsCount :comments="comments" aria-label="comments count" />
-                       
+                        <CommentsCount :comments="comments" aria-label="comments count" class="label-size" />
                     </div>
                 </div>
             </div>
@@ -32,8 +31,7 @@ import UsersCount from "./Partials/UsersCount.vue";
 import PostsCount from "./Partials/PostsCount.vue";
 import AdminsCount from './Partials/AdminsCount.vue';
 import TermsCount from './Partials/TermsCount.vue';
-import CommentsCount from './Partials/CommentsCount.vue'
-
+import CommentsCount from './Partials/CommentsCount.vue';
 
 export default {
     components: {
@@ -45,8 +43,6 @@ export default {
         AdminsCount,
         TermsCount,
         CommentsCount,
-        
-       
     },
     props: {
         users: {
@@ -69,10 +65,13 @@ export default {
             type: Number,
             required: true,
         },
-       
     },
 };
-
 </script>
 
-<style></style>
+<style scoped>
+.label-size {
+    font-size: 1rem; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: make the text bold */
+}
+</style>
