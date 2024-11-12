@@ -90,13 +90,14 @@ class PostController extends Controller
     $comments = $comments->map(function ($comment) {
         return [
             'comment' => $comment->comment,
-            'profilePhoto' => $comment->user->getImageURL(),
-            'name' => $comment->user->name,
-            'user_id' => $comment->user->id,
+            'profilePhoto' => optional($comment->user)->getImageURL() ?? 'default-profile.png', // Default profile image
+            'name' => optional($comment->user)->name ?? 'Unknown User', // Default name
+            'user_id' => optional($comment->user)->id,
             'id' => $comment->id,
             'post_id' => $comment->post_id,
             'editing' => true,
         ];
+        
     });
 
     // Pass the post, images, and other necessary data to the view

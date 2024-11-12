@@ -3,10 +3,10 @@
         <div class="container p-4">
             <div class="row justify-content-between align-items-center">
                 <div class="text-warning col-lg-6">
-                    <h1 class="text-warning" id="getStartedHeading">Easy to get started!</h1>
-                    <p class="lead .text-black">1. Register an account!</p>
-                    <p class="lead .text-black">2. Choose to search or provide a service!</p>
-                    <p class="lead .text-black">3. Enjoy!</p>
+                    <h1 class="text-black" id="getStartedHeading">Easy to get <span class="text-danger">started!</span></h1>
+                    <p class="lead text-black">1. <span class="text-danger">Register</span> an account!</p>
+                    <p class="lead text-black">2. Choose to <span class="text-danger">search or provide</span> a service!</p>
+                    <p class="lead text-black">3. <span class="text-danger">Enjoy!</span></p>
                 </div>
                 <div id="carouselPosts" class="ousel slide col-lg-6" data-bs-ride="ousel" aria-hidden="true">
                     <div class="carousel-inner">

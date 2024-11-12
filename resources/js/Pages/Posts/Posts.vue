@@ -62,6 +62,7 @@
                                                 <i class="bi h4 text-danger ms-1 mt-1"
                                                     :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
                                                     aria-label="Like"></i>
+                                               
                                             </div>
                                         </button>
 
