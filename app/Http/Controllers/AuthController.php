@@ -42,6 +42,8 @@ class AuthController extends Controller
         if(auth()->attempt($request->validated())){
             request()->session()->regenerate();
 
+            auth()->user()->update(['last_login' => now()]);
+
             return redirect()->route('home')->with('message', 'Logged in successfully!');
         };
 

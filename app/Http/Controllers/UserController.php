@@ -134,7 +134,7 @@ class UserController extends Controller
 
     // Проверка, если пользователь пытается удалить сам себя
     if ($user_id === $currentUser->id) {
-        return redirect()->route('home')->with('message', 'Вы не можете удалить свой собственный аккаунт!');
+        return redirect()->route('home')->with('message', 'You can\'t delete yourself!');
     }
 
     // Находим пользователя по ID
@@ -142,7 +142,7 @@ class UserController extends Controller
 
     // Проверка, существует ли пользователь
     if (!$user) {
-        return redirect()->route('home')->with('message', 'Пользователь не найден!');
+        return redirect()->route('home')->with('message', 'User not found!');
     }
 
     // Удаляем пользователя, если все условия выполнены
@@ -150,6 +150,6 @@ class UserController extends Controller
     $user->delete();
     
 
-    return redirect()->route('home')->with('message', 'Пользователь успешно удален!');
+    return redirect()->route('home')->with('message', 'User deleted succesfully!');
 }
 }

@@ -32,18 +32,18 @@
                                 <!-- LISTING CARDS -->
                                 <div class="d col-lg-3 col-md-5 py-4 px-4 m-3 bg-light text-black border-primary rounded d-flex flex-column"
                                     v-for="post in filteredPosts" :key="post.id" role="listitem">
-                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid" alt="Post Image" />
+                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid rounded" alt="Post Image" />
                                     <div class="d-body flex-grow-1">
                                         <h3 class="d-title">
                                              {{ post.title }}
                                         </h3>
                                         <div class="post-images">
                                             <div v-for="image in images" :key="image.id" class="post-image">
-                                                <img :src="getImageUrl(image.path_to_img)" alt="Listing Image" />
+                                                <img :src="getImageUrl(image.path_to_img)" alt="Listing Image"/>
                                             </div>
                                         </div>
                                         <p class="text-black mb-0">
-                                            {{ post.category_name}}
+                                            {{ post.category_name }}
                                         </p>
                                         <p class="text-black">
                                             Price: {{ post.price }}€
@@ -56,13 +56,16 @@
                                             <i class="bi bi-chevron-right"></i> Read More
                                         </Link>
                                         
-                                        <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none">
+                                        <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ post.rating }}
-                                                <i class="bi h4 text-danger ms-1 mt-1"
-                                                    :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
-                                                    aria-label="Like"></i>
-                                               
+                                                <i class="bi h4 ms-1 mt-1 bi-star-fill"
+                                                    :class="[
+                                                        post.rating > 0 ? 'text-success' :
+                                                        post.rating < 0 ? 'text-danger' :
+                                                        'text-secondary'
+                                                    ]"
+                                                    aria-label="Rating"></i>
                                             </div>
                                         </button>
 
@@ -178,27 +181,7 @@ export default {
 
         // Filter by selected category name
         if (this.selectedCategory) {
-                posts = posts.filter(post => post.category_name === this.selectedCategory);
-            }
-        // Apply search filter if set
-        if (this.searchFilter !== '') {
-            const searchQuery = this.searchFilter.toLowerCase();
-
-            posts = posts.filter(post => {
-                // Safely check if each property exists and matches the search query
-                return (
-                   
-                    (post.title && post.title.toLowerCase().includes(searchQuery)) ||
-                   
-                    (post.text && post.text.toLowerCase().includes(searchQuery))
-                );
-                
-            });
-        }
-
-        // Apply sorting if any sorted posts are available
-        if (this.sortedPosts.length > 0) {
-            posts = this.sortedPosts;
+            posts = posts.filter(post => post.category_name === this.selectedCategory);
         }
 
         return posts;

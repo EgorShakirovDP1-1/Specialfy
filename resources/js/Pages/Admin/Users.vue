@@ -2,8 +2,8 @@
     <Layout>
         <div class="container">
             <div v-if="$page.props.flash.success" class="alert alert-success">
-            {{ $page.props.flash.success }}
-        </div>
+                {{ $page.props.flash.success }}
+            </div>
             <div class="row">
                 <div class="col-lg-3">
                     <SideBar aria-label="sidebar navigation" />
@@ -17,10 +17,7 @@
                         @input="filteredUsers" 
                         placeholder="Search by name, ID, or email" 
                         class="form-control w-25"
-                        aria-label="user search input"
-                    />
-                    
-                        
+                        aria-label="user search input"/>    
                     </div>
 
                     <table class="table" aria-label="users list table">
@@ -30,11 +27,11 @@
                                 <th class="text-center" aria-label="name column">Name</th>
                                 <th class="text-center" aria-label="email column">Email</th>
                                 <th class="text-center" aria-label="role column">Role</th>
-                                <th class="text-center" style="min-width: 150px;" aria-label="created at column">Created At</th>
+                                <th class="text-center" style="min-width: 150px;" aria-label="created at column">Last login</th>
                                 <th class="text-center text-end" aria-label="actions column ">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                    <tbody>
     <tr v-if="users.data.length === 0">
         <td colspan="6" aria-label="no users found">No users found.</td>
     </tr>
@@ -43,22 +40,45 @@
         <td aria-label="user name">{{ user.name }}</td>
         <td aria-label="user email">{{ user.email }}</td>
         <td aria-label="user role">{{ user.is_admin }}</td>
-        <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
+        <td aria-label="user created at">{{ new Date(user.last_login).toLocaleDateString() }}</td>
         <td class="text-end m-5 p-1" aria-label="user actions">
             <div class="d-flex flex-column align-items-center justify-content-center">
+                
                 <button 
                     v-if="!user.is_admin" 
                     @click="makeAdmin(user.id)" 
-                    class="btn btn-sm btn-info me-1 mb-2" 
+                    class="btn btn-sm btn-info me-1 mb-2 fixed-width" 
                     aria-label="make user admin">
                     Make Admin
                 </button>
+
+                <button 
+                    v-else 
+                    @click="deleteAdmin(user.id)" 
+                    class="btn btn-sm btn-warning me-1 mb-2 fixed-width" 
+                    aria-label="delete admin">
+                    Delete Admin
+                </button>
+
+                <button
+                    class="btn btn-sm btn-dark me-1 mb-2 fixed-width"
+                    aria-label="edit user"
+                    @click="edit(user.id)">
+                    Edit
+                </button>
+
                 <button 
                     v-else 
                     @click="deleteAdmin(user.id)" 
                     class="btn btn-sm btn-warning me-1 mb-2" 
                     aria-label="delete admin">
                     Delete Admin
+                    
+                    v-if="user.id !== currentUser" 
+                    @click="destroy(user.id)" 
+                    class="btn btn-sm btn-danger mb-2 fixed-width" 
+                    aria-label="delete user">
+                    Delete
                 </button>
                 <!-- <div class="d-flex justify-content-center align-items-center"> -->
                     <!-- <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button> -->
@@ -142,7 +162,11 @@ export default {
             }
         };
 
-        return { searchQuery, filteredUsers, makeAdmin, deleteAdmin, destroy };
+        const edit = (id) => {
+                router.get(route("edit", { user: id }));     
+        };
+
+        return { searchQuery, filteredUsers, makeAdmin, deleteAdmin, destroy, edit };
     }
 };
 </script>

@@ -2,20 +2,44 @@
     <Layout>
         <div class="container">
             <div class="row">
+                <!-- Sidebar -->
                 <div class="col-lg-3">
                     <SideBar aria-label="sidebar navigation" />
                 </div>
+                
+                <!-- Main Content -->
                 <div class="col-lg-9">
-                    <div class="row my-3">
-                        <UsersCount :users="users" aria-label="users count" class="label-size" />
-                        <AdminsCount :admins="admins" aria-label="admins count" class="label-size" />
-                    </div>
-                    <div class="row">
-                        <PostsCount :posts="posts" aria-label="posts count" class="label-size" />
-                        <TermsCount :terms="terms" aria-label="terms count" class="label-size" />
-                    </div>
-                    <div class="row my-3">
-                        <CommentsCount :comments="comments" aria-label="comments count" class="label-size" />
+                    <div class="row g-2"> <!-- Changed from g-1 to g-2 for slightly larger gaps -->
+                        <!-- First Row -->
+                        <div class="col-md-6 px-2"> <!-- Changed from px-1 to px-2 for slightly larger padding -->
+                            <div class="panel-wrapper h-100">
+                                <UsersCount :users="users" class="panel-element" aria-label="users count" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-2">
+                            <div class="panel-wrapper h-100">
+                                <AdminsCount :admins="admins" class="panel-element" aria-label="admins count" />
+                            </div>
+                        </div>
+                        
+                        <!-- Second Row -->
+                        <div class="col-md-6 px-2">
+                            <div class="panel-wrapper h-100">
+                                <PostsCount :posts="posts" class="panel-element" aria-label="posts count" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-2">
+                            <div class="panel-wrapper h-100">
+                                <TermsCount :terms="terms" class="panel-element" aria-label="terms count" />
+                            </div>
+                        </div>
+                        
+                        <!-- Third Row -->
+                        <div class="col-md-6 px-2">
+                            <div class="panel-wrapper h-100">
+                                <CommentsCount :comments="comments" class="panel-element" aria-label="comments count" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,5 +97,23 @@ export default {
 .label-size {
     font-size: 1rem; /* Adjust the size as needed */
     font-weight: bold; /* Optional: make the text bold */
+}
+.panel-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.panel-wrapper :deep(.panel) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.1rem 0; /* Reduced vertical margin */
+}
+.panel-element {
+    width: 100%;
+    max-height: 180px;
+    padding: 10px !important;
 }
 </style>

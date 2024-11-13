@@ -24,7 +24,7 @@
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Autor :
+                                            Author :
                                         </p>
                                         <span class="">{{ post.user_id }}</span>
                                     </li>
@@ -45,24 +45,33 @@
                                 </ul>
                                 <div class="d-flex">
                                     <div>
+                                        <!-- Like Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48"
-                                                @click="toggleLike(post.id)">
+                                                class="btn btn-light border-none px-2 py-0 btn-48 like-button"
+                                                :class="{ 'animate-click': isLikeAnimating }"
+                                                @click="handleLikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
-                                                {{ post.likesCount || 0 }}  <!-- Display 0 if undefined -->
-                                                <i class="bi h4 text-success ms-1 mt-2"
-                                                :class="{ 'bi-hand-thumbs-up-fill': post.isLikedByUser, 'bi-hand-thumbs-up': !post.isLikedByUser }"></i>
+                                                {{ post.likesCount || 0 }}
+                                                <i class="bi h4 ms-1 mt-1"
+                                                :class="{
+                                                    'bi-hand-thumbs-up-fill text-success': post.isLikedByUser,
+                                                    'bi-hand-thumbs-up text-success': !post.isLikedByUser
+                                                }"></i>
                                             </div>
                                         </button>
 
                                         <!-- Dislike Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48"
-                                                @click="toggleDislike(post.id)">
+                                                class="btn btn-light border-none px-2 py-0 btn-48 dislike-button"
+                                                :class="{ 'animate-click': isDislikeAnimating }"
+                                                @click="handleDislikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
-                                                {{ post.dislikesCount || 0 }}  <!-- Display 0 if undefined -->
-                                                <i class="bi h4 text-danger ms-1 mt-2"
-                                                :class="{ 'bi-hand-thumbs-down-fill': post.isDislikedByUser, 'bi-hand-thumbs-down': !post.isDislikedByUser }"></i>
+                                                {{ post.dislikesCount || 0 }}
+                                                <i class="bi h4 ms-1 mt-1"
+                                                :class="{
+                                                    'bi-hand-thumbs-down-fill text-danger': post.isDislikedByUser,
+                                                    'bi-hand-thumbs-down text-danger': !post.isDislikedByUser
+                                                }"></i>
                                             </div>
                                         </button>
                                     </div>
@@ -75,7 +84,7 @@
                             <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
     <div class="carousel-inner">
         <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
-            <img :src="image" class="d-block w-100 rounded" alt="Post Image" />
+            <img :src="image" class="d-block w-100 rounded object-fit-cover" alt="Post Image" />
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">
@@ -146,7 +155,10 @@ export default {
 
     data() {
         return {
-            isPressed: {}
+            isPressed: {},
+            isLikeAnimating: false,
+            isDislikeAnimating: false,
+            isCommentsAnimating: false
         }
     },
     
@@ -155,16 +167,35 @@ export default {
             const post = this.post;
 
             this.$inertia.post(`/Posts/${postId}/toggleLike`, { action: 'like' })
-        
-    },
+        },
 
-    toggleDislike(postId) {
-    const post = this.post;
+        toggleDislike(postId) {
+        const post = this.post;
 
-    this.$inertia.post(`/Posts/${postId}/toggleLike`, { action: 'dislike' })
-       
-},
+        this.$inertia.post(`/Posts/${postId}/toggleLike`, { action: 'dislike' })   
+        },
 
+        handleLikeClick(postId) {
+            this.isLikeAnimating = true;
+            setTimeout(() => {
+                this.isLikeAnimating = false;
+            }, 200);
+            this.toggleLike(postId);
+        },
+        handleDislikeClick(postId) {
+            this.isDislikeAnimating = true;
+            setTimeout(() => {
+                this.isDislikeAnimating = false;
+            }, 200);
+            this.toggleDislike(postId);
+        },
+        handleCommentsClick() {
+            this.isCommentsAnimating = true;
+            setTimeout(() => {
+                this.isCommentsAnimating = false;
+            }, 200);
+            // Your existing comments logic
+        }
         
     },
     mounted() {
@@ -213,5 +244,105 @@ input {
 .background{
     background-color: rgb(230,230,230);
 
+}
+
+.like-button, .dislike-button, .comments-button {
+    transition: transform 0.2s ease;
+}
+
+.animate-click {
+    animation: clickEffect 0.2s ease;
+}
+
+@keyframes clickEffect {
+    0% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: var(--bs-light);
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
+}
+
+.like-button, .dislike-button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Separate animations for like and dislike */
+.like-button.animate-click {
+    animation: likeClickEffect 0.5s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+.dislike-button.animate-click {
+    animation: dislikeClickEffect 0.5s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+@keyframes likeClickEffect {
+    0% {
+        transform: scale(1) rotate(0deg);
+        background-color: var(--bs-light);
+    }
+    25% {
+        transform: scale(1.2) rotate(5deg);
+        background-color: rgba(40, 167, 69, 0.1); /* Light green */
+    }
+    50% {
+        transform: scale(0.95) rotate(-5deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        background-color: var(--bs-light);
+    }
+}
+
+@keyframes dislikeClickEffect {
+    0% {
+        transform: scale(1) rotate(0deg);
+        background-color: var(--bs-light);
+    }
+    25% {
+        transform: scale(1.2) rotate(5deg);
+        background-color: rgba(220, 53, 69, 0.1); /* Light red */
+    }
+    50% {
+        transform: scale(0.95) rotate(-5deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        background-color: var(--bs-light);
+    }
+}
+
+/* Specific hover effects */
+.like-button:hover {
+    background-color: rgba(40, 167, 69, 0.1);
+    transform: translateY(-2px);
+}
+
+.dislike-button:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Icons animation */
+.like-button i, .dislike-button i {
+    transition: transform 0.2s ease;
+}
+
+.like-button:active i, .dislike-button:active i {
+    transform: scale(1.2);
 }
 </style>

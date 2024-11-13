@@ -32,11 +32,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <div class="form-group d-flex justify-content-end">
-                            <button type="submit" name="submit"
-                                class="btn btn-primary btn-md h3 text-warning">Submit</button>
-                        </div>
+                        <button type="button" name="close" class="btn btn-secondary btn-danger btn-md h3 text-white" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="submit"
+                            class="btn btn-primary btn-md h3 text-white">Submit</button>
                     </div>
                 </form>
             </div>

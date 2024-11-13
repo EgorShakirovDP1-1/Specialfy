@@ -1,69 +1,70 @@
 <template>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop" aria-label="Open Comments Modal">
+    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48 comments-button"
+            :class="{ 'animate-click': isCommentsAnimating }"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            @click="handleCommentsClick">
         <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
     </button>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div id="commentModal" class="modal-dialog modal-lg" role="dialog" aria-label="Comments Modal">
-        <div class="modal-content p-5">
-            <div class="modal-header border-bottom-0">
-                <h5 class="modal-title mb-3" id="staticBackdropLabel">Comments</h5>
-                <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-genre">
-                <form @submit.prevent="handleSubmit">
-                    <div class="form-group d-flex align-items-center pb-2">
-                        <img v-if="$props.auth" :src="profilePhoto" alt="profile photo" class="rounded-circle profile-photo me-2">
-                        <img v-else src="/public/images/default-profile.png" alt="profile photo" class="rounded-circle profile-photo me-2">
-                        
-                        <textarea v-model="form.comment" name="comment" id="comment" rows="2"
-                            class="flex-grow-1 rounded form-control" placeholder="Write a comment..." 
-                            style="resize: none; overflow-y: auto;">
-                        </textarea>
-                        
-                        <button type="submit" :disabled="form.processing"
-                            class="btn btn-dark px-3 py-2 ms-4">Save</button>
-                    </div>
-
-                    <div class="d-block mt-2 text-center" v-if="errors.comment" role="alert" aria-live="assertive">
-                        <span class="fs-5 text-danger">
-                            {{ errors.comment }}
-                        </span>
-                    </div>
-                </form>
-
-                <hr>
-                <div class="text-center" v-if="!comments.length" role="status" aria-live="polite">
-                    Comments will be displayed here
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div id="commentModal" class="modal-dialog modal-lg" role="dialog" aria-label="Comments Modal">
+            <div class="modal-content p-5">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title mb-3" id="staticBackdropLabel">Comments</h5>
+                    <button type="button" class="btn-close mb-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="rounded commentoutput mb-3 p-3 d-flex align-items-start" v-for="comment in comments" :key="comment.id">
-                    <div class="d-flex flex-grow-1">
-                        <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo mt-3 me-2 flex-shrink-0">
-                        <div class="mb-3 w-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="mb-0 text-black">{{ comment.name }}</h6>
-                            </div>
-                            <p class="mb-1 text-primary text-wrap" style="word-break: break-word;">{{ comment.comment }}</p>
+                <div class="modal-genre">
+                    <form @submit.prevent="handleSubmit">
+                        <div class="form-group d-flex align-items-center pb-2">
+                            <img v-if="$props.auth" :src="profilePhoto" alt="profile photo" class="rounded-circle profile-photo me-2">
+                            <img v-else src="/public/images/default-profile.png" alt="profile photo" class="rounded-circle profile-photo me-2">
+                            
+                            <textarea v-model="form.comment" name="comment" id="comment" rows="2"
+                                class="flex-grow-1 rounded form-control" placeholder="Write a comment..." 
+                                style="resize: none; overflow-y: auto;">
+                            </textarea>
+                            
+                            <button type="submit" :disabled="form.processing"
+                                class="btn btn-dark px-3 py-2 ms-4">Save</button>
                         </div>
+
+                        <div class="d-block mt-2 text-center" v-if="errors.comment" role="alert" aria-live="assertive">
+                            <span class="fs-5 text-danger">
+                                {{ errors.comment }}
+                            </span>
+                        </div>
+                    </form>
+
+                    <hr>
+                    <div class="text-center" v-if="!comments.length" role="status" aria-live="polite">
+                        Comments will be displayed here
                     </div>
-                    <div class="ms-auto d-flex align-items-center py-3">
-                        <button v-if="$page.props.auth && $page.props.auth.id === comment.user_id"
-                            @click="destroy(comment.id, comment.post_id)" type="submit"
-                            class="btn btn-danger ms-2 ps-3 pe-3 py-2" aria-label="Delete Comment">
-                            <i class="bi bi-trash h4" aria-hidden="true"></i>
-                        </button>
+                    <div class="rounded commentoutput mb-3 p-3 d-flex align-items-start" v-for="comment in comments" :key="comment.id">
+                        <div class="d-flex flex-grow-1">
+                            <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo mt-3 me-2 flex-shrink-0">
+                            <div class="mb-3 w-100">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0 text-black">{{ comment.name }}</h6>
+                                </div>
+                                <p class="mb-1 text-primary text-wrap" style="word-break: break-word;">{{ comment.comment }}</p>
+                            </div>
+                        </div>
+                        <div class="ms-auto d-flex align-items-center py-3">
+                            <button v-if="$page.props.auth && $page.props.auth.id === comment.user_id"
+                                @click="destroy(comment.id, comment.post_id)" type="submit"
+                                class="btn btn-danger ms-2 ps-3 pe-3 py-2" aria-label="Delete Comment">
+                                <i class="bi bi-trash h4" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
 </template>
 
 <script>
@@ -78,11 +79,9 @@ export default {
     props: {
         errors: Object,
         profilePhoto: {
-            type: Image,
             required: true,
         },
         postId: {
-            type: Number,
             required: true,
         },
         comments: {
@@ -129,8 +128,20 @@ export default {
             }
         };
 
-        return { form, handleSubmit, destroy, handleEditSubmit };
+        const handleCommentsClick = () => {
+            isCommentsAnimating.value = true;
+            setTimeout(() => {
+                isCommentsAnimating.value = false;
+            }, 200);
+        };
+
+        return { form, handleSubmit, destroy, handleEditSubmit, handleCommentsClick };
     },
+    data() {
+        return {
+            isCommentsAnimating: false
+        }
+    }
 }
 </script>
 
@@ -145,7 +156,6 @@ export default {
 }
 
 .form-control {
-
     background-color: rgb(230, 230, 230);
     color: black;
 }
@@ -155,11 +165,29 @@ export default {
 
 .commentoutput{
     background-color: rgb(230, 230, 230);
-    
 }
 
+.comments-button {
+    transition: transform 0.2s ease;
+}
 
+.animate-click {
+    animation: clickEffect 0.2s ease;
+}
 
-
+@keyframes clickEffect {
+    0% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: var(--bs-light);
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
+}
 </style>
 
