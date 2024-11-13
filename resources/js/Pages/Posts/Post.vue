@@ -77,7 +77,7 @@
                             <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
     <div class="carousel-inner">
         <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
-            <img :src="image" class="d-block w-100 rounded" alt="Post Image" />
+            <img :src="image" class="d-block w-100 rounded object-fit-cover" alt="Post Image" />
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">

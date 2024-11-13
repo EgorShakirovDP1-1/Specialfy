@@ -120,9 +120,28 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request)
     {
+        // Define max dimensions
+        $maxWidth = 1200;
+        $maxHeight = 675;
+    
         // Validate and save the main post data
         $validated = $request->validated();
-        
+    
+        // Handle image resolution validation
+        if ($request->hasFile('postImages')) {
+            foreach ($request->file('postImages') as $image) {
+                [$width, $height] = getimagesize($image);
+    
+                // Check if the image exceeds the resolution limit
+                if ($width > $maxWidth || $height > $maxHeight) {
+                    return redirect()->back()
+                        ->withErrors(['resolution' => 'Each image must have a resolution of 1200x675 or smaller.'])
+                        ->withInput();
+                }
+            }
+        }
+    
+        // Create post data
         $post = Post::create([
             'user_id' => auth()->id(),
             'category_id' => $validated['category_id'],
@@ -131,10 +150,9 @@ class PostController extends Controller
             'text' => $validated['text'],
         ]);
     
-        // Handle image uploads
+        // Handle image uploads if they passed the resolution check
         if ($request->hasFile('postImages')) {
             foreach ($request->file('postImages') as $image) {
-                // Save each image and store its path in the 'postImages' directory within 'public' disk
                 $filePath = $image->store('postImages', 'public');
     
                 // Save image path in 'pictures' table associated with this post

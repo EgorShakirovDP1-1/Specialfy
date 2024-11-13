@@ -37,6 +37,9 @@
              <input type="file" multiple @change="handleFileChange">
         
         <button type="submit">Submit</button></form>
+        <span class="fs-5 text-danger">
+            {{ errors.resolution }}
+        </span>
            </div>
         </div>
     </Layout>
@@ -82,9 +85,6 @@ const submitForm = () => {
     // Submit with Inertia
     form.post(route('posts.create'), {
         forceFormData: true,
-        onSuccess: () => {
-            alert("Post created successfully!");
-        },
     });
 };
 </script>
