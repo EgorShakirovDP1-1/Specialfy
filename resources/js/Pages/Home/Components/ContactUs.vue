@@ -2,7 +2,7 @@
     <section class="p-lg-5 " aria-labelledby="contactHeading">
         <div class="container">
             <h2 id="contactHeading" class="text-center mb-4">
-                Still Have Some Questions? Contact Us!
+                Still Have Some Questions? <span class="text-danger">Contact Us!</span>
             </h2>
             <div class="row g-4">
                 <div class="col-md my-auto">

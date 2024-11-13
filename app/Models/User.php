@@ -20,10 +20,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'is_admin',
         'phone_number',
         'email',
         'password',
-        'avatar'
+        'avatar',
+        'user_type',
+        'last_login'
     ];
 
     /**
@@ -44,6 +47,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'user_type' => 'boolean',
     ];
 
  
@@ -66,4 +70,17 @@ class User extends Authenticatable
 
         return url('/images/default-profile.png');
     }
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            $user->comments()->delete();
+        });
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
+   
+

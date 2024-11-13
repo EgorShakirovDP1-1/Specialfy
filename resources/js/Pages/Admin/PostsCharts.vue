@@ -27,7 +27,7 @@ export default {
         SideBar,
     },
     props: {
-        postsCountByYear: {
+        postsCountByCategory: {
             type: Array,
             required: true,
         },
@@ -37,11 +37,13 @@ export default {
 
         onMounted(() => {
             const chart = echarts.init(chartRef.value);
-            let title = "Post quantity by category";
+            let title = "Post Quantity by Category";
 
-            let seriesData = Object.entries(props.postsCountByYear).map(([category, count]) => {
-                return { value: count, name: category };
-            });
+            // Prepare data for chart
+            let seriesData = props.postsCountByCategory.map(item => ({
+                value: item.count,
+                name: item.category,
+            }));
 
             let legendData = seriesData.map(item => item.name);
 
@@ -73,12 +75,12 @@ export default {
                 ],
             });
         });
+
         return {
-            chartRef
+            chartRef,
         };
     },
 };
-
 </script>
 
 <style></style>

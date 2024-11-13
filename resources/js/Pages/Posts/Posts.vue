@@ -14,10 +14,7 @@
             <div class="left">
                 <Sort @sort="handleSort" />
 
-                <Filter  @setCategoryFilter="handleSetCategoryFilter"
-                    @setRatingFilter="handleRatingFilter" 
-                   
-                     />
+                <Filter :categories="categories" @setCategoryFilter="handleSetCategoryFilter" />
             </div>
 
             <div class="right w-75">
@@ -35,7 +32,7 @@
                                 <!-- LISTING CARDS -->
                                 <div class="d col-lg-3 col-md-5 py-4 px-4 m-3 bg-light text-black border-primary rounded d-flex flex-column"
                                     v-for="post in filteredPosts" :key="post.id" role="listitem">
-                                    <img :src="post.postImageURL" class="d-img-top img-fluid" alt="Listing Image" />
+                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid" alt="Post Image" />
                                     <div class="d-body flex-grow-1">
                                         <h3 class="d-title">
                                              {{ post.title }}
@@ -46,7 +43,7 @@
                                             </div>
                                         </div>
                                         <p class="text-black mb-0">
-                                            {{ post.category_id.name }}
+                                            {{ post.category_name }}
                                         </p>
                                         <p class="text-black">
                                             Price: {{ post.price }}€
@@ -65,6 +62,7 @@
                                                 <i class="bi h4 text-danger ms-1 mt-1"
                                                     :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
                                                     aria-label="Like"></i>
+                                               
                                             </div>
                                         </button>
 
@@ -175,34 +173,12 @@ export default {
         }
     },
     computed: {
-    filteredPosts() {
+        filteredPosts() {
         let posts = this.posts;
 
-        // Apply price filter if set
-        if (this.pricePerSubscribtionFilter !== '') {
-            posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
-        }
+        // Filter by selected category name
         if (this.selectedCategory) {
-                posts = posts.filter(post => post.category_id === this.selectedCategory);
-            }
-        // Apply search filter if set
-        if (this.searchFilter !== '') {
-            const searchQuery = this.searchFilter.toLowerCase();
-
-            posts = posts.filter(post => {
-                // Safely check if each property exists and matches the search query
-                return (
-                   
-                    (post.title && post.title.toLowerCase().includes(searchQuery)) ||
-                    (post.category_id.name && post.category_id.name.toLowerCase().includes(searchQuery)) ||
-                    (post.text && post.text.toLowerCase().includes(searchQuery))
-                );
-            });
-        }
-
-        // Apply sorting if any sorted posts are available
-        if (this.sortedPosts.length > 0) {
-            posts = this.sortedPosts;
+            posts = posts.filter(post => post.category_name === this.selectedCategory);
         }
 
         return posts;

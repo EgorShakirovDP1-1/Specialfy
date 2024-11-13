@@ -33,7 +33,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <button type="submit" :disabled="form.processing" class="btn btn-info text-primary py-2 px-3"
+                        <button type="submit" :disabled="form.processing" class="btn btn-dark text-white py-2 px-3"
                             aria-label="Save Password Button">
                             Save Password
                         </button>

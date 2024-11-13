@@ -21,13 +21,16 @@ class PostController extends Controller
 {
     $categories = Category::all(); // Fetch all categories
 
-    $posts = Post::with(['user', 'category'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
+    $posts = Post::with(['user', 'category', 'pictures'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
         // Check if the post is liked by the authenticated user
         $isLikedByUser = auth()->user() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
 
         $like_count = $post->likes()->where('value', '1')->count();
         $dislike_count = $post->likes()->where('value', '0')->count();
         $rating = $like_count - $dislike_count;
+
+        // Get the first image from the pictures relationship, if available
+        $firstImage = $post->pictures->first()?->path_to_img;
 
         return [
             'id' => $post->id,
@@ -40,10 +43,11 @@ class PostController extends Controller
             'rating' => $rating,
             'likesCount' => $like_count,
             'isLikedByUser' => $isLikedByUser,
+            'postImage' => $firstImage, // Add the first image path
         ];
     });
 
-    return Inertia::render('Posts/Posts', [
+    return inertia('Posts/Posts', [
         'posts' => $posts,
         'categories' => $categories, // Pass categories to the component
     ]);
@@ -86,13 +90,14 @@ class PostController extends Controller
     $comments = $comments->map(function ($comment) {
         return [
             'comment' => $comment->comment,
-            'profilePhoto' => $comment->user->getImageURL(),
-            'name' => $comment->user->name,
-            'user_id' => $comment->user->id,
+            'profilePhoto' => optional($comment->user)->getImageURL() ?? 'default-profile.png', // Default profile image
+            'name' => optional($comment->user)->name ?? 'Unknown User', // Default name
+            'user_id' => optional($comment->user)->id,
             'id' => $comment->id,
             'post_id' => $comment->post_id,
             'editing' => true,
         ];
+        
     });
 
     // Pass the post, images, and other necessary data to the view
@@ -108,7 +113,6 @@ class PostController extends Controller
         
     public function create()
     {
-        
         $categories = Category::all();
         return Inertia::render('Posts/CreatePost',
     ['categories' => $categories]);

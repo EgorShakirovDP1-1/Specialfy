@@ -16,19 +16,21 @@ class AuthController extends Controller
         return Inertia::render('Auth/Register', ['post' => $post]);
     }
 
-    public function store(UserCreateRequest $request) {
+        public function store(UserCreateRequest $request) {
 
-        User::create([
-            'name' => $request->name,
-            'phone_number' => ($request->phone_number),
-            'email' => ($request->email),
-            'password' => bcrypt($request->password),]);
+            User::create([
+                'name' => $request->name,
+                'phone_number' => ($request->phone_number),
+                'email' => ($request->email),
+                'password' => bcrypt($request->password),
+                'user_type' => $request->user_type,]);
+                
 
-        // Mail::to($user->email)
-        // ->send(new WelcomeEmail($user));
+            // Mail::to($user->email)
+            // ->send(new WelcomeEmail($user));
 
-        return redirect()->route('home')->with('message', 'Please log in!');
-    }
+            return redirect()->route('home')->with('message', 'Please log in!');
+        }
 
     public function login() {
         $post = asset(Storage::url('postImages/82hM0Dk62kt4U1TYcZfduRYviyHXAO9uKxeGQhCf.png'));
@@ -40,6 +42,8 @@ class AuthController extends Controller
 
         if(auth()->attempt($request->validated())){
             request()->session()->regenerate();
+
+            auth()->user()->update(['last_login' => now()]);
 
             return redirect()->route('home')->with('message', 'Logged in successfully!');
         };

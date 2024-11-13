@@ -24,7 +24,7 @@
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Autor :
+                                            Author :
                                         </p>
                                         <span class="">{{ post.user_id }}</span>
                                     </li>
@@ -45,20 +45,22 @@
                                 </ul>
                                 <div class="d-flex">
                                     <div>
+                                        <!-- Like Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48"
-                                                @click="toggleLike(post.id)">
+                                                class="btn btn-light border-none px-2 py-0 btn-48 like-button"
+                                                :class="{ 'animate-click': isLikeAnimating }"
+                                                @click="handleLikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ post.likesCount || 0 }}  <!-- Display 0 if undefined -->
                                                 <i class="bi h4 text-success ms-1 mt-2"
                                                 :class="{ 'bi-hand-thumbs-up-fill': post.isLikedByUser, 'bi-hand-thumbs-up': !post.isLikedByUser }"></i>
                                             </div>
                                         </button>
-
                                         <!-- Dislike Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48"
-                                                @click="toggleDislike(post.id)">
+                                                class="btn btn-light border-none px-2 py-0 btn-48 dislike-button"
+                                                :class="{ 'animate-click': isDislikeAnimating }"
+                                                @click="handleDislikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ post.dislikesCount || 0 }}  <!-- Display 0 if undefined -->
                                                 <i class="bi h4 text-danger ms-1 mt-2"
@@ -146,7 +148,10 @@ export default {
 
     data() {
         return {
-            isPressed: {}
+            isPressed: {},
+            isLikeAnimating: false,
+            isDislikeAnimating: false,
+            isCommentsAnimating: false
         }
     },
     
@@ -165,6 +170,27 @@ export default {
        
 },
 
+        handleLikeClick(postId) {
+            this.isLikeAnimating = true;
+            setTimeout(() => {
+                this.isLikeAnimating = false;
+            }, 200);
+            this.toggleLike(postId);
+        },
+        handleDislikeClick(postId) {
+            this.isDislikeAnimating = true;
+            setTimeout(() => {
+                this.isDislikeAnimating = false;
+            }, 200);
+            this.toggleDislike(postId);
+        },
+        handleCommentsClick() {
+            this.isCommentsAnimating = true;
+            setTimeout(() => {
+                this.isCommentsAnimating = false;
+            }, 200);
+            // Your existing comments logic
+        }
         
     },
     mounted() {
@@ -213,5 +239,28 @@ input {
 .background{
     background-color: rgb(230,230,230);
 
+}
+
+.like-button, .dislike-button, .comments-button {
+    transition: transform 0.2s ease;
+}
+
+.animate-click {
+    animation: clickEffect 0.2s ease;
+}
+
+@keyframes clickEffect {
+    0% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: var(--bs-light);
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--bs-light);
+    }
 }
 </style>

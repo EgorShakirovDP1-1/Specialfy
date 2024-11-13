@@ -23,15 +23,15 @@
                                     {{ post.author }} {{ post.model }}
                                 </h3>
                                 <p class="text-black mb-0">
-                                    Price Per Subscribtion: {{ post.price_per_subscribtion }}€
+                                    {{ post.title }}
                                 </p>
                                 <p class="text-black">
-                                    Price Per watch: {{ post.price_per_watch }}€
+                                    {{ post.price }}€
                                 </p>
                                 <!-- Button group -->
                                 <div class="card-flex justify-content-center">
                                     <button @click="openPostdetails(post.id)"
-                                        class="btn btn-info mb-3 img-zoom text-primary"
+                                        class="btn btn-dark mb-3 img-zoom text-white"
                                         aria-label="Read More Button">
                                         <i class="bi bi-chevron-right"></i> Read More
                                     </button>
@@ -88,7 +88,7 @@ export default {
         openPostdetails(postId) {
             let modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
             modal.hide();
-            this.$inertia.visit(`/posts/${postId}`);
+            this.$inertia.visit(`/Posts/${postId}`);
         }
     },
 };
