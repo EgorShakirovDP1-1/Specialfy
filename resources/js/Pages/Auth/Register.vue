@@ -59,7 +59,7 @@
             @click="form.user_type = 0" 
             :class="{'btn-primary': form.user_type === 0, 'btn-outline-primary': form.user_type !== 0}" 
             class="rounded btn me-2">
-            User Type 0
+            Individual entity
         </button>
         
         <button 
@@ -67,7 +67,7 @@
             @click="form.user_type = 1" 
             :class="{'btn-primary': form.user_type === 1, 'btn-outline-primary': form.user_type !== 1}" 
             class="rounded btn">
-            User Type 1
+            Legal entity
         </button>
     </div>
 
