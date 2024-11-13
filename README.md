@@ -1,5 +1,5 @@
 # Specialfy (Beta)
-Specialfy is a new experience in online post watching industry. With that being said, Post Hunter offers you a large catalogue of movies, as much as you have ever wished.
+Specialfy is the new way to hire specialists. Specialfy offers you to become a specialist or to be the one to use other specialists. Join now and have a hustle or more free time.
 
   
 
