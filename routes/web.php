@@ -33,6 +33,7 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+  
 });
 
 //logout
@@ -103,7 +104,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
    //Route::get('/posts/table', [AdminController::class, 'index'])->name('admin.users');
     Route::get('/posts/charts', [AdminController::class, 'showStatistics'])->name('admin.posts.charts');
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
-    
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::post('/categories', [AdminController::class, 'store'])->name('category.create');
+    Route::delete('/{category}', [AdminController::class, 'destroyCategory'])->name('categories.destroy');
 });
 
 // GET	/photos	index	photos.index

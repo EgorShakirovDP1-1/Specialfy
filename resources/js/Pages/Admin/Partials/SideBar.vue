@@ -50,13 +50,13 @@
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('admin')" class="nav-link" :class="{
+                    <Link :href="route('admin.categories')" class="nav-link" :class="{
                         'text-black':
-                            !$page.url.includes('/admin/comments'),
-                        'text-black': $page.url.includes('/admin/comments'),
+                            !$page.url.includes('/admin/categories'),
+                        'text-black': $page.url.includes('/admin/categories'),
                     }">
                     <i class="bi bi-chat-left-dots-fill text-black me-1"></i>
-                    <span>Comments</span>
+                    <span>Categories</span>
                     </Link>
                 </li>
             </div>
