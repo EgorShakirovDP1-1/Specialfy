@@ -31,7 +31,7 @@
                                 <!-- Button group -->
                                 <div class="card-flex justify-content-center">
                                     <button @click="openPostdetails(post.id)"
-                                        class="btn btn-info mb-3 img-zoom text-primary"
+                                        class="btn btn-dark mb-3 img-zoom text-white"
                                         aria-label="Read More Button">
                                         <i class="bi bi-chevron-right"></i> Read More
                                     </button>

@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-6">
-        <div class="p-5 shadow rounded-3 text-center">
+        <div class="panel p-4 shadow rounded-3 text-center">
             <i class="bi bi-people-fill text-warning me-1 icon"></i>
             <h1 class="mb-0"><strong>{{ users }}</strong></h1>
             <p class="mt-0 h5">Users</p>
@@ -20,7 +20,14 @@ export default {
 </script>
 
 <style scoped>
+.panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .icon {
-    -size: 4rem;
+    font-size: 4rem;
 }
 </style>
