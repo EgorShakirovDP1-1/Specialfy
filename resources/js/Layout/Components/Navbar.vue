@@ -8,7 +8,7 @@
                 </button>
 
                 <!-- CONTINUE HERE -->
-                <div class="me-auto my-3 pe-5">
+                <div class="me-auto my-3 ms-3 pe-5">
                     <Link :href="route('home')" aria-label="home page">
                         <img class="logo" src="/public/images/logo.png" >
                     </Link> 
