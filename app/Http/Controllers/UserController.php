@@ -19,36 +19,42 @@ class UserController extends Controller
 
     public function profile($id) {
         $user = User::find($id);
-
-
-
-        $likedPostIds = Like::where('user_id', $user->id)
-                   ->pluck('post_id')
-                   ->toArray();
-
-        if(!empty($likedPostIds)){
-            foreach ($likedPostIds as $postId) {
-                $likedPosts[] = Post::find($postId);
-            }
     
-            foreach ($likedPosts as $likedPost) {
-                $likedPost->postImage1 = asset($likedPost->postImage1);
-                $likedPost->likesCount = $likedPost->likes->count();
-            
-                if(auth()->user()){
-                    $likedPost->isLikedByUser = $likedPost->likes()->where('user_id', auth()->id())->exists();
+        // Fetch liked posts by the user
+        $likedPostIds = Like::where('user_id', $user->id)
+                            ->pluck('post_id')
+                            ->toArray();
+        $likedPosts = [];
+    
+        if (!empty($likedPostIds)) {
+            foreach ($likedPostIds as $postId) {
+                $likedPost = Post::find($postId);
+                if ($likedPost) {
+                    $likedPost->postImage1 = asset($likedPost->postImage1);
+                    $likedPost->likesCount = $likedPost->likes->count();
+                    $likedPost->isLikedByUser = auth()->check() ? $likedPost->likes()->where('user_id', auth()->id())->exists() : false;
+                    $likedPosts[] = $likedPost;
                 }
             }
         }
-
+    
+        // Fetch the posts created by the user
+        $myPosts = Post::where('user_id', $user->id)->get();
+        foreach ($myPosts as $post) {
+            $post->postImage1 = asset($post->postImage1);
+            $post->likesCount = $post->likes->count();
+            $post->isLikedByUser = auth()->check() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
+        }
+    
         $user['avatar'] = $user->getImageURL();
-
+    
         return Inertia::render("User/Profile", [
             'user' => $user,
-           
-            'likedPosts' => $likedPosts ?? null,
+            'likedPosts' => $likedPosts,
+            'myPosts' => $myPosts,
         ]);
     }
+    
 
     public function edit($id) {
         $user = User::find($id);

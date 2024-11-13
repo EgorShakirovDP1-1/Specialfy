@@ -4,6 +4,8 @@
             <div class="col-12 col-sm-8 col-md-6">
                 <form enctype="multipart/form-data" @submit.prevent="submitForm">
                     <h1 class="text-center">Add New Post</h1>
+
+                    
                     <div class="form-group mb-3">
     <label for="category">Category</label>
     <select v-model="form.category_id" class="form-control" id="category">
@@ -17,7 +19,7 @@
 
                     <div class="form-group mb-3">
                         <label for="price">Price</label>
-                        <input v-model="form.price" type="number" max="99999" step=".01" class="form-control" id="price" />
+                        <input v-model="form.price" type="number" class="form-control" id="price" />
                         <span v-if="errors.price" class="text-danger">{{ errors.price }}</span>
                     </div>
 

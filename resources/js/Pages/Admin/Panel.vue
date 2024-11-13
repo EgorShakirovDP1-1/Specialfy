@@ -94,6 +94,10 @@ export default {
 </script>
 
 <style scoped>
+.label-size {
+    font-size: 1rem; /* Adjust the size as needed */
+    font-weight: bold; /* Optional: make the text bold */
+}
 .panel-wrapper {
     height: 100%;
     width: 100%;
@@ -112,6 +116,4 @@ export default {
     max-height: 180px;
     padding: 10px !important;
 }
-
-
 </style>

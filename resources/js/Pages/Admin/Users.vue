@@ -68,12 +68,28 @@
                 </button>
 
                 <button 
+                    v-else 
+                    @click="deleteAdmin(user.id)" 
+                    class="btn btn-sm btn-warning me-1 mb-2" 
+                    aria-label="delete admin">
+                    Delete Admin
+                    
                     v-if="user.id !== currentUser" 
                     @click="destroy(user.id)" 
                     class="btn btn-sm btn-danger mb-2 fixed-width" 
                     aria-label="delete user">
                     Delete
                 </button>
+                <!-- <div class="d-flex justify-content-center align-items-center"> -->
+                    <!-- <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button> -->
+                    <button 
+                        v-if="user.id !== currentUser" 
+                        @click="destroy(user.id)" 
+                        class="btn btn-sm btn-danger fixed-width" 
+                        aria-label="delete user">
+                        Delete
+                    </button>
+                <!-- </div> -->
             </div>
         </td>
     </tr>

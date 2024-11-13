@@ -37,7 +37,6 @@ class AuthController extends Controller
 
         return Inertia::render('Auth/Login', ['post' => $post]);
     }
-
     public function authenticate(UserAuthenticateRequest $request){
 
         if(auth()->attempt($request->validated())){
@@ -52,6 +51,7 @@ class AuthController extends Controller
             'email'=> "Failed to log in! Please try again!"
         ]);
     }
+
 
     public function logout(){
         auth()->logout();

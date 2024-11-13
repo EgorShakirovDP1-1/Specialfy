@@ -34,7 +34,7 @@ class PostController extends Controller
 
         return [
             'id' => $post->id,
-            'author' => $post->author,
+           
             'category_id' => $post->category->id,
             'category_name' => $post->category->name,
             'price' => $post->price,

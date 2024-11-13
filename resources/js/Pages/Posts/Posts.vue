@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <div v-if="$page.props.isAdmin" id="create" class="text-center my-4" role="region" aria-label="Admin Actions">
+        <div id="create" class="text-center my-4" role="region" aria-label="Admin Actions">
             <a :href="route('posts.create')" class="btn btn-dark py-3 px-5 align-items-center">
                 <div class="d-flex">
                     <p class="mb-0">
