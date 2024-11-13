@@ -27,7 +27,7 @@
                                 <th class="text-center" aria-label="name column">Name</th>
                                 <th class="text-center" aria-label="email column">Email</th>
                                 <th class="text-center" aria-label="role column">Role</th>
-                                <th class="text-center" style="min-width: 150px;" aria-label="created at column">Created At</th>
+                                <th class="text-center" style="min-width: 150px;" aria-label="created at column">Last login</th>
                                 <th class="text-center text-end" aria-label="actions column ">Actions</th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
         <td aria-label="user name">{{ user.name }}</td>
         <td aria-label="user email">{{ user.email }}</td>
         <td aria-label="user role">{{ user.is_admin }}</td>
-        <td aria-label="user created at">{{ new Date(user.created_at).toLocaleDateString() }}</td>
+        <td aria-label="user created at">{{ new Date(user.last_login).toLocaleDateString() }}</td>
         <td class="text-end m-5 p-1" aria-label="user actions">
             <div class="d-flex flex-column align-items-center justify-content-center">
                 
