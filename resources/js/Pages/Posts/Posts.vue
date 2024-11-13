@@ -56,13 +56,16 @@
                                             <i class="bi bi-chevron-right"></i> Read More
                                         </Link>
                                         
-                                        <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48 pe-none">
+                                        <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ post.rating }}
-                                                <i class="bi h4 text-danger ms-1 mt-1"
-                                                    :class="{ 'bi-star-fill': post.isLikedByUser, 'bi-star': !post.isLikedByUser }"
-                                                    aria-label="Like"></i>
-                                               
+                                                <i class="bi h4 ms-1 mt-1 bi-star-fill"
+                                                    :class="[
+                                                        post.rating > 0 ? 'text-success' :
+                                                        post.rating < 0 ? 'text-danger' :
+                                                        'text-secondary'
+                                                    ]"
+                                                    aria-label="Rating"></i>
                                             </div>
                                         </button>
 
