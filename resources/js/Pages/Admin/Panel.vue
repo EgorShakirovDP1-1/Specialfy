@@ -99,12 +99,6 @@ export default {
     width: 100%;
 }
 
-.panel-element {
-    width: 100%;
-    max-height: 180px;
-    padding: 10px !important;
-}
-
 .panel-wrapper :deep(.panel) {
     height: 100%;
     display: flex;
@@ -113,4 +107,11 @@ export default {
     align-items: center;
     margin: 0.1rem 0; /* Reduced vertical margin */
 }
+.panel-element {
+    width: 100%;
+    max-height: 180px;
+    padding: 10px !important;
+}
+
+
 </style>

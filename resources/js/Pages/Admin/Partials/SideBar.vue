@@ -18,7 +18,7 @@
                             !$page.url.includes('/admin/users'),
                         'text-black': $page.url.includes('/admin/users'),
                     }">
-                    <i class="bi bi-people-fill text-danger me-1"></i>
+                    <i class="bi bi-people-fill text-black me-1"></i>
                     <span>Users</span>
                     </Link>
                 </li>
