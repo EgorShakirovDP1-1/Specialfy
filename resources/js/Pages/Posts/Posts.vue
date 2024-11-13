@@ -14,10 +14,7 @@
             <div class="left">
                 <Sort @sort="handleSort" />
 
-                <Filter  @setCategoryFilter="handleSetCategoryFilter"
-                    @setRatingFilter="handleRatingFilter" 
-                   
-                     />
+                <Filter :categories="categories" @setCategoryFilter="handleSetCategoryFilter" />
             </div>
 
             <div class="right w-75">
@@ -46,7 +43,7 @@
                                             </div>
                                         </div>
                                         <p class="text-black mb-0">
-                                            {{ post.category_name}}
+                                            {{ post.category_name }}
                                         </p>
                                         <p class="text-black">
                                             Price: {{ post.price }}€
@@ -176,35 +173,12 @@ export default {
         }
     },
     computed: {
-    filteredPosts() {
+        filteredPosts() {
         let posts = this.posts;
 
-        // Apply price filter if set
-        if (this.pricePerSubscribtionFilter !== '') {
-            posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
-        }
+        // Filter by selected category name
         if (this.selectedCategory) {
-                posts = posts.filter(post => post.category_name === this.selectedCategory);
-            }
-        // Apply search filter if set
-        if (this.searchFilter !== '') {
-            const searchQuery = this.searchFilter.toLowerCase();
-
-            posts = posts.filter(post => {
-                // Safely check if each property exists and matches the search query
-                return (
-                   
-                    (post.title && post.title.toLowerCase().includes(searchQuery)) ||
-                   
-                    (post.text && post.text.toLowerCase().includes(searchQuery))
-                );
-                
-            });
-        }
-
-        // Apply sorting if any sorted posts are available
-        if (this.sortedPosts.length > 0) {
-            posts = this.sortedPosts;
+            posts = posts.filter(post => post.category_name === this.selectedCategory);
         }
 
         return posts;
