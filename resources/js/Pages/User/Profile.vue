@@ -15,6 +15,7 @@
                         </Link>
                     </li>
                     <li class="mb-1 mt-0 ">
+                        <MyPosts :myPosts="myPosts" />
                         <likedPosts :likedPosts="likedPosts" />
                     </li>
                     <li class="mb-1 mt-0">
@@ -67,12 +68,13 @@ import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import { router } from "@inertiajs/vue3";
 import likedPosts from "./Profile/likedPosts.vue";
-
+import MyPosts from './Profile/myPosts.vue';
 export default {
     components: {
         Layout,
         Link,
         likedPosts,
+        MyPosts,
     },
     props: {
         user: {
@@ -83,6 +85,10 @@ export default {
         likedPosts: {
             type: Array,
             required: false,
+        },
+        myPosts: {
+            type: Array,
+            required: true,
         },
     },
     methods: {

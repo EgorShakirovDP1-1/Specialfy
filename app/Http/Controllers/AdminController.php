@@ -83,5 +83,36 @@ public function showStatistics()
         'postsCountByCategory' => $postsCountByCategory,
     ]);
 }
+public function categories()
+{
+    {
+        $categories = Category::all();
+        return inertia('Admin/Categories', ['categories' => $categories]);
+    }
+}
+public function destroyCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('home')->with('success', 'Category deleted successfully!');
+    }
+
+
+    public function store(Request $request)
+    {
+        // Validate the form input
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:100'
+        ]);
+
+        // Create the category
+        Category::create($validatedData);
+
+        // Redirect back with a success message
+        return redirect()->route('home')->with('success', 'Category created successfully!');
+    }
+
+
     
 }

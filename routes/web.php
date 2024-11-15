@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LikeController;
+
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -33,6 +33,7 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+  
 });
 
 //logout
@@ -57,7 +58,7 @@ Route::patch('/remove-admin', [UserController::class, 'removeAdmin'])
 //terms
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 Route::get('/privacypolicy', [TermController::class, 'privacy'])->name('privacy');
-Route::get('/manual', [TermController::class, 'manual'])->name('manual');
+
 Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
     Route::post('/create', [TermController::class, 'store'])->name('terms.create');
     Route::put('/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
@@ -75,7 +76,7 @@ Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
 Route::prefix('Posts')->group(function () {
     // Route::post('/{postId}/toggle-like', [PostController::class, 'toggleLike']);
     Route::get('/', [PostController::class, 'index'])->name('posts');
-
+   
     Route::get('/create', [PostController::class, 'create'])->middleware(['auth'])->name('posts.create');
     Route::post('/create', [PostController::class, 'store'])->name('posts.create');
 
@@ -103,7 +104,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
    //Route::get('/posts/table', [AdminController::class, 'index'])->name('admin.users');
     Route::get('/posts/charts', [AdminController::class, 'showStatistics'])->name('admin.posts.charts');
     Route::get('/users', [AdminController::class, 'usersTable'])->name('admin.users.tables');
-    
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::post('/categories', [AdminController::class, 'store'])->name('category.create');
+    Route::delete('/{category}', [AdminController::class, 'destroyCategory'])->name('categories.destroy');
 });
 
 // GET	/photos	index	photos.index

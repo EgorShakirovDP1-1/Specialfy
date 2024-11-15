@@ -4,7 +4,7 @@
         <button class="btn btn-light border border-black  dropdown-toggle" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Please select an option
         </button>
-        <ul class="dropdown-menu border border-black" id="sortingOptions" aria-labelledby="sortingDropdown">
+        <ul class="dropdown-menu border border-black select" id="sortingOptions" aria-labelledby="sortingDropdown">
             <li class="dropdown-item" @click="sort('cheapToExpensiveSubscribtion')" aria-label="Sort from cheapest to most expensive per subscribtion">Price ascending</li>
             <li class="dropdown-item" @click="sort('expensiveToCheapSubscribtion')" aria-label="Sort from most expensive to cheapest per subscribtion">Price descending</li>
             <li class="dropdown-item" @click="sort('mostPopular')" aria-label="Sort by most popular">Top rated descending</li>
@@ -21,4 +21,8 @@ const sort = (value) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+    .select {
+        user-select:none;
+    }
+</style>
