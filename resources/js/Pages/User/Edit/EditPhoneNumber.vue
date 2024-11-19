@@ -4,10 +4,10 @@
             <form class="form mt-5" @submit.prevent="handleSubmit" aria-label="Phone Number Form">
                 <div class="form-group mt-3">
                     <label for="phone_number" class="text-dark">Phone Number:</label><br />
-                    <input v-model="form.phone_number" type="text" name="phone_number" id="phone_number"
-                        class="form-control border-primary" aria-label="Phone Number Input"
-                        :aria-invalid="errors.phone_number ? 'true' : 'false'"
-                        :aria-describedby="errors.phone_number ? 'phoneNumberError' : null" />
+                    <input type="tel" minlength="8" maxlength="11" v-model="form.phone_number" 
+       id="phone_number" name="phone_number"
+       class="rounded form-control" placeholder="+371XXXXXXXX"
+       aria-label="phone number input" pattern="^\+?[0-9]{8,11}$" />
                     <div class="d-block mt-2" v-if="errors.phone_number" id="phoneNumberError">
                         <span class="fs-5 text-danger" aria-live="assertive">{{ errors.phone_number }}</span>
                     </div>
