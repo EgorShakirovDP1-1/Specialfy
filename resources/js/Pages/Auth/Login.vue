@@ -5,7 +5,7 @@
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <img :src="post" class="img-fluid rounded" alt="Sample image of a listing">
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="col-md-9 col-lg-7 col-xl-5 offset-xl-0">
                     <form @submit.prevent="form.post('login')" aria-label="login form">
                         <div class="mb-3">
                             <p class="text-center text-black header"> Log in </p>

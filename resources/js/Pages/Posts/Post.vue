@@ -3,26 +3,26 @@
         <Message />
         <section class="p-4 bg-light">
             <div class="container">
-                <h1 class="text-center mb-2 text-black">
+                <h1 class="text-center mb-2 text-black titleName">
                     {{ post.title }} 
                 </h1>
                 <div class="px-5">
                     <div id="main-container" class="container">
                         <div class="d-flex">
-                            <div id="statistics" class="me-2">
+                            <div id="statistics" class="me-4">
                                 <ul class="list-unstyled mb-2">
-                                    <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
+                                    <li class="py-3 px-4 d-flex mb-3 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
-                                        <span class="">
+                                        <span class="fw-bold">
                                             {{ post.title }}</span>
                                     </li>
-                                    <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
+                                    <li class="py-3 px-4 d-flex mb-3 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Category:
                                         </p>
                                         <span class="">{{ post.category.name }}</span>
                                     </li>
-                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
+                                    <li class=" py-3 px-4 d-flex mb-3 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Author:
                                         </p>
@@ -40,14 +40,14 @@
                                         </p>
                                         <span class="">{{ post.user.email }}</span>
                                     </li>
-                                    <li class="py-2 px-4 d-flex my-2 rounded background">
+                                    <li class="py-3 px-4 d-flex mb-3 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Description:
                                         </p>
                                         <span class="">{{ post.text }}</span>
                                     </li>
                                     
-                                    <li class="py-2 px-4 d-flex my-2 rounded background">
+                                    <li class="py-3 px-4 d-flex mb-3 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price:
                                         </p>
@@ -59,7 +59,7 @@
                                     <div>
                                         <!-- Like Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48 like-button"
+                                                class="btn btn-light border-none px-2 py-0 me-2 btn-48 like-button border border-gray rounded"
                                                 :class="{ 'animate-click': isLikeAnimating }"
                                                 @click="handleLikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
@@ -74,7 +74,7 @@
 
                                         <!-- Dislike Button -->
                                         <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none px-2 py-0 btn-48 dislike-button"
+                                                class="btn btn-light border-none px-2 py-0 me-2 btn-48 dislike-button border border-gray rounded"
                                                 :class="{ 'animate-click': isDislikeAnimating }"
                                                 @click="handleDislikeClick(post.id)">
                                             <div class="d-flex align-items-center m-0">
@@ -253,6 +253,10 @@ export default {
 
 .carousel-item img {
     min-width: 860px;
+}
+
+.titleName{
+    letter-spacing: 1px;
 }
 
 input {
