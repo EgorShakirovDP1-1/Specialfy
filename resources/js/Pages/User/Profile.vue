@@ -16,6 +16,10 @@
                     </li>
                     <li class="mb-1 mt-0 ">
                         <MyPosts :myPosts="myPosts" />
+                
+                        
+                    </li>
+                    <li class="mb-1 mt-0 ">
                         <likedPosts :likedPosts="likedPosts" />
                     </li>
                     <li class="mb-1 mt-0">

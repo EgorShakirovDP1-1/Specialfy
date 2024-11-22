@@ -25,18 +25,18 @@
                 <section class=" mt-2 rounded background me-2">
                     <div class="p-2">
                         <div class="container text-center">
-                            <div class="row justify-content-between">
+                            <div class="row justify-content-evenly">
                                 <div class="" v-if="filteredPosts.length === 0" role="status" aria-live="polite">
                                     This record doesn't exist
                                 </div>
                                 <!-- LISTING CARDS -->
-                                <div class="d col-lg-3 col-md-5 py-4 px-4 m-3 bg-light text-black border-primary rounded d-flex flex-column"
+                                <div class="d col-lg-3 col-md-5 py-4 px-3 m-3 bg-light text-black border-primary rounded d-flex flex-column"
                                     v-for="post in filteredPosts" :key="post.id" role="listitem">
-                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid rounded" alt="Post Image" />
+                                    <img :src="getImageUrl(post.postImage)" class="d-img-top img-fluid rounded mb-3" alt="Post Image" />
                                     <div class="d-body flex-grow-1">
-                                        <h3 class="d-title">
+                                        <h4 class="d-title">
                                              {{ post.title }}
-                                        </h3>
+                                        </h4>
                                         <div class="post-images">
                                             <div v-for="image in images" :key="image.id" class="post-image">
                                                 <img :src="getImageUrl(image.path_to_img)" alt="Listing Image"/>
@@ -51,8 +51,8 @@
                                     </div>
 
                                     <!-- Bottom-aligned section -->
-                                    <div class="d-flex justify-content-center align-items-center mt-auto">
-                                        <Link :href="route('post.show', post.id)" class="btn bg-danger mb-3 img-zoom text-white">
+                                    <div class="d-flex justify-content-center align-items-center m-2">
+                                        <Link :href="route('post.show', post.id)" class="btn bg-danger img-zoom text-white">
                                             <i class="bi bi-chevron-right"></i> Read More
                                         </Link>
                                         
@@ -206,5 +206,9 @@ export default {
 .background{
     background-color: rgb(230,230,230)
 
+}
+
+.d-title{
+    letter-spacing: normal;
 }
 </style>
