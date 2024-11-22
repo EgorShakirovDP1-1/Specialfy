@@ -66,6 +66,7 @@
                     @click="edit(user.id)">
                     Edit
                 </button>
+
                 <!-- <div class="d-flex justify-content-center align-items-center"> -->
                     <!-- <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button> -->
                     <button 
