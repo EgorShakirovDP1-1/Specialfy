@@ -18,15 +18,27 @@
                                     </li>
                                     <li class="py-2 px-4 d-flex mb-2 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Category :
+                                            Category:
                                         </p>
                                         <span class="">{{ post.category.name }}</span>
                                     </li>
                                     <li class=" py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Author :
+                                            Author:
                                         </p>
-                                        <span class="">{{ post.user_id }}</span>
+                                        <span class="">{{ post.user.name }}</span>
+                                    </li>
+                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
+                                        <p class="mb-0 me-2 fw-bold">
+                                            Phone:
+                                        </p>
+                                        <span class="">{{ post.user.phone_number }}</span>
+                                    </li>
+                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
+                                        <p class="mb-0 me-2 fw-bold">
+                                            Email:
+                                        </p>
+                                        <span class="">{{ post.user.email }}</span>
                                     </li>
                                     <li class="py-2 px-4 d-flex my-2 rounded background">
                                         <p class="mb-0 me-2 fw-bold">

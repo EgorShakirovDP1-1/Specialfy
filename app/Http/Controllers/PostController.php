@@ -109,7 +109,8 @@ class PostController extends Controller
         'category_id' => $post->category,
         'profilePhoto' => $profilePhoto,
         'comments' => $comments,
-        'postImages' => $postImages,  // Pass image URLs to the view
+        'postImages' => $postImages,
+        'user_id' => $post -> user -> name,   // Pass image URLs to the view
     ]);
 }
 
