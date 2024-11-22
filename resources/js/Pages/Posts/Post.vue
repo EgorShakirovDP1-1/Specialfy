@@ -54,8 +54,8 @@
                                                 {{ post.likesCount || 0 }}
                                                 <i class="bi h4 ms-1 mt-1"
                                                 :class="{
-                                                    'bi-hand-thumbs-up-fill text-success': post.isLikedByUser,
-                                                    'bi-hand-thumbs-up text-success': !post.isLikedByUser
+                                                    'bi-hand-thumbs-up-fill text-success': post.likeCheck,
+                                                    'bi-hand-thumbs-up text-success': !post.likeCheck
                                                 }"></i>
                                             </div>
                                         </button>
@@ -69,8 +69,8 @@
                                                 {{ post.dislikesCount || 0 }}
                                                 <i class="bi h4 ms-1 mt-1"
                                                 :class="{
-                                                    'bi-hand-thumbs-down-fill text-danger': post.isLikedByUser,
-                                                    'bi-hand-thumbs-down text-danger': !post.isLikedByUser
+                                                    'bi-hand-thumbs-down-fill text-danger': post.dislikeCheck,
+                                                    'bi-hand-thumbs-down text-danger': !post.dislikeCheck
                                                 }"></i>
                                             </div>
                                         </button>
