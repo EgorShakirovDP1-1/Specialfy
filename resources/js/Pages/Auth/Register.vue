@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3">
     <div class="form-outline">
-        <label class="form-label text-black mb-1" for="user-type">Who are you</label>
+        <label class="form-label text-black mb-1 me-2" for="user-type">I am:</label>
         
         <!-- Buttons to set user_type to either 0 or 1 -->
         <button 

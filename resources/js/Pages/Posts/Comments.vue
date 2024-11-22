@@ -1,6 +1,6 @@
 <template>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48 comments-button"
+    <button type="button" class="btn btn-light border-none px-3 py-3 btn-48 comments-button border border-grey rounded"
             :class="{ 'animate-click': isCommentsAnimating }"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
@@ -148,6 +148,7 @@ export default {
 <style scoped>
 .btn-48 {
     height: 48px;
+    color: rgb(230, 230, 230);
 }
 
 .profile-photo {
@@ -174,6 +175,7 @@ export default {
 .animate-click {
     animation: clickEffect 0.2s ease;
 }
+
 
 @keyframes clickEffect {
     0% {
