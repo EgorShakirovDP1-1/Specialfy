@@ -108,11 +108,3 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/categories', [AdminController::class, 'store'])->name('category.create');
     Route::delete('/{category}', [AdminController::class, 'destroyCategory'])->name('categories.destroy');
 });
-
-// GET	/photos	index	photos.index
-// GET	/photos/create	create	photos.create
-// POST	/photos	store	photos.store
-// GET	/photos/{photo}	show	photos.show
-// GET	/photos/{photo}/edit	edit	photos.edit
-// PUT/PATCH	/photos/{photo}	update	photos.update
-// DELETE	/photos/{photo}	destroy	photos.destroy
