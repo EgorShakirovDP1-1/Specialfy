@@ -69,8 +69,8 @@
                                                 {{ post.dislikesCount || 0 }}
                                                 <i class="bi h4 ms-1 mt-1"
                                                 :class="{
-                                                    'bi-hand-thumbs-down-fill text-danger': post.isDislikedByUser,
-                                                    'bi-hand-thumbs-down text-danger': !post.isDislikedByUser
+                                                    'bi-hand-thumbs-down-fill text-danger': post.isLikedByUser,
+                                                    'bi-hand-thumbs-down text-danger': !post.isLikedByUser
                                                 }"></i>
                                             </div>
                                         </button>
@@ -81,17 +81,34 @@
                                 </div>
                             </div>
 
-                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" aria-label="Post Image carousel">
     <div class="carousel-inner">
-        <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
-            <img :src="image" class="d-block w-100 rounded object-fit-cover" alt="Post Image" />
+        <div 
+            class="carousel-item" 
+            v-for="(image, index) in postImages" 
+            :key="index" 
+            :class="{ active: index === 0 }">
+            <img 
+                :src="image" 
+                class="d-block w-100 rounded img-fluid" 
+                alt="Post Image" />
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">
+    <button 
+        class="carousel-control-prev" 
+        type="button" 
+        data-bs-target="#carouselExample" 
+        data-bs-slide="prev" 
+        aria-label="Previous">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="carouselExample" data-bs-slide="next" aria-label="Next">
+    <button 
+        class="carousel-control-next" 
+        type="button" 
+        data-bs-target="#carouselExample"
+        data-bs-slide="next" 
+        aria-label="Next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>

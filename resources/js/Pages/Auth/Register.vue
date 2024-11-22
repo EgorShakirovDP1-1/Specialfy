@@ -11,7 +11,7 @@
                             <p class="text-center text-black header"> Registration </p>
                             <div class="form-outline">
                                 <label class="form-label text-black mb-1" for="name">Full name</label>
-                                <input type="text" v-model="form.name" id="name" name="name"
+                                <input type="text" v-model="form.name" minlength="3" maxlength="25" id="name" name="name"
                                     class="rounded form-control "
                                     placeholder="Enter a valid username" aria-label="full name input" />
                             </div>
@@ -40,7 +40,7 @@
                         <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label text-black mb-1" for="email">Email address</label>
-                                <input type="email" v-model="form.email" id="email" name="email" class="rounded form-control "
+                                <input type="email" v-model="form.email" id="email" name="email" minlength="3" maxlength="50" class="rounded form-control "
                                     placeholder="example@example.com" aria-label="email input" />
                             </div>
                             <div v-if="errors.email" class="d-block mt-1">
