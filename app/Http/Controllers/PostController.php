@@ -120,26 +120,10 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request)
     {
-        // Define max dimensions
-        $maxWidth = 1200;
-        $maxHeight = 675;
     
         // Validate and save the main post data
         $validated = $request->validated();
-    
-        // Handle image resolution validation
-        if ($request->hasFile('postImages')) {
-            foreach ($request->file('postImages') as $image) {
-                [$width, $height] = getimagesize($image);
-    
-                // Check if the image exceeds the resolution limit
-                if ($width > $maxWidth || $height > $maxHeight) {
-                    return redirect()->back()
-                        ->withErrors(['resolution' => 'Each image must have a resolution of 1200x675 or smaller.'])
-                        ->withInput();
-                }
-            }
-        }
+
     
         // Create post data
         $post = Post::create([
