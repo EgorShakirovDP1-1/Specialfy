@@ -56,6 +56,22 @@ class UserController extends Controller
     }
     
 
+
+public function deleteAvatar()
+{
+    $user = auth()->user();
+
+    if ($user->avatar) {
+        // Delete the existing avatar
+        Storage::disk('public')->delete($user->avatar);
+        
+        // Set the avatar column to null
+        $user->update(['avatar' => null]);
+    }
+
+    return redirect()->route('home')->with('message', 'Profile picture deleted successfully!');
+}
+
     public function edit($id) {
         $user = User::find($id);
         $user['avatar'] = asset('storage/' . $user->avatar);

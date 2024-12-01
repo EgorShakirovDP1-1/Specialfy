@@ -21,7 +21,6 @@
                 <div class="w-100">
                     <Search @search="handleSearch" />
                 </div>
-
                 <section class=" mt-2 rounded background me-2">
                     <div class="p-2">
                         <div class="container text-center">
@@ -126,7 +125,7 @@ export default {
         return {
             isPressed: {},
             authorFilters: [],
-            searchFilter: '',
+            
             pricePerWatchFilter: '',
             pricePerSubscribtionFilter: '',
             selectedCategory: null, // Holds the selected category ID
@@ -176,12 +175,35 @@ export default {
         }
     },
     computed: {
-        filteredPosts() {
+    filteredPosts() {
         let posts = this.posts;
 
-        // Filter by selected category name
+        // Apply price filter if set
+        if (this.pricePerSubscribtionFilter !== '') {
+            posts = posts.filter(post => post.price_per_subscribtion <= this.pricePerSubscribtionFilter);
+        }
         if (this.selectedCategory) {
-            posts = posts.filter(post => post.category_name === this.selectedCategory);
+                posts = posts.filter(post => post.category_name === this.selectedCategory);
+            }
+        // Apply search filter if set
+        if (this.searchFilter !== '') {
+            const searchQuery = this.searchFilter.toLowerCase();
+
+            posts = posts.filter(post => {
+                // Safely check if each property exists and matches the search query
+                return (
+                   
+                    (post.title && post.title.toLowerCase().includes(searchQuery)) ||
+                   
+                    (post.text && post.text.toLowerCase().includes(searchQuery))
+                );
+                
+            });
+        }
+
+        // Apply sorting if any sorted posts are available
+        if (this.sortedPosts.length > 0) {
+            posts = this.sortedPosts;
         }
 
         return posts;

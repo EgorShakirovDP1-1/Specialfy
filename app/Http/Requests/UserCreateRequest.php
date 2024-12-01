@@ -23,10 +23,11 @@ class UserCreateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:40',
-            'phone_number' => 'required|min:8|max:20',
-            'email' =>'required|email|unique:users,email',
+            'phone_number' => 'required|min:8|max:20|unique:users,phone_number',
+            'email' => 'required|email|unique:users,email',
             'user_type' => 'required|boolean',
-            'password' => 'required|min:3|confirmed'
+            'password' => 'required|min:8|confirmed',
         ];
     }
+    
 }

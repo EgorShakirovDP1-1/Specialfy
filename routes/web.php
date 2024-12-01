@@ -46,7 +46,7 @@ Route::middleware('auth')->prefix('profile/{user}')->group(function () {
     Route::put('/edit', [UserController::class, 'update'])->name('update');
     Route::delete('/', [UserController::class, 'destroy'])->name('delete');
     Route::delete('/', [UserController::class, 'destroyByAdmin'])->name('delete_by_admin');
-
+    Route::delete('/avatar', [UserController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 Route::patch('/make-admin', [UserController::class, 'makeAdmin'])
     ->name('users.make-admin');
 
