@@ -17,7 +17,8 @@
                     <div class="row justify-content-around">
                         <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-light text-black border-primary"
                             v-for="post in myPosts" :key="post.id">
-                            <img :src="post.postImage1" class="card-img-top img-fluid" alt="" />
+
+                            <img :src="getImageUrl(post.postImage1)" class="d-img-top img-fluid rounded mb-3" alt="Post Image" />
                             <div class="card-body">
                                 <h3 class="card-title">{{ post.author }} {{ post.model }}</h3>
                                 <p class="text-black mb-0">{{ post.title }}</p>
@@ -60,12 +61,23 @@ export default {
         Link,
     },
     props: {
+        posts: {
+            type: Array,
+            required: true
+        },
         myPosts: {
             type: Array,
             required: true,
         },
+        images: {
+            type: Array,
+            required: true
+        },
     },
     methods: {
+        getImageUrl(path) {
+            return `/storage/${path}`;
+        },
         toggleLike(postId) {
             this.$inertia.post(`/posts/${postId}/like`, {}, { preserveScroll: true });
         },
