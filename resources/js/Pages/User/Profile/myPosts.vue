@@ -71,12 +71,23 @@ export default {
         Link,
     },
     props: {
+        posts: {
+            type: Array,
+            required: true
+        },
         myPosts: {
             type: Array,
             required: true,
         },
+        images: {
+            type: Array,
+            required: true
+        },
     },
     methods: {
+        getImageUrl(path) {
+            return `/storage/${path}`;
+        },
         toggleLike(postId) {
             this.$inertia.post(`/posts/${postId}/like`, {}, { preserveScroll: true });
         },

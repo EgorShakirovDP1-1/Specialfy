@@ -60,12 +60,13 @@
                     Delete Admin
                 </button>
 
-                <button
+                <!-- <button
                     class="btn btn-sm btn-dark me-1 mb-2 fixed-width"
                     aria-label="edit user"
                     @click="edit(user.id)">
                     Edit
-                </button>
+                </button> -->
+
                 <!-- <div class="d-flex justify-content-center align-items-center"> -->
                     <!-- <button class="btn btn-sm btn-dark me-1 fixed-width" aria-label="edit user">Edit</button> -->
                     <button 

@@ -18,15 +18,27 @@
                                     </li>
                                     <li class="py-3 px-4 d-flex mb-3 mt-0 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Category :
+                                            Category:
                                         </p>
                                         <span class="">{{ post.category.name }}</span>
                                     </li>
                                     <li class=" py-3 px-4 d-flex mb-3 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
-                                            Author :
+                                            Author:
                                         </p>
-                                        <span class="">{{ post.user_id }}</span>
+                                        <span class="">{{ post.user.name }}</span>
+                                    </li>
+                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
+                                        <p class="mb-0 me-2 fw-bold">
+                                            Phone:
+                                        </p>
+                                        <span class="">{{ post.user.phone_number }}</span>
+                                    </li>
+                                    <li class=" py-2 px-4 d-flex my-2 rounded background">
+                                        <p class="mb-0 me-2 fw-bold">
+                                            Email:
+                                        </p>
+                                        <span class="">{{ post.user.email }}</span>
                                     </li>
                                     <li class="py-3 px-4 d-flex mb-3 rounded background">
                                         <p class="mb-0 me-2 fw-bold">
@@ -54,8 +66,8 @@
                                                 {{ post.likesCount || 0 }}
                                                 <i class="bi h4 ms-1 mt-1"
                                                 :class="{
-                                                    'bi-hand-thumbs-up-fill text-success': post.isLikedByUser,
-                                                    'bi-hand-thumbs-up text-success': !post.isLikedByUser
+                                                    'bi-hand-thumbs-up-fill text-success': post.likeCheck,
+                                                    'bi-hand-thumbs-up text-success': !post.likeCheck
                                                 }"></i>
                                             </div>
                                         </button>
@@ -69,8 +81,8 @@
                                                 {{ post.dislikesCount || 0 }}
                                                 <i class="bi h4 ms-1 mt-1"
                                                 :class="{
-                                                    'bi-hand-thumbs-down-fill text-danger': post.isDislikedByUser,
-                                                    'bi-hand-thumbs-down text-danger': !post.isDislikedByUser
+                                                    'bi-hand-thumbs-down-fill text-danger': post.dislikeCheck,
+                                                    'bi-hand-thumbs-down text-danger': !post.dislikeCheck
                                                 }"></i>
                                             </div>
                                         </button>
@@ -81,17 +93,34 @@
                                 </div>
                             </div>
 
-                            <div id="carouselExample" class="carousel slide" aria-label="Post Image carousel">
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" aria-label="Post Image carousel">
     <div class="carousel-inner">
-        <div class="carousel-item" v-for="(image, index) in postImages" :key="index" :class="{ active: index === 0 }">
-            <img :src="image" class="d-block w-100 rounded object-fit-cover" alt="Post Image" />
+        <div 
+            class="carousel-item" 
+            v-for="(image, index) in postImages" 
+            :key="index" 
+            :class="{ active: index === 0 }">
+            <img 
+                :src="image" 
+                class="d-block w-100 rounded img-fluid" 
+                alt="Post Image" />
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="carouselExample" data-bs-slide="prev" aria-label="Previous">
+    <button 
+        class="carousel-control-prev" 
+        type="button" 
+        data-bs-target="#carouselExample" 
+        data-bs-slide="prev" 
+        aria-label="Previous">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="carouselExample" data-bs-slide="next" aria-label="Next">
+    <button 
+        class="carousel-control-next" 
+        type="button" 
+        data-bs-target="#carouselExample"
+        data-bs-slide="next" 
+        aria-label="Next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>

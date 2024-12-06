@@ -17,7 +17,7 @@
                     <div class="row justify-content-around">
                         <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-light .text-black border-primary"
                             v-for="post in likedPosts" :key="post.id">
-                            <img :src="post.postImage1" class="card-img-top img-fluid" alt="" />
+                            <img :src="getImageUrl(post.postImage1)" class="d-img-top img-fluid rounded mb-3" alt="Post Image" />
                             <div class="card-body">
                                 <h3 class="card-title">
                                     {{ post.author }} {{ post.model }}
@@ -82,6 +82,9 @@ export default {
         },
     },
     methods: {
+        getImageUrl(path) {
+            return `/storage/${path}`;
+        },
         toggleLike(postId) {
             this.$inertia.post(`/posts/${postId}/like`, {}, { preserveScroll: true });
         },

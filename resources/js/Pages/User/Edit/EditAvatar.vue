@@ -20,6 +20,12 @@
                             Save Profile Image
                         </button>
                     </div>
+                    <div class="form-group ms-3">
+                        <button type="button" class="btn btn-danger text-white py-2 px-3"
+                            @click="deleteAvatar" aria-label="Delete Profile Image Button">
+                            Delete Profile Image
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -28,8 +34,7 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { useForm } from "@inertiajs/vue3";
-import { router } from "@inertiajs/vue3";
+import { useForm, router } from "@inertiajs/vue3";
 
 const props = defineProps({
     avatar: String,
@@ -48,6 +53,8 @@ function submitAvatar() {
         avatar: form.avatar,
     });
 }
-</script>
 
-<style></style>
+function deleteAvatar() {
+    router.delete(`/profile/${props.id}/avatar`);
+}
+</script>

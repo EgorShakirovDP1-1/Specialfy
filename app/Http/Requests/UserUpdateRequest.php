@@ -21,12 +21,13 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        
         return [
             'name' => 'sometimes|required|min:3|max:40',
-            'phone_number' => 'sometimes|required|min:8|max:20',
+            'phone_number' => 'sometimes|min:8|max:20|unique:users,phone_number',
             'email' => 'sometimes|required|email|unique:users,email',
             'avatar' => 'sometimes|required|image',
-            'password' => 'sometimes|min:3|confirmed',
+            'password' => 'sometimes|min:8|confirmed',
         ];
     }
 }

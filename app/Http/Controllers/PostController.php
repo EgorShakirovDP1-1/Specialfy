@@ -10,7 +10,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Like;
 use App\Models\Category;
 
 
@@ -24,7 +24,8 @@ class PostController extends Controller
     $posts = Post::with(['user', 'category', 'pictures'])->orderBy('created_at', 'ASC')->get()->map(function ($post) {
         // Check if the post is liked by the authenticated user
         $isLikedByUser = auth()->user() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
-
+        $likeCheck = $post->likes()->where('value', '1');
+        $dislikeCheck = $post->likes()->where('value', '0');
         $like_count = $post->likes()->where('value', '1')->count();
         $dislike_count = $post->likes()->where('value', '0')->count();
         $rating = $like_count - $dislike_count;
@@ -42,6 +43,8 @@ class PostController extends Controller
             'text' => $post->description,
             'rating' => $rating,
             'likesCount' => $like_count,
+            'likeCheck' => $likeCheck,
+            'dislikeCheck' => $dislikeCheck,
             'isLikedByUser' => $isLikedByUser,
             'postImage' => $firstImage, // Add the first image path
         ];
@@ -106,7 +109,8 @@ class PostController extends Controller
         'category_id' => $post->category,
         'profilePhoto' => $profilePhoto,
         'comments' => $comments,
-        'postImages' => $postImages,  // Pass image URLs to the view
+        'postImages' => $postImages,
+        'user_id' => $post -> user -> name,   // Pass image URLs to the view
     ]);
 }
 
@@ -120,26 +124,10 @@ class PostController extends Controller
 
     public function store(PostStoreRequest $request)
     {
-        // Define max dimensions
-        $maxWidth = 1200;
-        $maxHeight = 675;
     
         // Validate and save the main post data
         $validated = $request->validated();
-    
-        // Handle image resolution validation
-        if ($request->hasFile('postImages')) {
-            foreach ($request->file('postImages') as $image) {
-                [$width, $height] = getimagesize($image);
-    
-                // Check if the image exceeds the resolution limit
-                if ($width > $maxWidth || $height > $maxHeight) {
-                    return redirect()->back()
-                        ->withErrors(['resolution' => 'Each image must have a resolution of 1200x675 or smaller.'])
-                        ->withInput();
-                }
-            }
-        }
+
     
         // Create post data
         $post = Post::create([

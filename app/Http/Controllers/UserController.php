@@ -30,7 +30,7 @@ class UserController extends Controller
             foreach ($likedPostIds as $postId) {
                 $likedPost = Post::find($postId);
                 if ($likedPost) {
-                    $likedPost->postImage1 = asset($likedPost->postImage1);
+                    $likedPost->postImage1 = $likedPost->pictures->first()?->path_to_img;
                     $likedPost->likesCount = $likedPost->likes->count();
                     $likedPost->isLikedByUser = auth()->check() ? $likedPost->likes()->where('user_id', auth()->id())->exists() : false;
                     $likedPosts[] = $likedPost;
@@ -39,9 +39,9 @@ class UserController extends Controller
         }
     
         // Fetch the posts created by the user
-        $myPosts = Post::where('user_id', $user->id)->get();
+        $myPosts = Post::with('pictures')->where('user_id', $user->id)->get();
         foreach ($myPosts as $post) {
-            $post->postImage1 = asset($post->postImage1);
+            $post->postImage1 = $post->pictures->first()?->path_to_img;
             $post->likesCount = $post->likes->count();
             $post->isLikedByUser = auth()->check() ? $post->likes()->where('user_id', auth()->id())->exists() : false;
         }
@@ -55,6 +55,22 @@ class UserController extends Controller
         ]);
     }
     
+
+
+public function deleteAvatar()
+{
+    $user = auth()->user();
+
+    if ($user->avatar) {
+        // Delete the existing avatar
+        Storage::disk('public')->delete($user->avatar);
+        
+        // Set the avatar column to null
+        $user->update(['avatar' => null]);
+    }
+
+    return redirect()->route('home')->with('message', 'Profile picture deleted successfully!');
+}
 
     public function edit($id) {
         $user = User::find($id);
