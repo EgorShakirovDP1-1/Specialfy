@@ -1,12 +1,22 @@
+<!-- Filter.vue -->
 <template>
-    <div class="filter-box rounded p-4 mx-3 mb-2 background">
-        <h4 class="text-center">Categories</h4>
-        <select @change="handleSetCategoryFilter($event.target.value)" class="form-select">
-            <option value="">All Categories</option>
-            <option v-for="category in categories" :key="category.id" :value="category.name">
+    <div class="dropdown filter rounded mx-3 p-4 mb-2 background text-center" aria-labelledby="categoryDropdown">
+        <h4 class="text-center text-black">Categories</h4>
+        <button class="btn btn-light ms-1 border border-black dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Please select a category
+        </button>
+        <ul class="dropdown-menu border border-black select" id="categoryOptions" aria-labelledby="categoryDropdown">
+            <li class="dropdown-item" @click="handleSetCategoryFilter('')" aria-label="Show all categories">
+                All Categories
+            </li>
+            <li v-for="category in categories" 
+                :key="category.id" 
+                class="dropdown-item"
+                @click="handleSetCategoryFilter(category.name)"
+                :aria-label="'Filter by ' + category.name">
                 {{ category.name }}
-            </option>
-        </select>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -22,21 +32,14 @@ const props = defineProps({
 
 const emit = defineEmits(['setCategoryFilter']);
 
-const handleSetCategoryFilter = (categoryName) => {
-    emit('setCategoryFilter', categoryName);
+const handleSetCategoryFilter = (value) => {
+    emit('setCategoryFilter', value);
 };
 </script>
 
 <style scoped>
-.filter-box {
-    background-color: rgb(230, 230, 230);
-}
-
-.form-select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ced4da;
-    font-size: 1rem;
+.select {
+    user-select: none;
+    width: 84.5%;
 }
 </style>
